@@ -20,8 +20,7 @@ jobs:
       - name: Install Rye
         run: |
           curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
-          export RYE_HOME="$HOME/.rye"
-          export PATH="$RYE_HOME/shims:$PATH"
+          source "$HOME/.rye/env"
 
       - name: Set Rye Config
         run: |
