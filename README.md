@@ -10,7 +10,7 @@
 
 [![Ruff](https://github.com/a5chin/python-rye/actions/workflows/ruff.yml/badge.svg)](https://github.com/a5chin/python-rye/actions/workflows/ruff.yml)
 [![test](https://github.com/a5chin/python-rye/actions/workflows/test.yml/badge.svg)](https://github.com/a5chin/python-rye/actions/workflows/test.yml)
-[![Docker](https://github.com/a5chin/python-rye/actions/workflows/build.yml/badge.svg)](https://github.com/a5chin/python-rye/actions/workflows/build.yml)
+[![Docker](https://github.com/a5chin/python-rye/actions/workflows/build.yml/badge.svg)](https://github.com/a5chin/python-rye/actions/workflows/docker.yml)
 
 </div>
 
