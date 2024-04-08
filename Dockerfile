@@ -6,7 +6,7 @@ ENV RYE_HOME="/opt/rye"
 ENV PATH="$RYE_HOME/shims:$PATH"
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends curl \
+    apt-get install -y --no-install-recommends \
         ca-certificates \
         curl
 

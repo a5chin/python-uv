@@ -1,4 +1,4 @@
-name: Ruff
+name: Test
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  ci:
+  pytest:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -18,8 +18,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Rye
+        run: curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
+
+      - name: Add to Path
+        run:  source "$HOME/.rye/env"
+
+      - name: Set Rye Config
         run: |
-          curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
           rye config --set-bool behavior.global-python=true
           rye config --set-bool behavior.use-uv=true
 
