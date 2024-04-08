@@ -7,12 +7,20 @@ on:
     branches: [ main ]
 
 jobs:
-  docker:
+  lint-prod:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        python-version: ['3.9', '3.10', '3.11', '3.12']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Lint Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
+
+  build-prod:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
