@@ -35,6 +35,6 @@ jobs:
 
       - name: Run Pytest if directory exists
         run: |
-          if [ -d "./tests/" ]: then
+          if [ -d "./tests/" ]; then
             rye run pytest -s
           fi
