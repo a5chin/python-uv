@@ -10,7 +10,7 @@
 
 [![Ruff](https://github.com/a5chin/python-rye/actions/workflows/ruff.yml/badge.svg)](https://github.com/a5chin/python-rye/actions/workflows/ruff.yml)
 [![test](https://github.com/a5chin/python-rye/actions/workflows/test.yml/badge.svg)](https://github.com/a5chin/python-rye/actions/workflows/test.yml)
-[![Docker](https://github.com/a5chin/python-rye/actions/workflows/build.yml/badge.svg)](https://github.com/a5chin/python-rye/actions/workflows/docker.yml)
+[![Docker](https://github.com/a5chin/python-rye/actions/workflows/docker.yml/badge.svg)](https://github.com/a5chin/python-rye/actions/workflows/docker.yml)
 
 </div>
 
@@ -50,7 +50,7 @@ The following are the features.
     - `ruff`
 
 ### GitHub Actions
-- `build.yml`
+- `docker.yml`
   - Workflow to check if you can build with Docker
 - `test.yml`
   - Workflow to check if all the described tests can be passed with pytest
@@ -104,7 +104,7 @@ rye sync --no-dev
 ├── Dockerfile
 ├── .github
 │   └── workflows
-│       ├── build.yml
+│       ├── docker.yml
 │       ├── ruff.yml
 │       └── pytest.yml
 ├── .gitignore
