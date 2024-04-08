@@ -11,3 +11,12 @@ repos:
     - id: ruff-format
       name: ruff-format
       description: "Run 'ruff format' for extremely fast Python formatting"
+
+  - repo: https://github.com/hadolint/hadolint
+    hooks:
+      - id: hadolint
+        name: Lint Dockerfiles
+        description: Runs hadolint to lint Dockerfiles
+        language: system
+        types: ["Dockerfile", ".devcontainer/Dockerfile"]
+        entry: hadolint
