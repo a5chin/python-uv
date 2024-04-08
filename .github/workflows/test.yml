@@ -18,9 +18,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Rye
-        run: |
-          curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
-          source "$HOME/.rye/env"
+        uses: eifinger/setup-rye@v2
+        with:
+          enable-cache: true
 
       - name: Set Rye Config
         run: |
