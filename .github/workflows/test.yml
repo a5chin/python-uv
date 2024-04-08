@@ -21,9 +21,7 @@ jobs:
         run: |
           cd /opt
           curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
-
-      - name: Add to Path
-        run:  echo 'source "/opt/rye/shims"' >> ~/.bashrc
+          echo 'source "/opt/rye/shims"' >> $GITHUB_ENV
 
       - name: Set Rye Config
         run: |
