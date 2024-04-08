@@ -1,0 +1,35 @@
+name: Ruff
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rye
+        run: |
+          curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
+          rye config --set-bool behavior.global-python=true
+          rye config --set-bool behavior.use-uv=true
+
+      - name: Set up Python ${{ matrix.python-version }}
+        run: |
+          rye pin ${{ matrix.python-version }}
+          rye sync
+
+      - name: Lint
+        run: rye run ruff check --output-format=github .
+
+      - name: Format
+        run: rye run ruff format . --check --diff
