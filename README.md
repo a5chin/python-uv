@@ -1,4 +1,4 @@
-# Python Development Environment Setup with VSCode Dev Container
+# VSCode Dev Container: Python Development with Rye, uv, and Ruff
 
 <div align="center">
 
@@ -6,7 +6,7 @@
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
-[![Versions](https://img.shields.io/pypi/pyversions/ruff.svg)]()
+[![Versions](https://img.shields.io/badge/python-3.9%20|%203.10%20|%203.11%20|%203.12%20-green.svg)](https://github.com/a5chin/python-rye)
 
 [![Ruff](https://github.com/a5chin/python-rye/actions/workflows/ruff.yml/badge.svg)](https://github.com/a5chin/python-rye/actions/workflows/ruff.yml)
 [![test](https://github.com/a5chin/python-rye/actions/workflows/test.yml/badge.svg)](https://github.com/a5chin/python-rye/actions/workflows/test.yml)
@@ -19,6 +19,7 @@ This repository contains configurations to set up a Python development environme
 The environment includes Rye, uv, and Ruff.
 
 ## Contents
+The following are the features.
 
 ### Dev Container
 - `devcontainer.json`
@@ -27,18 +28,18 @@ The environment includes Rye, uv, and Ruff.
   - features
     - pre-commit
   - extentions
-    - charliermarsh.ruff
-    - codezombiech.gitignore
-    - eamodio.gitlens
-    - kevinrose.vsc-python-indent
-    - mosapride.zenkaku
-    - ms-python.python
-    - njpwerner.autodocstring
-    - oderwat.indent-rainbow
-    - pkief.material-icon-theme
-    - shardulm94.trailing-spaces
-    - usernamehw.errorlens
-    - yzhang.markdown-all-in-one
+    - [charliermarsh.ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff)
+    - [codezombiech.gitignore](https://marketplace.visualstudio.com/items?itemName=codezombiech.gitignore)
+    - [eamodio.gitlens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
+    - [kevinrose.vsc-python-indent](https://marketplace.visualstudio.com/items?itemName=kevinrose.vsc-python-indent)
+    - [mosapride.zenkaku](https://marketplace.visualstudio.com/items?itemName=mosapride.zenkaku)
+    - [ms-python.python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+    - [njpwerner.autodocstring](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring)
+    - [oderwat.indent-rainbow](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow)
+    - [pkief.material-icon-theme](https://marketplace.visualstudio.com/items?itemName=pkief.material-icon-theme)
+    - [shardulm94.trailing-spaces](https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces)
+    - [usernamehw.errorlens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
+    - [yzhang.markdown-all-in-one](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
 - `Dockerfile`
   - Rye
     - `rye config --set-bool behavior.global-python=true`
@@ -69,9 +70,15 @@ ignore = [
 ```
 
 ### pre-commit
-- `.pre-commit-config.yaml`
-  - Linter: `ruff check .`
-  - Formatter: `ruff format .`
+The `.pre-commit-config.yaml` file can contain scripts to be executed before commit.
+
+```sh
+# Linter
+ruff check . --fix
+
+# Formatter
+ruff format .
+```
 
 ### Install
 Only sync based on the production lockfile (`requirements.lock`) instead of the development lockfile (`requirements-dev.lock`).
