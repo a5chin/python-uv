@@ -20,7 +20,8 @@ jobs:
       - name: Install Rye
         run: |
           curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
-          source "$HOME/.rye/env"
+          export RYE_HOME="$HOME/.rye"
+          export PATH="$RYE_HOME/shims:$PATH"
 
       - name: Set Rye Config
         run: |
@@ -29,6 +30,7 @@ jobs:
 
       - name: Set up Python ${{ matrix.python-version }}
         run: |
+          export PYTHONUNBUFFERED=1
           rye pin ${{ matrix.python-version }}
           rye sync
 
