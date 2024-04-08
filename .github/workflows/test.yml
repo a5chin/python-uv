@@ -19,9 +19,8 @@ jobs:
 
       - name: Install Rye
         run: |
-          cd /opt
           curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
-          source "/opt/rye/env"
+          source "$HOME/.rye/env"
 
       - name: Set Rye Config
         run: |
