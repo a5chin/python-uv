@@ -20,7 +20,8 @@
                 "oderwat.indent-rainbow",
                 "pkief.material-icon-theme",
                 "shardulm94.trailing-spaces",
-                "usernamehw.errorlens"
+                "usernamehw.errorlens",
+                "yzhang.markdown-all-in-one"
             ],
             "settings": {
                 "python.defaultInterpreterPath": "/opt/rye/shims/python",
