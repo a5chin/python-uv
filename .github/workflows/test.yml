@@ -33,5 +33,8 @@ jobs:
           rye pin ${{ matrix.python-version }}
           rye sync
 
-      - name: Pytest
-        run: rye run pytest -s
+      - name: Run Pytest if directory exists
+        run: |
+          if [ -d "./tests/" ]: then
+            rye run pytest -s
+          fi
