@@ -5,7 +5,7 @@ repos:
     hooks:
     - id: ruff
       name: ruff
-      description: "Run 'ruff' for extremely fast Python linting"
+      description: "Run 'ruff check' for extremely fast Python linting"
       args: [ --fix ]
 
     - id: ruff-format
