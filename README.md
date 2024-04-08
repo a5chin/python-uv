@@ -44,7 +44,10 @@ The following are the features.
   - Rye
     - `rye config --set-bool behavior.global-python=true`
     - `rye config --set-bool behavior.use-uv=true`
-  - Ruff
+  - Only Dev dependencies
+    - `pre-commit`
+    - `pytest`
+    - `ruff`
 
 ### GitHub Actions
 - `build.yml`
