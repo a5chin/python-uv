@@ -33,6 +33,7 @@ The following are the features.
     - [eamodio.gitlens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
     - [kevinrose.vsc-python-indent](https://marketplace.visualstudio.com/items?itemName=kevinrose.vsc-python-indent)
     - [mosapride.zenkaku](https://marketplace.visualstudio.com/items?itemName=mosapride.zenkaku)
+    - [ms-azuretools.vscode-docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
     - [ms-python.python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
     - [njpwerner.autodocstring](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring)
     - [oderwat.indent-rainbow](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow)
@@ -76,11 +77,14 @@ ignore = [
 The `.pre-commit-config.yaml` file can contain scripts to be executed before commit.
 
 ```sh
-# Linter
+# Python Formatter
+ruff format .
+
+# Python Linter
 ruff check . --fix
 
-# Formatter
-ruff format .
+# Docker Linter
+hodolint Dockerfile
 ```
 
 ### Install
