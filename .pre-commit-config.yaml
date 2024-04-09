@@ -19,6 +19,6 @@ repos:
         name: Lint Dockerfiles
         description: Runs hadolint to lint Dockerfiles
         language: system
-        files: ["Dockerfile", ".devcontainer/Dockerfile"]
+        files: "Dockerfile, .devcontainer/Dockerfile"
         types: ["dockerfile"]
         entry: hadolint
