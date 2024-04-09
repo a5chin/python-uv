@@ -17,6 +17,7 @@
                 "exiasr.hadolint",
                 "kevinrose.vsc-python-indent",
                 "mosapride.zenkaku",
+                "ms-azuretools.vscode-docker",
                 "ms-python.python",
                 "njpwerner.autodocstring",
                 "oderwat.indent-rainbow",
