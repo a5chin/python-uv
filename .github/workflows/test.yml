@@ -1,4 +1,4 @@
-name: Ruff
+name: Test
 
 on:
   push:
@@ -7,26 +7,35 @@ on:
     branches: [ main ]
 
 jobs:
-  ci:
+  pytest:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        python-version: ['3.10', '3.11', '3.12']
+        python-version: ['3.9', '3.10', '3.11', '3.12']
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Install Rye
+        uses: eifinger/setup-rye@v2
+        with:
+          enable-cache: true
+
+      - name: Set Rye Config
         run: |
-          curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
           rye config --set-bool behavior.global-python=true
           rye config --set-bool behavior.use-uv=true
 
       - name: Set up Python ${{ matrix.python-version }}
         run: |
+          export PYTHONUNBUFFERED=1
           rye pin ${{ matrix.python-version }}
           rye sync
 
-      - name: Pytest
-        run: rye run pytest -s
+      - name: Run Pytest if directory exists
+        run: |
+          if [ -d "./tests/" ]; then
+            rye run pytest -s
+          fi

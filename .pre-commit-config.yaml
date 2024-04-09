@@ -4,10 +4,21 @@ repos:
     rev: v0.3.5
     hooks:
     - id: ruff
-      name: ruff
-      description: "Run 'ruff' for extremely fast Python linting"
+      name: Ruff check
+      description: "Run 'ruff check' for extremely fast Python linting"
       args: [ --fix ]
 
     - id: ruff-format
-      name: ruff-format
+      name: Ruff format
       description: "Run 'ruff format' for extremely fast Python formatting"
+
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.0
+    hooks:
+      - id: hadolint
+        name: Lint Dockerfiles
+        description: Runs hadolint to lint Dockerfiles
+        language: system
+        files: ["Dockerfile", ".devcontainer/Dockerfile"]
+        types: ["dockerfile"]
+        entry: hadolint
