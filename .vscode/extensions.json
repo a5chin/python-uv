@@ -8,6 +8,7 @@
         "mosapride.zenkaku",
         "ms-azuretools.vscode-docker",
         "ms-python.python",
+        "ms-toolsai.jupyter",
         "ms-vscode-remote.remote-containers",
         "njpwerner.autodocstring",
         "oderwat.indent-rainbow",
