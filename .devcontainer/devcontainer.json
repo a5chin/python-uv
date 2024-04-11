@@ -37,6 +37,7 @@
                     "editor.formatOnSave": true
                 },
                 "files.insertFinalNewline": true,
+                "files.trimTrailingWhitespace": true,
                 "terminal.integrated.defaultProfile.linux": "zsh",
                 "terminal.integrated.profiles.linux": {
                     "zsh": {
