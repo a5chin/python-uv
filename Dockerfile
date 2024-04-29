@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim as builder
+FROM debian:bookworm-slim as builder
 
 WORKDIR /opt
 
@@ -21,7 +21,7 @@ RUN rye pin "$(cat .python-version)" && \
     rye sync --no-dev
 
 
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 COPY --from=builder /opt/rye /opt/rye
 
 ENV RYE_HOME="/opt/rye"
