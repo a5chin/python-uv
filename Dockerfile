@@ -9,7 +9,9 @@ ENV PATH="$RYE_HOME/shims:$PATH"
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         ca-certificates \
-        curl
+        curl \
+        gcc \
+        python3-dev
 
 SHELL [ "/bin/bash", "-o", "pipefail", "-c" ]
 RUN curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash && \
