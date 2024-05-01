@@ -21,6 +21,10 @@ The environment includes Rye, uv, and Ruff.
 ## Contents
 The following are the features.
 
+### Branches
+- [main](https://github.com/a5chin/python-rye/tree/main)
+- [jupyter](https://github.com/a5chin/python-rye/tree/jupyter)
+
 ### Dev Container
 - `devcontainer.json`
   - settings
