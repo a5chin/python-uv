@@ -12,9 +12,9 @@ cfgv==3.4.0
     # via pre-commit
 distlib==0.3.8
     # via virtualenv
-filelock==3.13.3
+filelock==3.14.0
     # via virtualenv
-identify==2.5.35
+identify==2.5.36
     # via pre-commit
 iniconfig==2.0.0
     # via pytest
@@ -22,16 +22,16 @@ nodeenv==1.8.0
     # via pre-commit
 packaging==24.0
     # via pytest
-platformdirs==4.2.0
+platformdirs==4.2.1
     # via virtualenv
-pluggy==1.4.0
+pluggy==1.5.0
     # via pytest
 pre-commit==3.7.0
-pytest==8.1.1
+pytest==8.2.0
 pyyaml==6.0.1
     # via pre-commit
-ruff==0.3.5
-setuptools==69.2.0
+ruff==0.4.3
+setuptools==69.5.1
     # via nodeenv
-virtualenv==20.25.1
+virtualenv==20.26.1
     # via pre-commit
