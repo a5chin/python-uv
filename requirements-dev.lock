@@ -193,7 +193,7 @@ platformdirs==4.2.1
     # via virtualenv
 pluggy==1.5.0
     # via pytest
-pre-commit==3.7.0
+pre-commit==3.7.1
 prometheus-client==0.20.0
     # via jupyter-server
 prompt-toolkit==3.0.43
