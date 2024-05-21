@@ -126,7 +126,7 @@ jupyter-server==2.14.0
     # via notebook-shim
 jupyter-server-terminals==0.5.3
     # via jupyter-server
-jupyterlab==4.1.8
+jupyterlab==4.2.0
     # via notebook
 jupyterlab-pygments==0.3.0
     # via nbconvert
@@ -154,7 +154,7 @@ nbformat==5.10.4
     # via nbconvert
 nest-asyncio==1.6.0
     # via ipykernel
-notebook==7.1.3
+notebook==7.2.0
     # via jupyter
 notebook-shim==0.2.4
     # via jupyterlab
@@ -175,7 +175,7 @@ parso==0.8.4
     # via jedi
 pexpect==4.9.0
     # via ipython
-platformdirs==4.2.1
+platformdirs==4.2.2
     # via jupyter-core
 prometheus-client==0.20.0
     # via jupyter-server
@@ -217,7 +217,7 @@ referencing==0.35.1
     # via jsonschema
     # via jsonschema-specifications
     # via jupyter-events
-requests==2.31.0
+requests==2.32.1
     # via jupyterlab-server
 rfc3339-validator==0.1.4
     # via jsonschema
