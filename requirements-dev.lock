@@ -22,16 +22,16 @@ nodeenv==1.8.0
     # via pre-commit
 packaging==24.0
     # via pytest
-platformdirs==4.2.1
+platformdirs==4.2.2
     # via virtualenv
 pluggy==1.5.0
     # via pytest
 pre-commit==3.7.1
-pytest==8.2.0
+pytest==8.2.1
 pyyaml==6.0.1
     # via pre-commit
 ruff==0.4.4
-setuptools==69.5.1
+setuptools==70.0.0
     # via nodeenv
-virtualenv==20.26.1
+virtualenv==20.26.2
     # via pre-commit
