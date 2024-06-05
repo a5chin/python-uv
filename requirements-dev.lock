@@ -6,6 +6,7 @@
 #   features: []
 #   all-features: false
 #   with-sources: false
+#   generate-hashes: false
 
 -e file:.
 cfgv==3.4.0
@@ -18,7 +19,7 @@ identify==2.5.36
     # via pre-commit
 iniconfig==2.0.0
     # via pytest
-nodeenv==1.8.0
+nodeenv==1.9.0
     # via pre-commit
 packaging==24.0
     # via pytest
@@ -30,8 +31,6 @@ pre-commit==3.7.1
 pytest==8.2.1
 pyyaml==6.0.1
     # via pre-commit
-ruff==0.4.4
-setuptools==70.0.0
-    # via nodeenv
+ruff==0.4.7
 virtualenv==20.26.2
     # via pre-commit
