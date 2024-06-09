@@ -6,6 +6,7 @@
 #   features: []
 #   all-features: false
 #   with-sources: false
+#   generate-hashes: false
 
 -e file:.
 anyio==4.3.0
@@ -164,7 +165,7 @@ nbformat==5.10.4
     # via nbconvert
 nest-asyncio==1.6.0
     # via ipykernel
-nodeenv==1.8.0
+nodeenv==1.9.0
     # via pre-commit
 notebook==7.2.0
     # via jupyter
@@ -222,6 +223,7 @@ python-json-logger==2.0.7
 pyyaml==6.0.1
     # via jupyter-events
     # via pre-commit
+<<<<<<< HEAD
 pyzmq==26.0.3
     # via ipykernel
     # via jupyter-client
@@ -298,6 +300,9 @@ uri-template==1.3.0
     # via jsonschema
 urllib3==2.2.1
     # via requests
+=======
+ruff==0.4.7
+>>>>>>> 4380c3d56af20702e5e92fdb2e09afdebdad2807
 virtualenv==20.26.2
     # via pre-commit
 wcwidth==0.2.13
