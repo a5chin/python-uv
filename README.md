@@ -18,6 +18,14 @@
 This repository contains configurations to set up a Python development environment using VSCode's Dev Container feature.
 The environment includes Rye, uv, and Ruff.
 
+![demo](assets/gif/ruff.gif)
+
+If the Ruff format does not work, try reloading the VS Code window.
+Specifically, you can solve this problem by following the steps below.
+
+1. Type `⌘+⇧+P` to open the command palette
+2. Type `Developer: Reload Window` in the command palette to reload the window
+
 ## Contents
 The following are the features.
 
