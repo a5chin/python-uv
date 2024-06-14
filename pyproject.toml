@@ -14,5 +14,5 @@ managed = true
 dev-dependencies = [
     "pytest>=8.2.2",
     "pre-commit>=3.7.0",
-    "ruff>=0.4.7",
+    "ruff>=0.4.8",
 ]
