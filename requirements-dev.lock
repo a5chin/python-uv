@@ -31,6 +31,6 @@ pre-commit==3.7.1
 pytest==8.2.2
 pyyaml==6.0.1
     # via pre-commit
-ruff==0.4.8
+ruff==0.4.9
 virtualenv==20.26.2
     # via pre-commit
