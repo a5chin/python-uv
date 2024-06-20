@@ -9,7 +9,7 @@
 #   generate-hashes: false
 
 -e file:.
-anyio==4.3.0
+anyio==4.4.0
     # via httpx
     # via jupyter-server
 argon2-cffi==23.1.0
@@ -31,7 +31,7 @@ beautifulsoup4==4.12.3
     # via nbconvert
 bleach==6.1.0
     # via nbconvert
-certifi==2024.2.2
+certifi==2024.6.2
     # via httpcore
     # via httpx
     # via requests
@@ -50,7 +50,7 @@ defusedxml==0.7.1
     # via nbconvert
 executing==2.0.1
     # via stack-data
-fastjsonschema==2.19.1
+fastjsonschema==2.20.0
     # via nbformat
 fqdn==1.5.1
     # via jsonschema
@@ -70,11 +70,11 @@ ipykernel==6.29.4
     # via jupyter-console
     # via jupyterlab
     # via qtconsole
-ipython==8.24.0
+ipython==8.25.0
     # via ipykernel
     # via ipywidgets
     # via jupyter-console
-ipywidgets==8.1.2
+ipywidgets==8.1.3
     # via jupyter
 isoduration==20.11.0
     # via jsonschema
@@ -87,7 +87,7 @@ jinja2==3.1.4
     # via nbconvert
 json5==0.9.25
     # via jupyterlab-server
-jsonpointer==2.4
+jsonpointer==3.0.0
     # via jsonschema
 jsonschema==4.22.0
     # via jupyter-events
@@ -97,7 +97,7 @@ jsonschema-specifications==2023.12.1
     # via jsonschema
 jupyter==1.0.0
     # via default
-jupyter-client==8.6.1
+jupyter-client==8.6.2
     # via ipykernel
     # via jupyter-console
     # via jupyter-server
@@ -119,7 +119,7 @@ jupyter-events==0.10.0
     # via jupyter-server
 jupyter-lsp==2.2.5
     # via jupyterlab
-jupyter-server==2.14.0
+jupyter-server==2.14.1
     # via jupyter-lsp
     # via jupyterlab
     # via jupyterlab-server
@@ -127,14 +127,14 @@ jupyter-server==2.14.0
     # via notebook-shim
 jupyter-server-terminals==0.5.3
     # via jupyter-server
-jupyterlab==4.2.0
+jupyterlab==4.2.2
     # via notebook
 jupyterlab-pygments==0.3.0
     # via nbconvert
-jupyterlab-server==2.27.1
+jupyterlab-server==2.27.2
     # via jupyterlab
     # via notebook
-jupyterlab-widgets==3.0.10
+jupyterlab-widgets==3.0.11
     # via ipywidgets
 markupsafe==2.1.5
     # via jinja2
@@ -155,14 +155,14 @@ nbformat==5.10.4
     # via nbconvert
 nest-asyncio==1.6.0
     # via ipykernel
-notebook==7.2.0
+notebook==7.2.1
     # via jupyter
 notebook-shim==0.2.4
     # via jupyterlab
     # via notebook
 overrides==7.7.0
     # via jupyter-server
-packaging==24.0
+packaging==24.1
     # via ipykernel
     # via jupyter-server
     # via jupyterlab
@@ -180,10 +180,10 @@ platformdirs==4.2.2
     # via jupyter-core
 prometheus-client==0.20.0
     # via jupyter-server
-prompt-toolkit==3.0.43
+prompt-toolkit==3.0.47
     # via ipython
     # via jupyter-console
-psutil==5.9.8
+psutil==6.0.0
     # via ipykernel
 ptyprocess==0.7.0
     # via pexpect
@@ -218,7 +218,7 @@ referencing==0.35.1
     # via jsonschema
     # via jsonschema-specifications
     # via jupyter-events
-requests==2.32.1
+requests==2.32.3
     # via jupyterlab-server
 rfc3339-validator==0.1.4
     # via jsonschema
@@ -231,6 +231,8 @@ rpds-py==0.18.1
     # via referencing
 send2trash==1.8.3
     # via jupyter-server
+setuptools==70.1.0
+    # via jupyterlab
 six==1.16.0
     # via asttokens
     # via bleach
@@ -248,7 +250,7 @@ terminado==0.18.1
     # via jupyter-server-terminals
 tinycss2==1.3.0
     # via nbconvert
-tornado==6.4
+tornado==6.4.1
     # via ipykernel
     # via jupyter-client
     # via jupyter-server
@@ -275,16 +277,16 @@ types-python-dateutil==2.9.0.20240316
     # via arrow
 uri-template==1.3.0
     # via jsonschema
-urllib3==2.2.1
+urllib3==2.2.2
     # via requests
 wcwidth==0.2.13
     # via prompt-toolkit
-webcolors==1.13
+webcolors==24.6.0
     # via jsonschema
 webencodings==0.5.1
     # via bleach
     # via tinycss2
 websocket-client==1.8.0
     # via jupyter-server
-widgetsnbextension==4.0.10
+widgetsnbextension==4.0.11
     # via ipywidgets

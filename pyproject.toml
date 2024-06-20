@@ -15,6 +15,6 @@ requires-python = ">= 3.12"
 managed = true
 dev-dependencies = [
     "pytest>=8.2.2",
-    "pre-commit>=3.7.0",
-    "ruff>=0.4.7",
+    "pre-commit>=3.7.1",
+    "ruff>=0.4.9",
 ]
