@@ -129,10 +129,14 @@ rye sync --no-dev
 │   └── Dockerfile
 ├── Dockerfile
 ├── .github
+│   ├── actions
+│   │   └── setup-python-with-rye
+│   │       └── action.yml
+│   ├── dependabot.yml
 │   └── workflows
 │       ├── docker.yml
 │       ├── ruff.yml
-│       └── pytest.yml
+│       └── test.yml
 ├── .gitignore
 ├── LICENSE
 ├── .pre-commit-config.yaml
@@ -143,5 +147,6 @@ rye sync --no-dev
 ├── requirements.lock
 ├── ruff.toml
 └── .vscode
+    ├── extensions.json
     └── settings.json
 ```
