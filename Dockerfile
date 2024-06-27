@@ -1,7 +1,7 @@
 ARG VARIANT=3.12
-FROM python:${VARIANT} as builder
+FROM python:${VARIANT} AS builder
 
-ENV PYTHONDONTWRITEBYTECODE True
+ENV PYTHONDONTWRITEBYTECODE=True
 
 WORKDIR /opt
 COPY pyproject.toml requirements.lock ./
@@ -14,6 +14,6 @@ RUN pip install --upgrade pip && \
 FROM python:${VARIANT}-slim
 COPY --from=builder /usr/local/lib/python*/site-packages /usr/local/lib/python*/site-packages
 
-ENV PYTHONUNBUFFERED True
+ENV PYTHONUNBUFFERED=True
 
 WORKDIR /

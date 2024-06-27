@@ -26,7 +26,7 @@ runs:
 
       - name: Set up Python ${{ inputs.python-version }}
         run: |
-          export PYTHONUNBUFFERED=1
+          export PYTHONUNBUFFERED=True
           rye pin ${{ inputs.python-version }}
         shell: bash
 

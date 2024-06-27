@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim as builder
+FROM debian:bookworm-slim AS builder
 
 WORKDIR /opt
 
@@ -26,7 +26,7 @@ COPY --from=builder /opt/rye /opt/rye
 
 ENV RYE_HOME="/opt/rye"
 ENV PATH="$RYE_HOME/shims:$PATH"
-ENV PYTHONUNBUFFERED True
+ENV PYTHONUNBUFFERED=True
 
 RUN rye config --set-bool behavior.global-python=true && \
     rye config --set-bool behavior.use-uv=true
