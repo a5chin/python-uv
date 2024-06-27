@@ -26,14 +26,24 @@ Specifically, you can solve this problem by following the steps below.
 1. Type `⌘+⇧+P` to open the command palette
 2. Type `Developer: Reload Window` in the command palette to reload the window
 
-## Contents
-The following are the features.
+### Contents
+- [VSCode Dev Container: Python Development with Rye, uv, and Ruff](#vscode-dev-container-python-development-with-rye-uv-and-ruff)
+  - [Overview](#overview)
+    - [Contents](#contents)
+  - [Branches](#branches)
+  - [Dev Container](#dev-container)
+  - [GitHub Actions](#github-actions)
+  - [Ruff](#ruff)
+  - [pre-commit](#pre-commit)
+  - [Install](#install)
+  - [Appendix](#appendix)
+    - [The structure of this repository](#the-structure-of-this-repository)
 
-### Branches
+## Branches
 - [main](https://github.com/a5chin/python-rye/tree/main)
 - [jupyter](https://github.com/a5chin/python-rye/tree/jupyter)
 
-### Dev Container
+## Dev Container
 - `devcontainer.json`
   - settings
     - formatOnSave by Ruff
@@ -62,7 +72,7 @@ The following are the features.
     - `pytest`
     - `ruff`
 
-### GitHub Actions
+## GitHub Actions
 - `docker.yml`
   - Workflow to check if you can build with Docker
 - `test.yml`
@@ -70,7 +80,7 @@ The following are the features.
 - `ruff.yml`
   - Workflow to check if you can go through Formatter and Linter with Ruff
 
-### Ruff
+## Ruff
 Ruff can be used to replace Flake8, Black, isort, pydocstyle, pyupgrade, autoflake, etc., and yet run tens to hundreds of times faster than the individual tools.
 
 To change the configuration, it is necessary to rewrite ruff.toml, and [it is recommended](https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules) to set it to ignore conflicts such as the following:
@@ -85,21 +95,21 @@ ignore = [
 ]
 ```
 
-### pre-commit
+## pre-commit
 The `.pre-commit-config.yaml` file can contain scripts to be executed before commit.
 
 ```sh
 # Python Formatter
-ruff format .
+rye run ruff format .
 
 # Python Linter
-ruff check . --fix
+rye run ruff check . --fix
 
 # Docker Linter
 hodolint Dockerfile
 ```
 
-### Install
+## Install
 Only sync based on the production lockfile (`requirements.lock`) instead of the development lockfile (`requirements-dev.lock`).
 
 ```sh
