@@ -5,7 +5,6 @@
         "dockerfile": "Dockerfile"
     },
     "features": {
-        "ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
         "ghcr.io/dhoeric/features/hadolint:1": {}
     },
     "customizations": {
@@ -47,6 +46,7 @@
             }
         }
     },
-    "postStartCommand": "pre-commit install",
+    "postCreateCommand": "rye sync",
+    "postStartCommand": "rye run pre-commit install",
     "remoteUser": "vscode"
 }
