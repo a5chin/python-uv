@@ -35,8 +35,8 @@ Specifically, you can solve this problem by following the steps below.
   - [GitHub Actions](#github-actions)
   - [Ruff](#ruff)
   - [pre-commit](#pre-commit)
-  - [Install](#install)
   - [Appendix](#appendix)
+    - [Install libraries](#install-libraries)
     - [The structure of this repository](#the-structure-of-this-repository)
 
 ## Branches
@@ -109,7 +109,9 @@ rye run ruff check . --fix
 hodolint Dockerfile
 ```
 
-## Install
+## Appendix
+
+### Install libraries
 Only sync based on the production lockfile (`requirements.lock`) instead of the development lockfile (`requirements-dev.lock`).
 
 ```sh
@@ -118,9 +120,11 @@ rye sync
 
 # If you do not want dev dependencies to be installed
 rye sync --no-dev
+
+# Use the add command to add dependencies to your project
+rye add {libraries}
 ```
 
-## Appendix
 ### The structure of this repository
 ```
 .
