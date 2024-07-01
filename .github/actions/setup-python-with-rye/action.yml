@@ -1,0 +1,35 @@
+name: Install Python with Rye
+
+inputs:
+  python-version:
+    description: Python version
+    required: true
+  rye-version:
+    description: Rye version
+    required: false
+    default: "latest"
+
+runs:
+  using: composite
+  steps:
+      - name: Install Rye
+        uses: eifinger/setup-rye@v3
+        with:
+          enable-cache: true
+          version: ${{ inputs.rye-version }}
+
+      - name: Set Rye Config
+        run: |
+          rye config --set-bool behavior.global-python=true
+          rye config --set-bool behavior.use-uv=true
+        shell: bash
+
+      - name: Set up Python ${{ inputs.python-version }}
+        run: |
+          export PYTHONUNBUFFERED=True
+          rye pin ${{ inputs.python-version }}
+        shell: bash
+
+      - name: Install Dependencies
+        run: rye sync
+        shell: bash
