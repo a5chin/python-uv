@@ -12,7 +12,7 @@ requires-python = ">= 3.12"
 [tool.rye]
 managed = true
 dev-dependencies = [
-    "pytest>=8.2.2",
+    "pytest>=8.3.1",
     "pre-commit>=3.7.1",
-    "ruff>=0.4.9",
+    "ruff>=0.5.4",
 ]
