@@ -27,7 +27,7 @@ platformdirs==4.2.2
     # via virtualenv
 pluggy==1.5.0
     # via pytest
-pre-commit==3.7.1
+pre-commit==3.8.0
 pytest==8.3.2
 pyyaml==6.0.1
     # via pre-commit
