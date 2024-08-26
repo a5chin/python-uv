@@ -10,6 +10,7 @@ runs:
   steps:
     - name: Install uv
       run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      shell: bash
 
     - name: Pin Python Version
       run: |
@@ -18,10 +19,10 @@ runs:
       shell: bash
 
     - uses: actions/cache@v4
-        id: cache-uv
-        with:
-          path: ~/.cache/uv
-          key: ${{ runner.os }}-python-${{ inputs.python-version }}-uv
+      id: cache-uv
+      with:
+        path: ~/.cache/uv
+        key: ${{ runner.os }}-python-${{ inputs.python-version }}-uv
       shell: bash
 
     - name: Install Dependencies
