@@ -5,11 +5,11 @@
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
-[![Versions](https://img.shields.io/badge/python-3.9%20|%203.10%20|%203.11%20|%203.12%20-green.svg)](https://github.com/a5chin/python-rye)
+[![Versions](https://img.shields.io/badge/python-3.9%20|%203.10%20|%203.11%20|%203.12%20-green.svg)](https://github.com/a5chin/python-uv)
 
-[![Ruff](https://github.com/a5chin/python-rye/actions/workflows/ruff.yml/badge.svg)](https://github.com/a5chin/python-rye/actions/workflows/ruff.yml)
-[![Test](https://github.com/a5chin/python-rye/actions/workflows/test.yml/badge.svg)](https://github.com/a5chin/python-rye/actions/workflows/test.yml)
-[![Docker](https://github.com/a5chin/python-rye/actions/workflows/docker.yml/badge.svg)](https://github.com/a5chin/python-rye/actions/workflows/docker.yml)
+[![Ruff](https://github.com/a5chin/python-uv/actions/workflows/ruff.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/ruff.yml)
+[![Test](https://github.com/a5chin/python-uv/actions/workflows/test.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/test.yml)
+[![Docker](https://github.com/a5chin/python-uv/actions/workflows/docker.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/docker.yml)
 
 </div>
 
@@ -39,9 +39,9 @@ Specifically, you can solve this problem by following the steps below.
     - [The structure of this repository](#the-structure-of-this-repository)
 
 ## Branches
-- [main](https://github.com/a5chin/python-rye/tree/main)
-- [jupyter](https://github.com/a5chin/python-rye/tree/jupyter)
-- [rye](https://github.com/a5chin/python-rye/tree/rye)（Archived）
+- [main](https://github.com/a5chin/python-uv/tree/main)
+- [jupyter](https://github.com/a5chin/python-uv/tree/jupyter)
+- [rye](https://github.com/a5chin/python-uv/tree/rye)（Archived）
 
 ## Dev Container
 - `devcontainer.json`
