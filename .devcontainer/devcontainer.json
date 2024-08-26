@@ -1,5 +1,5 @@
 {
-    "name": "Rye",
+    "name": "uv",
     "build": {
         "context": "..",
         "dockerfile": "Dockerfile"
@@ -26,7 +26,7 @@
                 "yzhang.markdown-all-in-one"
             ],
             "settings": {
-                "python.defaultInterpreterPath": "/opt/rye/shims/python",
+                "python.defaultInterpreterPath": "/root/.local/share/uv/python",
                 "[python]": {
                     "editor.defaultFormatter": "charliermarsh.ruff",
                     "editor.codeActionsOnSave": {
@@ -46,7 +46,7 @@
             }
         }
     },
-    "postCreateCommand": "rye sync",
-    "postStartCommand": "rye run pre-commit install",
+    "postCreateCommand": "uv sync",
+    "postStartCommand": "uv run pre-commit install",
     "remoteUser": "vscode"
 }
