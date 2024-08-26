@@ -19,15 +19,18 @@ RUN sh /uv-installer.sh
 
 
 FROM mcr.microsoft.com/vscode/devcontainers/base:bookworm
+
 ENV CARGO_HOME="/opt/.cargo/bin"
 ENV PATH="$CARGO_HOME/:$PATH"
-COPY --from=builder /root/.cargo/bin/uv $CARGO_HOME/uv
+
+ENV PYTHONUNBUFFERED=True
+ENV UV_LINK_MODE=copy
 
 WORKDIR /opt
 
+COPY --from=builder /root/.cargo/bin/uv $CARGO_HOME/uv
 COPY ./.python-version ./
-RUN uv python pin "$(cat .python-version)"
 
-ENV PYTHONUNBUFFERED=True
+RUN uv python pin "$(cat .python-version)"
 
 RUN chown -R vscode $CARGO_HOME
