@@ -13,7 +13,7 @@ runs:
       run: curl -LsSf https://astral.sh/uv/install.sh | sh
 
     - name: Set up Python ${{ inputs.python-version }}
-      - uses: actions/cache@v4
+      uses: actions/cache@v4
         id: cache-uv
         with:
           path: ~/.cache/uv
