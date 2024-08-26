@@ -19,4 +19,4 @@ COPY --from=builder /usr/local/lib/python*/site-packages /usr/local/lib/python*/
 
 ENV PYTHONUNBUFFERED=True
 
-WORKDIR $HOME
+WORKDIR /
