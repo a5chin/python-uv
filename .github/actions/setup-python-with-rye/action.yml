@@ -1,35 +1,28 @@
-name: Install Python with Rye
+name: Install Python with uv
 
 inputs:
   python-version:
     description: Python version
     required: true
-  rye-version:
-    description: Rye version
-    required: false
-    default: "latest"
 
 runs:
   using: composite
   steps:
-      - name: Install Rye
-        uses: eifinger/setup-rye@v3
+    - name: Install uv
+      # Install latest uv version using the installer
+      run: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+    - name: Set up Python ${{ inputs.python-version }}
+      - uses: actions/cache@v4
+        id: cache-uv
         with:
-          enable-cache: true
-          version: ${{ inputs.rye-version }}
+          path: ~/.cache/uv
+          key: ${{ runner.os }}-python-${{ inputs.python-version }}-uv
+      run: |
+        export PYTHONUNBUFFERED=True
+        uv python pin ${{ inputs.python-version }}
+      shell: bash
 
-      - name: Set Rye Config
-        run: |
-          rye config --set-bool behavior.global-python=true
-          rye config --set-bool behavior.use-uv=true
-        shell: bash
-
-      - name: Set up Python ${{ inputs.python-version }}
-        run: |
-          export PYTHONUNBUFFERED=True
-          rye pin ${{ inputs.python-version }}
-        shell: bash
-
-      - name: Install Dependencies
-        run: rye sync
-        shell: bash
+    - name: Install Dependencies
+      run: uv sync
+      shell: bash
