@@ -1,22 +1,21 @@
-# VSCode Dev Container: Python Development with Rye, uv, and Ruff
+# VSCode Dev Container: Python Development with uv and Ruff
 
 <div align="center">
 
-[![Rye](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/rye/main/artwork/badge.json)](https://github.com/astral-sh/rye)
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 [![Versions](https://img.shields.io/badge/python-3.9%20|%203.10%20|%203.11%20|%203.12%20-green.svg)](https://github.com/a5chin/python-rye)
 
 [![Ruff](https://github.com/a5chin/python-rye/actions/workflows/ruff.yml/badge.svg)](https://github.com/a5chin/python-rye/actions/workflows/ruff.yml)
-[![test](https://github.com/a5chin/python-rye/actions/workflows/test.yml/badge.svg)](https://github.com/a5chin/python-rye/actions/workflows/test.yml)
+[![Test](https://github.com/a5chin/python-rye/actions/workflows/test.yml/badge.svg)](https://github.com/a5chin/python-rye/actions/workflows/test.yml)
 [![Docker](https://github.com/a5chin/python-rye/actions/workflows/docker.yml/badge.svg)](https://github.com/a5chin/python-rye/actions/workflows/docker.yml)
 
 </div>
 
 ## Overview
 This repository contains configurations to set up a Python development environment using VSCode's Dev Container feature.
-The environment includes Rye, uv, and Ruff.
+The environment includes uv, and Ruff.
 
 ![demo](assets/gif/ruff.gif)
 
@@ -27,7 +26,7 @@ Specifically, you can solve this problem by following the steps below.
 2. Type `Developer: Reload Window` in the command palette to reload the window
 
 ### Contents
-- [VSCode Dev Container: Python Development with Rye, uv, and Ruff](#vscode-dev-container-python-development-with-rye-uv-and-ruff)
+- [VSCode Dev Container: Python Development with uv and Ruff](#vscode-dev-container-python-development-with-uv-and-ruff)
   - [Overview](#overview)
     - [Contents](#contents)
   - [Branches](#branches)
@@ -42,6 +41,7 @@ Specifically, you can solve this problem by following the steps below.
 ## Branches
 - [main](https://github.com/a5chin/python-rye/tree/main)
 - [jupyter](https://github.com/a5chin/python-rye/tree/jupyter)
+- [rye](https://github.com/a5chin/python-rye/tree/rye)（Archived）
 
 ## Dev Container
 - `devcontainer.json`
@@ -64,9 +64,6 @@ Specifically, you can solve this problem by following the steps below.
     - [usernamehw.errorlens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
     - [yzhang.markdown-all-in-one](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
 - `Dockerfile`
-  - Rye
-    - `rye config --set-bool behavior.global-python=true`
-    - `rye config --set-bool behavior.use-uv=true`
   - Only Dev dependencies
     - `pre-commit`
     - `pytest`
@@ -100,10 +97,10 @@ The `.pre-commit-config.yaml` file can contain scripts to be executed before com
 
 ```sh
 # Python Formatter
-rye run ruff format .
+uv run ruff format .
 
 # Python Linter
-rye run ruff check . --fix
+uv run ruff check . --fix
 
 # Docker Linter
 hodolint Dockerfile
@@ -116,13 +113,13 @@ Only sync based on the production lockfile (`requirements.lock`) instead of the 
 
 ```sh
 # Install also include develop dependencies
-rye sync
+uv sync
 
 # If you do not want dev dependencies to be installed
-rye sync --no-dev
+uv sync --no-dev
 
 # Use the add command to add dependencies to your project
-rye add {libraries}
+uv add {libraries}
 ```
 
 ### The structure of this repository
@@ -134,7 +131,7 @@ rye add {libraries}
 ├── Dockerfile
 ├── .github
 │   ├── actions
-│   │   └── setup-python-with-rye
+│   │   └── setup-python-with-uv
 │   │       └── action.yml
 │   ├── dependabot.yml
 │   └── workflows
