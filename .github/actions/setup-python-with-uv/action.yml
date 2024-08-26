@@ -23,7 +23,6 @@ runs:
       with:
         path: ~/.cache/uv
         key: ${{ runner.os }}-python-${{ inputs.python-version }}-uv
-      shell: bash
 
     - name: Install Dependencies
       run: uv sync
