@@ -1,0 +1,29 @@
+name: Install Python with uv
+
+inputs:
+  python-version:
+    description: Python version
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Install uv
+      run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      shell: bash
+
+    - name: Pin Python Version
+      run: |
+        export PYTHONUNBUFFERED=True
+        uv python pin ${{ inputs.python-version }}
+      shell: bash
+
+    - uses: actions/cache@v4
+      id: cache-uv
+      with:
+        path: ~/.cache/uv
+        key: ${{ runner.os }}-python-${{ inputs.python-version }}-uv
+
+    - name: Install Dependencies
+      run: uv sync
+      shell: bash

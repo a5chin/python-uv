@@ -5,16 +5,16 @@ description = "Add your description here"
 authors = [
     { name = "a5chin" }
 ]
+requires-python = ">=3.9"
+readme = "README.md"
 dependencies = [
     "jupyter>=1.0.0",
+    "ipykernel>=6.29.5",
 ]
-readme = "README.md"
-requires-python = ">= 3.12"
 
-[tool.rye]
-managed = true
+[tool.uv]
 dev-dependencies = [
-    "pytest>=8.2.2",
-    "pre-commit>=3.7.1",
-    "ruff>=0.4.9",
+    "pytest>=8.3.2",
+    "pre-commit>=3.8.0",
+    "ruff>=0.6.2",
 ]

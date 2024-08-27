@@ -1,10 +1,8 @@
-FROM debian:bookworm-slim as builder
+FROM debian:bookworm-slim AS builder
 
 WORKDIR /opt
 
-ENV RYE_HOME="/opt/rye"
-ENV PATH="$RYE_HOME/shims:$PATH"
-
+# The installer requires curl (and certificates) to download the release archive
 # hadolint ignore=DL3008
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -14,23 +12,27 @@ RUN apt-get update && \
         python3-dev
 
 SHELL [ "/bin/bash", "-o", "pipefail", "-c" ]
-RUN curl -sSf https://rye.astral.sh/get | RYE_INSTALL_OPTION="--yes" bash && \
-    rye config --set-bool behavior.global-python=true && \
-    rye config --set-bool behavior.use-uv=true
 
-COPY ./.python-version ./pyproject.toml ./requirements* ./
-RUN rye pin "$(cat .python-version)" && \
-    rye sync
+# Download the latest installer
+ADD https://astral.sh/uv/install.sh /uv-installer.sh
+
+# Run the installer then remove it
+RUN sh /uv-installer.sh
 
 
 FROM mcr.microsoft.com/vscode/devcontainers/base:bookworm
-COPY --from=builder /opt/rye /opt/rye
 
-ENV RYE_HOME="/opt/rye"
-ENV PATH="$RYE_HOME/shims:$PATH"
-ENV PYTHONUNBUFFERED True
+ENV CARGO_HOME="/opt/.cargo/bin"
+ENV PATH="$CARGO_HOME/:$PATH"
 
-RUN rye config --set-bool behavior.global-python=true && \
-    rye config --set-bool behavior.use-uv=true
+ENV PYTHONUNBUFFERED=True
+ENV UV_LINK_MODE=copy
 
-RUN chown -R vscode $RYE_HOME
+WORKDIR /opt
+
+COPY --from=builder /root/.cargo/bin/uv $CARGO_HOME/uv
+COPY ./.python-version ./
+
+RUN uv python pin "$(cat .python-version)"
+
+RUN chown -R vscode $CARGO_HOME

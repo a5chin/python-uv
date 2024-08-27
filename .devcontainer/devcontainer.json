@@ -1,11 +1,10 @@
 {
-    "name": "Rye",
+    "name": "uv",
     "build": {
         "context": "..",
         "dockerfile": "Dockerfile"
     },
     "features": {
-        "ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
         "ghcr.io/dhoeric/features/hadolint:1": {}
     },
     "customizations": {
@@ -28,7 +27,7 @@
                 "yzhang.markdown-all-in-one"
             ],
             "settings": {
-                "python.defaultInterpreterPath": "/opt/rye/shims/python",
+                "python.defaultInterpreterPath": "/root/.local/share/uv/python",
                 "[python]": {
                     "editor.defaultFormatter": "charliermarsh.ruff",
                     "editor.codeActionsOnSave": {
@@ -52,6 +51,7 @@
             }
         }
     },
-    "postStartCommand": "pre-commit install",
+    "postCreateCommand": "uv sync --dev",
+    "postStartCommand": "uv run pre-commit install",
     "remoteUser": "vscode"
 }

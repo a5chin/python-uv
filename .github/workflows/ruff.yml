@@ -18,24 +18,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Rye
-        uses: eifinger/setup-rye@v3
+      - name: Setup Python ${{ matrix.python-version }} with uv
+        uses: ./.github/actions/setup-python-with-uv
         with:
-          enable-cache: true
-
-      - name: Set Rye Config
-        run: |
-          rye config --set-bool behavior.global-python=true
-          rye config --set-bool behavior.use-uv=true
-
-      - name: Set up Python ${{ matrix.python-version }}
-        run: |
-          export PYTHONUNBUFFERED=1
-          rye pin ${{ matrix.python-version }}
-          rye sync
+          python-version: ${{ matrix.python-version }}
 
       - name: Lint
-        run: rye run ruff check --output-format=github .
+        run: uv run ruff check --output-format=github .
 
   format:
     runs-on: ubuntu-latest
@@ -48,21 +37,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Rye
-        uses: eifinger/setup-rye@v3
+      - name: Setup Python ${{ matrix.python-version }} with uv
+        uses: ./.github/actions/setup-python-with-uv
         with:
-          enable-cache: true
-
-      - name: Set Rye Config
-        run: |
-          rye config --set-bool behavior.global-python=true
-          rye config --set-bool behavior.use-uv=true
-
-      - name: Set up Python ${{ matrix.python-version }}
-        run: |
-          export PYTHONUNBUFFERED=1
-          rye pin ${{ matrix.python-version }}
-          rye sync
+          python-version: ${{ matrix.python-version }}
 
       - name: Format
-        run: rye run ruff format . --check --diff
+        run: uv run ruff format . --check --diff
