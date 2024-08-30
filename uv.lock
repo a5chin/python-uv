@@ -22,7 +22,7 @@ wheels = [
 [[package]]
 name = "default"
 version = "0.1.0"
-source = { editable = "." }
+source = { virtual = "." }
 
 [package.dev-dependencies]
 dev = [
