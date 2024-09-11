@@ -1,6 +1,8 @@
 ARG VARIANT=3.12
 FROM python:${VARIANT} AS builder
 
+LABEL maintainer="a5chin <a5chin.origin+contact@gmain.com>"
+
 ENV PYTHONDONTWRITEBYTECODE=True
 ENV UV_LINK_MODE=copy
 

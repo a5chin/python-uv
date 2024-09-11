@@ -1,5 +1,7 @@
 FROM debian:bookworm-slim AS builder
 
+LABEL maintainer="a5chin <a5chin.origin+contact@gmain.com>"
+
 WORKDIR /opt
 
 # The installer requires curl (and certificates) to download the release archive
