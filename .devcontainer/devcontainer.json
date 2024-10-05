@@ -23,7 +23,8 @@
                 "pkief.material-icon-theme",
                 "shardulm94.trailing-spaces",
                 "usernamehw.errorlens",
-                "yzhang.markdown-all-in-one"
+                "yzhang.markdown-all-in-one",
+                "tamasfe.even-better-toml"
             ],
             "settings": {
                 "python.defaultInterpreterPath": "/root/.local/share/uv/python",
