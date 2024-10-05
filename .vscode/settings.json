@@ -1,11 +1,20 @@
 {
     "[python]": {
         "editor.codeActionsOnSave": {
+            //ファイル保存時に自動で指摘箇所を修正する
             "source.fixAll": "explicit",
-            "source.organizeImports": "explicit"
+            // Ruffでformat
+            "source.fixAll.ruff": "explicit",
+            // Ruffでimportの整列
+            "source.organizeImports.ruff": "explicit",
         },
+        "editor.defaultFormatter": "charliermarsh.ruff",
         "editor.formatOnSave": true,
     },
     "files.insertFinalNewline": true,
-    "files.trimTrailingWhitespace": true
+    "files.trimTrailingWhitespace": true,
+    // pylance. 主に可読性向上のために使っています
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.callArgumentNames": "all",
+    "python.analysis.typeCheckingMode": "off", // "off" is default value
 }

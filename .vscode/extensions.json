@@ -15,5 +15,6 @@
         "shardulm94.trailing-spaces",
         "usernamehw.errorlens",
         "yzhang.markdown-all-in-one",
+        "ms-python.vscode-pylance",
     ]
 }

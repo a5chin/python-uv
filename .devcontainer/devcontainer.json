@@ -24,7 +24,8 @@
                 "shardulm94.trailing-spaces",
                 "usernamehw.errorlens",
                 "yzhang.markdown-all-in-one",
-                "tamasfe.even-better-toml"
+                "tamasfe.even-better-toml",
+                "ms-python.vscode-pylance"
             ],
             "settings": {
                 "python.defaultInterpreterPath": "/root/.local/share/uv/python",
