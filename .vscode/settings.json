@@ -13,8 +13,7 @@
     },
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
-    // pylance. 主に可読性向上のために使っています
+    // pylance. 主に可読性向上のために利用
     "python.analysis.inlayHints.functionReturnTypes": true,
     "python.analysis.inlayHints.callArgumentNames": "all",
-    "python.analysis.typeCheckingMode": "off", // "off" is default value
 }

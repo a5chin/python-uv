@@ -21,6 +21,25 @@ dev-dependencies = [
     "pyright>=1.1.383",
 ]
 
+
+[tool.pyright]
+include = ["python_uv", "tests"]
+exclude = [
+    "**/__pycache__",
+    "python_uv/sample*.py",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+]
+ignore = []
+defineConstant = { DEBUG = true }
+
+reportMissingImports = "error"
+
+pythonVersion = "3.12"
+pythonPlatform = "Linux"
+
+
 # [tool.ruff]
 # [tool.ruff.lint]
 # [tool.ruff.format]
