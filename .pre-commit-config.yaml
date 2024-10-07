@@ -16,6 +16,8 @@ repos:
     rev: v1.1.383
     hooks:
       - id: pyright
+        name: Pyright type check
+        description: "Type Check by Pyright"
 
   - repo: https://github.com/hadolint/hadolint
     rev: v2.12.0
