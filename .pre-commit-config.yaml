@@ -3,14 +3,21 @@ repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.3.5
     hooks:
-    - id: ruff
-      name: Ruff check
-      description: "Run 'ruff check' for extremely fast Python linting"
-      args: [ --fix ]
+      - id: ruff
+        name: Ruff check
+        description: "Run 'ruff check' for extremely fast Python linting"
+        args: [ --fix ]
 
-    - id: ruff-format
-      name: Ruff format
-      description: "Run 'ruff format' for extremely fast Python formatting"
+      - id: ruff-format
+        name: Ruff format
+        description: "Run 'ruff format' for extremely fast Python formatting"
+
+  - repo: https://github.com/RobertCraigie/pyright-python
+    rev: v1.1.383
+    hooks:
+      - id: pyright
+        name: Pyright type check
+        description: "Type Check by Pyright"
 
   - repo: https://github.com/hadolint/hadolint
     rev: v2.12.0

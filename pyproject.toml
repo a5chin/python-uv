@@ -2,20 +2,20 @@
 name = "default"
 version = "0.1.0"
 description = "This repository contains configurations to set up a Python development environment using VSCode's Dev Container feature. The environment includes uv and Ruff."
-authors = [
-    {name = "a5chin", email = "a5chin.origin+contact@gmail.com"}
-]
-maintainers = [
-    {name = "a5chin", email = "a5chin.origin+contact@gmail.com"}
-]
+
+authors = [{ name = "a5chin", email = "a5chin.origin+contact@gmail.com" }]
+maintainers = [{ name = "a5chin", email = "a5chin.origin+contact@gmail.com" }]
+
 requires-python = ">=3.9"
 readme = "README.md"
-license = {file = "LICENSE"}
+license = { file = "LICENSE" }
+
 dependencies = []
 
 [tool.uv]
 dev-dependencies = [
-    "pytest>=8.3.2",
-    "pre-commit>=3.8.0",
-    "ruff>=0.6.3",
+    "pre-commit>=4.0.0",
+    "pyright>=1.1.383",
+    "pytest>=8.3.3",
+    "ruff>=0.6.9",
 ]
