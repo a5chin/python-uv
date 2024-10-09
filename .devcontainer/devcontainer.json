@@ -17,38 +17,23 @@
                 "kevinrose.vsc-python-indent",
                 "mosapride.zenkaku",
                 "ms-azuretools.vscode-docker",
-                "ms-pyright.pyright",
                 "ms-python.python",
                 "njpwerner.autodocstring",
                 "oderwat.indent-rainbow",
                 "pkief.material-icon-theme",
+                "redhat.vscode-yaml",
                 "shardulm94.trailing-spaces",
                 "tamasfe.even-better-toml",
                 "usernamehw.errorlens",
-                "yzhang.markdown-all-in-one"
+                "yzhang.markdown-all-in-one",
+                "-ms-python.vscode-pylance" // dissable
             ],
             "settings": {
-                "files.insertFinalNewline": true,
-                "files.trimTrailingWhitespace": true,
-                "python.defaultInterpreterPath": "/root/.local/share/uv/python",
                 "terminal.integrated.defaultProfile.linux": "zsh",
                 "terminal.integrated.profiles.linux": {
                     "zsh": {
                         "path": "/bin/zsh"
                     }
-                },
-                "[toml]": {
-                    "editor.defaultFormatter": "tamasfe.even-better-toml",
-                    "editor.formatOnSave": true,
-                    "editor.insertSpaces": true
-                },
-                "[python]": {
-                    "editor.defaultFormatter": "charliermarsh.ruff",
-                    "editor.codeActionsOnSave": {
-                        "source.fixAll.ruff": "explicit",
-                        "source.organizeImports.ruff": "explicit"
-                    },
-                    "editor.formatOnSave": true
                 }
             }
         }
