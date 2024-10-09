@@ -25,8 +25,7 @@
                 "shardulm94.trailing-spaces",
                 "tamasfe.even-better-toml",
                 "usernamehw.errorlens",
-                "yzhang.markdown-all-in-one",
-                "-ms-python.vscode-pylance" // dissable
+                "yzhang.markdown-all-in-one"
             ],
             "settings": {
                 "terminal.integrated.defaultProfile.linux": "zsh",
