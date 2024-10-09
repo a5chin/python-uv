@@ -7,6 +7,7 @@
         "kevinrose.vsc-python-indent",
         "mosapride.zenkaku",
         "ms-azuretools.vscode-docker",
+        "ms-pyright.pyright",
         "ms-python.python",
         "ms-toolsai.jupyter",
         "ms-vscode-remote.remote-containers",
@@ -14,6 +15,7 @@
         "oderwat.indent-rainbow",
         "pkief.material-icon-theme",
         "shardulm94.trailing-spaces",
+        "tamasfe.even-better-toml",
         "usernamehw.errorlens",
         "yzhang.markdown-all-in-one",
     ]

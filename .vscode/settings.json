@@ -1,4 +1,6 @@
 {
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
     "[python]": {
         "editor.codeActionsOnSave": {
             "source.fixAll": "explicit",
@@ -6,10 +8,18 @@
         },
         "editor.formatOnSave": true,
     },
+<<<<<<< HEAD
     "notebook.codeActionsOnSave": {
         "notebook.source.fixAll":"explicit",
         "notebook.source.organizeImports": "explicit"
     },
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true
+=======
+    "[toml]": {
+        "editor.defaultFormatter": "tamasfe.even-better-toml",
+        "editor.formatOnSave": true,
+        "editor.insertSpaces": true,
+    }
+>>>>>>> c7704f9ae08072b361be0850a87c36f32b0aafb6
 }
