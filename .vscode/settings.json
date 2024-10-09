@@ -3,48 +3,51 @@
     "files.trimTrailingWhitespace": true,
     "python.defaultInterpreterPath": ".venv/bin/python",
     "[dockercompose]": {
+        "editor.autoIndent": "advanced",
         "editor.defaultFormatter": "redhat.vscode-yaml",
         "editor.formatOnSave": true,
         "editor.insertSpaces": true,
-        "editor.tabSize": 2,
-        "editor.autoIndent": "advanced",
         "editor.quickSuggestions": {
             "other": true,
             "comments": false,
             "strings": true
-        }
+        },
+        "editor.tabSize": 4
     },
     "[dockerfile]": {
         "editor.defaultFormatter": "ms-azuretools.vscode-docker",
         "editor.formatOnSave": true
     },
     "[github-actions-workflow]": {
+        "editor.autoIndent": "advanced",
         "editor.defaultFormatter": "redhat.vscode-yaml",
         "editor.insertSpaces": true,
-        "editor.tabSize": 2,
-        "editor.autoIndent": "advanced",
         "editor.quickSuggestions": {
             "other": true,
             "comments": false,
             "strings": true
-        }
+        },
+        "editor.tabSize": 2
     },
     "[json][jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features",
         "editor.formatOnSave": true,
-        "editor.insertSpaces": true
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4
     },
     "[python]": {
         "editor.codeActionsOnSave": {
             "source.fixAll": "explicit",
             "source.organizeImports": "explicit"
         },
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
+        "editor.tabSize": 4
     },
     "[toml]": {
         "editor.defaultFormatter": "tamasfe.even-better-toml",
         "editor.formatOnSave": true,
-        "editor.insertSpaces": true
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4
     },
     "[yaml]": {
         "editor.autoIndent": "advanced",
