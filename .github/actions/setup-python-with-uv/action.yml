@@ -1,4 +1,7 @@
 name: Install Python with uv
+description: |
+  This GitHub Action installs Python using the uv tool.
+  It pins the specified Python version, caches uv files, and installs dependencies.
 
 inputs:
   python-version:
