@@ -30,6 +30,7 @@ Specifically, you can solve this problem by following the steps below.
   - [Overview](#overview)
     - [Contents](#contents)
   - [Branches](#branches)
+  - [Settings](#settings)
   - [Dev Container](#dev-container)
   - [GitHub Actions](#github-actions)
   - [Ruff](#ruff)
@@ -43,12 +44,22 @@ Specifically, you can solve this problem by following the steps below.
 - [jupyter](https://github.com/a5chin/python-uv/tree/jupyter)
 - [rye](https://github.com/a5chin/python-uv/tree/rye)（Archived）
 
+## Settings
+- files.insertFinalNewline
+- files.trimTrailingWhitespace
+- editor.formatOnSave
+  - dockercompose
+  - dockerfile
+  - github-actions-workflow
+  - json, jsonc
+  - python
+  - toml
+  - yaml
+
 ## Dev Container
 - `devcontainer.json`
-  - settings
-    - formatOnSave by Ruff
   - features
-    - pre-commit
+    - hadolint
   - extentions
     - [charliermarsh.ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff)
     - [codezombiech.gitignore](https://marketplace.visualstudio.com/items?itemName=codezombiech.gitignore)
@@ -71,10 +82,15 @@ Specifically, you can solve this problem by following the steps below.
     - `pyright`
     - `pytest`
     - `ruff`
+- `buildWithRust.Dockerfile`
+  - Use the Rust compiler when you need it!
+  - Fix dockerfile in `.devcontainer/devcontainer.json`
 
 ## GitHub Actions
 - `docker.yml`
   - Workflow to check if you can build with Docker
+- `pyright.yml`
+  - Workflow to check type
 - `test.yml`
   - Workflow to check if all the described tests can be passed with pytest
 - `ruff.yml`
@@ -112,8 +128,6 @@ hodolint Dockerfile
 ## Appendix
 
 ### Install libraries
-Only sync based on the production lockfile (`requirements.lock`) instead of the development lockfile (`requirements-dev.lock`).
-
 ```sh
 # Install also include develop dependencies
 uv sync
@@ -129,6 +143,7 @@ uv add {libraries}
 ```
 .
 ├── .devcontainer
+│   ├── buildWithRust.Dockerfile
 │   ├── devcontainer.json
 │   └── Dockerfile
 ├── Dockerfile
@@ -139,6 +154,7 @@ uv add {libraries}
 │   ├── dependabot.yml
 │   └── workflows
 │       ├── docker.yml
+│       ├── pyright.yml
 │       ├── ruff.yml
 │       └── test.yml
 ├── .gitignore
