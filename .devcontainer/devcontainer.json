@@ -37,7 +37,7 @@
             }
         }
     },
-    "postCreateCommand": "uv sync --dev",
+    "postCreateCommand": "uv python pin $(cat .python-version) && uv sync --dev",
     "postStartCommand": "uv run pre-commit install",
     "remoteUser": "vscode"
 }
