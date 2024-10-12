@@ -1,12 +1,12 @@
 version: 2
-updates:
 
+updates:
   - package-ecosystem: pip
     directory: "/"
     schedule:
       interval: daily
     commit-message:
-      prefix: "chore(rye)"
+      prefix: "chore(uv)"
 
   - package-ecosystem: github-actions
     directory: /

@@ -3,10 +3,7 @@
     "pythonPlatform": "All",
     "venvPath": "./",
     "venv": ".venv",
-
-    "include": [
-    ],
-
+    "include": [],
     "exclude": [
         "**/__pycache__",
         ".pytest_cache",

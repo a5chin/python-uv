@@ -2,13 +2,19 @@ name: Pyright
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   type-check:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
     steps:
       - uses: jakebailey/pyright-action@v2
+        with:
+          python-version: ${{ matrix.python-version }}

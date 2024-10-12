@@ -17,59 +17,28 @@
                 "kevinrose.vsc-python-indent",
                 "mosapride.zenkaku",
                 "ms-azuretools.vscode-docker",
-                "ms-pyright.pyright",
                 "ms-python.python",
                 "ms-toolsai.jupyter",
                 "njpwerner.autodocstring",
                 "oderwat.indent-rainbow",
                 "pkief.material-icon-theme",
+                "redhat.vscode-yaml",
                 "shardulm94.trailing-spaces",
                 "tamasfe.even-better-toml",
                 "usernamehw.errorlens",
                 "yzhang.markdown-all-in-one"
             ],
             "settings": {
-                "files.insertFinalNewline": true,
-                "files.trimTrailingWhitespace": true,
-                "python.defaultInterpreterPath": "/root/.local/share/uv/python",
                 "terminal.integrated.defaultProfile.linux": "zsh",
                 "terminal.integrated.profiles.linux": {
                     "zsh": {
                         "path": "/bin/zsh"
                     }
-                },
-                "[toml]": {
-                    "editor.defaultFormatter": "tamasfe.even-better-toml",
-                    "editor.formatOnSave": true,
-                    "editor.insertSpaces": true
-                },
-                "[python]": {
-                    "editor.defaultFormatter": "charliermarsh.ruff",
-                    "editor.codeActionsOnSave": {
-                        "source.fixAll.ruff": "explicit",
-                        "source.organizeImports.ruff": "explicit"
-                    },
-                    "editor.formatOnSave": true
-<<<<<<< HEAD
-                },
-                "notebook.codeActionsOnSave": {
-                    "notebook.source.fixAll":"explicit",
-                    "notebook.source.organizeImports": "explicit"
-                },
-                "files.insertFinalNewline": true,
-                "files.trimTrailingWhitespace": true,
-                "terminal.integrated.defaultProfile.linux": "zsh",
-                "terminal.integrated.profiles.linux": {
-                    "zsh": {
-                        "path": "/bin/zsh"
-                    }
-=======
->>>>>>> c7704f9ae08072b361be0850a87c36f32b0aafb6
                 }
             }
         }
     },
-    "postCreateCommand": "uv sync --dev",
+    "postCreateCommand": "uv python pin $(cat .python-version) && uv sync --dev",
     "postStartCommand": "uv run pre-commit install",
     "remoteUser": "vscode"
 }
