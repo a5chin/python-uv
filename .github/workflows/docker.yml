@@ -66,7 +66,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-  devcontainer:
+  build-devcontainer:
     runs-on: ubuntu-latest
 
     needs: lint-devcontainer
@@ -89,7 +89,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-  devcontainer-with-rust:
+  build-devcontainer-with-rust:
     runs-on: ubuntu-latest
 
     needs: lint-devcontainer-with-rust
