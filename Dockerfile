@@ -1,7 +1,6 @@
 ARG VARIANT=3.12
-FROM python:${VARIANT} AS builder
 
-LABEL maintainer="a5chin <a5chin.origin+contact@gmain.com>"
+FROM python:${VARIANT} AS builder
 
 ENV PYTHONDONTWRITEBYTECODE=True
 ENV UV_LINK_MODE=copy
@@ -17,8 +16,9 @@ RUN pip install --upgrade pip && \
 
 
 FROM python:${VARIANT}-slim
+
+LABEL maintainer="a5chin <a5chin.origin+contact@gmain.com>"
+
 COPY --from=builder /usr/local/lib/python*/site-packages /usr/local/lib/python*/site-packages
 
 ENV PYTHONUNBUFFERED=True
-
-WORKDIR /
