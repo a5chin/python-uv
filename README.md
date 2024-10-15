@@ -7,9 +7,10 @@
 
 [![Versions](https://img.shields.io/badge/python-3.9%20|%203.10%20|%203.11%20|%203.12%20|%203.13%20-green.svg)](https://github.com/a5chin/python-uv)
 
+[![Docker](https://github.com/a5chin/python-uv/actions/workflows/docker.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/docker.yml)
+[![Pyright](https://github.com/a5chin/python-uv/actions/workflows/pyright.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/pyright.yml)
 [![Ruff](https://github.com/a5chin/python-uv/actions/workflows/ruff.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/ruff.yml)
 [![Test](https://github.com/a5chin/python-uv/actions/workflows/test.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/test.yml)
-[![Docker](https://github.com/a5chin/python-uv/actions/workflows/docker.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/docker.yml)
 
 </div>
 
@@ -157,15 +158,16 @@ uv add {libraries}
 │       ├── pyright.yml
 │       ├── ruff.yml
 │       └── test.yml
+├── .dockergitignore
 ├── .gitignore
 ├── LICENSE
 ├── .pre-commit-config.yaml
 ├── pyproject.toml
+├── pyrightconfig.json
 ├── .python-version
 ├── README.md
-├── requirements-dev.lock
-├── requirements.lock
 ├── ruff.toml
+├── uv.lock
 └── .vscode
     ├── extensions.json
     └── settings.json
