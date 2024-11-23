@@ -1,8 +1,9 @@
+ARG DEBIAN_VERSION=bookwork
+ARG UV_VERSION=0.5.4
 ARG VARIANT=3.12
-ARG BASE=slim-bookwork
 
 
-FROM python:$VARIANT-$BASE AS builder
+FROM python:$VARIANT-slim-$DEBIAN_VERSION AS builder
 LABEL maintainer="a5chin <a5chin.origin+contact@gmain.com>"
 
 ENV PYTHONDONTWRITEBYTECODE=True
@@ -11,7 +12,7 @@ ENV UV_LINK_MODE=copy
 
 WORKDIR /app
 
-COPY --from=ghcr.io/astral-sh/uv:0.5.4 /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv:$UV_VERSION /uv /uvx /bin/
 COPY pyproject.toml uv.lock ./
 
 RUN uv sync --frozen --no-install-project
