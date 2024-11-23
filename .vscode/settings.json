@@ -1,7 +1,13 @@
 {
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
-    "python.defaultInterpreterPath": ".venv/bin/python",
+    "python.defaultInterpreterPath": "/home/vscode/.venv/bin/python",
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.profiles.linux": {
+        "zsh": {
+            "path": "/bin/zsh"
+        }
+    },
     "[dockercompose]": {
         "editor.autoIndent": "advanced",
         "editor.defaultFormatter": "redhat.vscode-yaml",

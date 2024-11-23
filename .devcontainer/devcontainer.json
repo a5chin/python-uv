@@ -2,7 +2,11 @@
     "name": "uv",
     "build": {
         "context": "..",
-        "dockerfile": "Dockerfile"
+        "dockerfile": "Dockerfile",
+        "args": {
+            "UV_VERSION": "0.5.4",
+            "TAG": "bookworm"
+        }
     },
     "features": {
         "ghcr.io/dhoeric/features/hadolint:1": {}
@@ -11,31 +15,23 @@
         "vscode": {
             "extensions": [
                 "charliermarsh.ruff",
-                "codezombiech.gitignore",
-                "eamodio.gitlens",
                 "exiasr.hadolint",
                 "kevinrose.vsc-python-indent",
                 "mosapride.zenkaku",
                 "ms-azuretools.vscode-docker",
                 "ms-python.python",
                 "njpwerner.autodocstring",
-                "oderwat.indent-rainbow",
-                "pkief.material-icon-theme",
                 "redhat.vscode-yaml",
                 "shardulm94.trailing-spaces",
-                "tamasfe.even-better-toml",
-                "usernamehw.errorlens",
-                "yzhang.markdown-all-in-one"
-            ],
-            "settings": {
-                "terminal.integrated.defaultProfile.linux": "zsh",
-                "terminal.integrated.profiles.linux": {
-                    "zsh": {
-                        "path": "/bin/zsh"
-                    }
-                }
-            }
+                "tamasfe.even-better-toml"
+            ]
         }
+    },
+    "containerEnv": {
+        "DISPLAY": "dummy",
+        "PYTHONUNBUFFERED": "True",
+        "UV_LINK_MODE": "copy",
+        "UV_PROJECT_ENVIRONMENT": "/home/vscode/.venv"
     },
     "postCreateCommand": "uv python pin $(cat .python-version) && uv sync --dev",
     "postStartCommand": "uv run pre-commit install",
