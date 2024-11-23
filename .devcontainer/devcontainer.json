@@ -5,7 +5,7 @@
         "dockerfile": "Dockerfile",
         "args": {
             "UV_VERSION": "0.5.4",
-            "TAG": "bookworm"
+            "DEBIAN_VERSION": "bookworm"
         }
     },
     "features": {
