@@ -3,7 +3,7 @@ ARG UV_VERSION=0.5.4
 ARG VARIANT=3.12
 
 
-FROM python:$VARIANT-slim-$DEBIAN_VERSION AS builder
+FROM python:$VARIANT-slim-$DEBIAN_VERSION
 LABEL maintainer="a5chin <a5chin.origin+contact@gmain.com>"
 
 ENV PYTHONDONTWRITEBYTECODE=True
