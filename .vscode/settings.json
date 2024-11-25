@@ -5,7 +5,14 @@
         "notebook.source.fixAll": "explicit",
         "notebook.source.organizeImports": "explicit"
     },
-    "python.defaultInterpreterPath": ".venv/bin/python",
+    "notebook.formatOnSave.enabled": true,
+    "python.defaultInterpreterPath": "/home/vscode/.venv/bin/python",
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.profiles.linux": {
+        "zsh": {
+            "path": "/bin/zsh"
+        }
+    },
     "[dockercompose]": {
         "editor.autoIndent": "advanced",
         "editor.defaultFormatter": "redhat.vscode-yaml",
