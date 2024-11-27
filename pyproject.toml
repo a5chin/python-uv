@@ -14,8 +14,8 @@ dependencies = []
 
 [tool.uv]
 dev-dependencies = [
-    "pre-commit>=4.0.0",
-    "pyright>=1.1.383",
+    "pre-commit>=4.0.1",
+    "pyright>=1.1.389",
     "pytest>=8.3.3",
-    "ruff>=0.6.9",
+    "ruff>=0.8.0",
 ]
