@@ -2,7 +2,7 @@ default_stages: [commit]
 
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.3.5
+    rev: v0.8.0
     hooks:
       - id: ruff
         name: Ruff check
@@ -14,7 +14,7 @@ repos:
         description: "Run 'ruff format' for extremely fast Python formatting"
 
   - repo: https://github.com/RobertCraigie/pyright-python
-    rev: v1.1.383
+    rev: v1.1.389
     hooks:
       - id: pyright
         name: Pyright type check
