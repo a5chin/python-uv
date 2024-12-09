@@ -29,3 +29,6 @@ repos:
         language: system
         types: ["dockerfile"]
         entry: hadolint
+
+ci:
+  autoupdate_schedule: weekly
