@@ -12,21 +12,11 @@ runs:
   using: composite
   steps:
     - name: Install uv
-      run: curl -LsSf https://astral.sh/uv/install.sh | sh
-      shell: bash
-
-    - name: Pin Python Version
-      run: |
-        export PYTHONUNBUFFERED=True
-        uv python pin ${{ inputs.python-version }}
-      shell: bash
-
-    - uses: actions/cache@v4
-      id: cache-uv
+      uses: astral-sh/setup-uv@v4
       with:
-        path: ~/.cache/uv
-        key: ${{ runner.os }}-python-${{ inputs.python-version }}-uv
+        enable-cache: true
+        python-version: ${{ inputs.python-version }}
 
     - name: Install Dependencies
-      run: uv sync
+      run: uv sync --frozen
       shell: bash

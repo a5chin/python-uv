@@ -6,7 +6,7 @@ updates:
     schedule:
       interval: daily
     commit-message:
-      prefix: "chore(rye)"
+      prefix: "chore(uv)"
 
   - package-ecosystem: github-actions
     directory: /
