@@ -1,6 +1,7 @@
 {
     "pythonVersion": "3.12",
     "pythonPlatform": "All",
+    "venvPath": "/home/vscode/",
     "venv": ".venv",
     "include": [],
     "exclude": [
