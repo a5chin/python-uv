@@ -6,7 +6,8 @@ class LocalFormatter(logging.Formatter):
 
     def __init__(self) -> None:
         """Initialize local logger formatter."""
-        from tools.logger import LogColor, LogStyle
+        from tools.logger.color import LogColor
+        from tools.logger.style import LogStyle
 
         super().__init__()
         base = (
