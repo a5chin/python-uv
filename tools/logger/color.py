@@ -1,8 +1,8 @@
 from enum import StrEnum
 
 
-class Color(StrEnum):
-    """Color code."""
+class LogColor(StrEnum):
+    """Color code for logger."""
 
     NORMAL = "\033[0m"
     BLACK = "\033[30m"

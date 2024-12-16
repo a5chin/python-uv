@@ -13,13 +13,6 @@ repos:
         name: Ruff format
         description: "Run 'ruff format' for extremely fast Python formatting"
 
-  - repo: https://github.com/RobertCraigie/pyright-python
-    rev: v1.1.390
-    hooks:
-      - id: pyright
-        name: Pyright type check
-        description: "Type Check by Pyright"
-
   - repo: https://github.com/hadolint/hadolint
     rev: v2.12.0
     hooks:

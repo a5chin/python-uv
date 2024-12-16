@@ -1,8 +1,8 @@
 from enum import StrEnum
 
 
-class Style(StrEnum):
-    """Style code."""
+class LogStyle(StrEnum):
+    """Style code logger."""
 
     BOLD = "\033[1m"
     ULINE = "\033[4m"

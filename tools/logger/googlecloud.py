@@ -1,16 +1,5 @@
 import logging
 
-from pydantic import BaseModel, PositiveInt
-
-
-class Record(BaseModel):
-    """Record."""
-
-    name: str
-    line: PositiveInt
-    func: str
-    message: str
-
 
 class GoogleCloudFormatter(logging.Formatter):
     """Formatter for Google Cloud logger."""
@@ -25,9 +14,10 @@ class GoogleCloudFormatter(logging.Formatter):
             str: Log format for Google Cloud
 
         """
+        from pydantic import BaseModel, PositiveInt
 
         class Record(BaseModel):
-            """Record."""
+            """Record for Google Cloud."""
 
             name: str
             line: PositiveInt

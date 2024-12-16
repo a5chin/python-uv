@@ -1,34 +1,33 @@
 import logging
 
-from tools.logger.color import Color
-from tools.logger.style import Style
-
 
 class LocalFormatter(logging.Formatter):
     """Formatter for local logger."""
 
     def __init__(self) -> None:
         """Initialize local logger formatter."""
+        from tools.logger import LogColor, LogStyle
+
         super().__init__()
         base = (
-            f"{Color.GREEN}%(asctime)s{Style.RESET}"
+            f"{LogColor.GREEN}%(asctime)s{LogStyle.RESET}"
             " | "
-            f"{{color}}%(levelname)-8s{Style.RESET}"
+            f"{{color}}%(levelname)-8s{LogStyle.RESET}"
             " | "
-            f"{Color.CYAN}%(name)s{Style.RESET}"
+            f"{LogColor.CYAN}%(name)s{LogStyle.RESET}"
             ":"
-            f"{Color.CYAN}%(funcName)s{Style.RESET}"
+            f"{LogColor.CYAN}%(funcName)s{LogStyle.RESET}"
             ":"
-            f"{Color.CYAN}%(lineno)s{Style.RESET}"
+            f"{LogColor.CYAN}%(lineno)s{LogStyle.RESET}"
             " - "
-            f"{{color}}%(message)s{Style.RESET}"
+            f"{{color}}%(message)s{LogStyle.RESET}"
         )
         self.formats = {
-            logging.DEBUG: base.format(color=Color.BLUE + Style.BOLD),
-            logging.INFO: base.format(color=Color.NORMAL + Style.BOLD),
-            logging.WARNING: base.format(color=Color.YELLOW + Style.BOLD),
-            logging.ERROR: base.format(color=Color.RED + Style.BOLD),
-            logging.CRITICAL: base.format(color=Color.BLOOD + Style.BOLD),
+            logging.DEBUG: base.format(color=LogColor.BLUE + LogStyle.BOLD),
+            logging.INFO: base.format(color=LogColor.NORMAL + LogStyle.BOLD),
+            logging.WARNING: base.format(color=LogColor.YELLOW + LogStyle.BOLD),
+            logging.ERROR: base.format(color=LogColor.RED + LogStyle.BOLD),
+            logging.CRITICAL: base.format(color=LogColor.BLOOD + LogStyle.BOLD),
         }
 
     def format(self, record: logging.LogRecord) -> str:

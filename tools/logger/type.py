@@ -1,7 +1,7 @@
 from enum import StrEnum, auto
 
 
-class Type(StrEnum):
+class LogType(StrEnum):
     """Logger type."""
 
     LOCAL = auto()
