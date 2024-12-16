@@ -1,7 +1,7 @@
 {
     "pythonVersion": "3.12",
     "pythonPlatform": "All",
-    "venvPath": "~/",
+    "venvPath": "~",
     "venv": ".venv",
     "include": [],
     "exclude": [
