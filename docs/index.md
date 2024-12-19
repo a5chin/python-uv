@@ -3,7 +3,7 @@
 ## What is python-uv?
 This repository contains configurations to set up a Python development environment using VSCode's Dev Container feature. The environment includes uv and Ruff.
 
-<img align="center" src="/img/ruff.gif">
+<img align="center" src="img/ruff.gif">
 
 ## Project layout
     .
