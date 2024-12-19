@@ -11,13 +11,14 @@ readme = "README.md"
 license = { file = "LICENSE" }
 
 dependencies = [
+    "google-cloud-logging>=3.11.3",
     "pydantic>=2.10.3",
 ]
 
 [tool.uv]
 dev-dependencies = [
     "pre-commit>=4.0.1",
-    "pyright>=1.1.389",
-    "pytest>=8.3.3",
-    "ruff>=0.8.0",
+    "pyright>=1.1.390",
+    "pytest>=8.3.4",
+    "ruff>=0.8.3",
 ]

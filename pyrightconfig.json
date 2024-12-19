@@ -2,7 +2,10 @@
     "pythonVersion": "3.12",
     "pythonPlatform": "All",
     "venv": ".venv",
-    "include": [],
+    "typeCheckingMode": "standard",
+    "include": [
+        "tools"
+    ],
     "exclude": [
         "**/__pycache__",
         ".pytest_cache",
