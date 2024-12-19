@@ -144,12 +144,13 @@ uv add {libraries}
 ```
 .
 ├── .devcontainer
-│   ├── buildWithRust.Dockerfile
 │   ├── devcontainer.json
 │   └── Dockerfile
 ├── Dockerfile
 ├── .github
 │   ├── actions
+│   │   ├── setup-git-config
+│   │   │   └── action.yml
 │   │   └── setup-python-with-uv
 │   │       └── action.yml
 │   ├── dependabot.yml
@@ -159,6 +160,7 @@ uv add {libraries}
 │       ├── ruff.yml
 │       └── test.yml
 ├── .dockergitignore
+├── docs/
 ├── .gitignore
 ├── LICENSE
 ├── .pre-commit-config.yaml
