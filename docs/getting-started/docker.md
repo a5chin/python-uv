@@ -21,4 +21,4 @@ Install Docker from the [official Docker website](https://docker.com/products/do
 }
 ```
 
-<img align="center" src="../img/docker.png">
+![](../img/docker.png)
