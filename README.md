@@ -18,7 +18,7 @@
 This repository contains configurations to set up a Python development environment using VSCode's Dev Container feature.
 The environment includes uv, and Ruff.
 
-![demo](assets/gif/ruff.gif)
+![demo](docs/img/ruff.gif)
 
 If the Ruff format does not work, try reloading the VS Code window.
 Specifically, you can solve this problem by following the steps below.
@@ -144,12 +144,13 @@ uv add {libraries}
 ```
 .
 ├── .devcontainer
-│   ├── buildWithRust.Dockerfile
 │   ├── devcontainer.json
 │   └── Dockerfile
 ├── Dockerfile
 ├── .github
 │   ├── actions
+│   │   ├── setup-git-config
+│   │   │   └── action.yml
 │   │   └── setup-python-with-uv
 │   │       └── action.yml
 │   ├── dependabot.yml
@@ -159,6 +160,7 @@ uv add {libraries}
 │       ├── ruff.yml
 │       └── test.yml
 ├── .dockergitignore
+├── docs/
 ├── .gitignore
 ├── LICENSE
 ├── .pre-commit-config.yaml
