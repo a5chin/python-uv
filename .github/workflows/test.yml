@@ -19,7 +19,7 @@ jobs:
         with:
           python-version: 3.13
 
-      - name: run pytest
+      - name: Run pytest
         run: |
           set -o pipefail
           uv run pytest --junitxml=pytest.xml | tee pytest-coverage.txt
