@@ -31,6 +31,8 @@ extra_css:
 
 markdown_extensions:
   - admonition
+  - attr_list
+  - pymdownx.blocks.caption
   - pymdownx.highlight:
       linenums: true
   - pymdownx.keys
