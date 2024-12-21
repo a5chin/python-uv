@@ -41,3 +41,14 @@ Required test coverage of 75% reached. Total coverage: 100.00%
 ```
 
 ## Run pytest on VS Code
+
+
+![](../img/test_with_coverage.png){ loading=lazy }
+/// caption
+Test with coverage on VS Code
+///
+
+![](../img/coverage_on_editor.png){ loading=lazy }
+/// caption
+Code coverage on editor
+///
