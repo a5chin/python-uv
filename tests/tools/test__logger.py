@@ -1,5 +1,3 @@
-from google.auth.credentials import AnonymousCredentials
-
 from tools import Logger, LogType
 
 
@@ -28,6 +26,8 @@ class TestGoogleCloudLogger:
 
     def setup_method(self) -> None:
         """Set up logger."""
+        from google.auth.credentials import AnonymousCredentials
+
         self.logger = Logger(
             name=__name__,
             project=__name__,
