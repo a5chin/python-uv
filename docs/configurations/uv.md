@@ -1,3 +1,5 @@
+# uv Configations
+
 !!! TIP
     Official documentation for uv is available at [https://docs.astral.sh/uv](https://docs.astral.sh/uv)
 

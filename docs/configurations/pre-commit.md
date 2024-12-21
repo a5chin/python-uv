@@ -1,3 +1,5 @@
+# pre-commit Configurations
+
 !!! TIP
     If you do not want to use the pre-commit hook, run this command:
     ```sh

@@ -1,3 +1,5 @@
+# Ruff Configurations
+
 !!! TIP
     Official documentation for Ruff is available at [https://docs.astral.sh/ruff](https://docs.astral.sh/ruff)
 
