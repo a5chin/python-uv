@@ -1,3 +1,5 @@
+# Pyright Configurations
+
 !!! TIP
     Official documentation for Pyright is available at [https://microsoft.github.io/pyright](https://microsoft.github.io/pyright)
 

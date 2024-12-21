@@ -10,7 +10,10 @@ requires-python = ">=3.9"
 readme = "README.md"
 license = { file = "LICENSE" }
 
-dependencies = ["google-cloud-logging>=3.11.3", "pydantic>=2.10.3"]
+dependencies = [
+    "google-cloud-logging>=3.11.3",
+    "pydantic>=2.10.3",
+]
 
 [tool.uv]
 dev-dependencies = [
@@ -21,7 +24,3 @@ dev-dependencies = [
     "pytest>=8.3.4",
     "pytest-cov>=6.0.0",
 ]
-
-[tool.pytest.ini_options]
-pythonpath = ["."]
-addopts = ["--import-mode=importlib"]

@@ -7,24 +7,39 @@ on:
     branches: [main]
 
 jobs:
-  pytest:
+  coverage:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python ${{ matrix.python-version }} with uv
+      - name: Setup Python 3.13 with uv
         uses: ./.github/actions/setup-python-with-uv
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.13
 
-      - name: Run Pytest if directory exists
+      - name: Run pytest
         run: |
-          if [ -d "./tests/" ]; then
-            uv run pytest -s
-          fi
+          set -o pipefail
+          uv run pytest --junitxml=pytest.xml | tee pytest-coverage.txt
+
+      - name: Pytest coverage comment
+        uses: MishaKav/pytest-coverage-comment@v1
+        with:
+          pytest-coverage-path: ./pytest-coverage.txt
+          junitxml-path: ./pytest.xml
+
+      - name: Creating coverage folder
+        run: mkdir -p coverage
+
+      - name: Coverage Bagdge
+        uses: tj-actions/coverage-badge-py@v2
+        with:
+          output: coverage/coverage.svg
+
+      - name: Publish coverage report to coverage-badge branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: coverage-badge
+          folder: coverage
