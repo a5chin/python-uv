@@ -21,4 +21,7 @@ Install Docker from the [official Docker website](https://docker.com/products/do
 }
 ```
 
-![](../img/docker.png)
+![](../img/docker.png){ loading=lazy }
+/// caption
+Docker App on Mac
+///

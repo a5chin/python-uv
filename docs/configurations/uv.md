@@ -1,3 +1,5 @@
+# uv Configations
+
 !!! TIP
     Official documentation for uv is available at [https://docs.astral.sh/uv](https://docs.astral.sh/uv)
 
@@ -11,7 +13,7 @@ Set the `UV_PROJECT_ENVIRONMENT` not to create a virtual environment in the proj
         "context": "..",
         "dockerfile": "Dockerfile",
         "args": {
-            "UV_VERSION": "0.5.9",
+            "UV_VERSION": "0.5.11",
             "DEBIAN_VERSION": "bookworm"
         }
     },

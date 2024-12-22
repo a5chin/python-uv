@@ -12,6 +12,8 @@ This repository contains configurations to set up a Python development environme
     │   └── Dockerfile
     ├── .github/
     │   ├── actions/
+    │   │   ├── setup-git-config.yml
+    │   │   │   └── action.yml
     │   │   └── setup-python-with-uv.yml
     │   │       └── action.yml
     │   ├── workflows/
@@ -23,6 +25,9 @@ This repository contains configurations to set up a Python development environme
     ├── .vscode
     │   ├── extensions.json
     │   └── settings.json
+    ├── tests/
+    │   └── tools/
+    │        └── test__logger.py
     ├── tools/
     │   ├── logger/
     │   │    ├── __init__.py
@@ -40,6 +45,7 @@ This repository contains configurations to set up a Python development environme
     ├── Dockerfile
     ├── pyproject.toml
     ├── pyrightconfig.json
+    ├── pytest.ini
     ├── README.md
     ├── ruff.toml
     └── uv.lock

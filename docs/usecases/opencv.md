@@ -1,6 +1,6 @@
 ## Dockerfile
 ```{.dockerfile title=".devcontainer/Dockerfile" hl_lines=15}
-ARG UV_VERSION=0.5.9
+ARG UV_VERSION=0.5.11
 ARG DEBIAN_VERSION=bookworm
 
 

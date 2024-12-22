@@ -31,6 +31,8 @@ extra_css:
 
 markdown_extensions:
   - admonition
+  - attr_list
+  - pymdownx.blocks.caption
   - pymdownx.highlight:
       linenums: true
   - pymdownx.keys
@@ -54,6 +56,7 @@ nav:
       - Ruff: guides/ruff.md
       - Pyright: guides/pyright.md
       - pre-commit: guides/pre-commit.md
+      - Test: guides/test.md
       - Using tools:
           - guides/tools/index.md
           - logger: guides/tools/logger.md
@@ -63,6 +66,7 @@ nav:
       - Ruff: configurations/ruff.md
       - Pyright: configurations/pyright.md
       - pre-commit: configurations/pre-commit.md
+      - Test: configurations/test.md
   - Usecases:
       - usecases/index.md
       - JupyterNotebook: usecases/jupyter.md
