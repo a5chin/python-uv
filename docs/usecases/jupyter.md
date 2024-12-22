@@ -12,7 +12,7 @@ git switch jupyter
         "context": "..",
         "dockerfile": "Dockerfile",
         "args": {
-            "UV_VERSION": "0.5.4",
+            "UV_VERSION": "0.5.11",
             "DEBIAN_VERSION": "bookworm"
         }
     },

@@ -12,15 +12,15 @@ license = { file = "LICENSE" }
 
 dependencies = [
     "google-cloud-logging>=3.11.3",
-    "pydantic>=2.10.3",
+    "pydantic>=2.10.4",
 ]
 
 [tool.uv]
 dev-dependencies = [
     "mkdocs-material>=9.5.49",
-    "ruff>=0.8.3",
     "pre-commit>=4.0.1",
     "pyright>=1.1.391",
     "pytest>=8.3.4",
     "pytest-cov>=6.0.0",
+    "ruff>=0.8.4",
 ]
