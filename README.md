@@ -155,9 +155,9 @@ uv add {libraries}
 │   └── Dockerfile
 ├── .github/
 │   ├── actions/
-│   │   ├── setup-git-config.yml
+│   │   ├── setup-git-config
 │   │   │   └── action.yml
-│   │   └── setup-python-with-uv.yml
+│   │   └── setup-python-with-uv
 │   │       └── action.yml
 │   ├── workflows/
 │   │   ├── docker.yml
