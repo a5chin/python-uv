@@ -31,3 +31,6 @@ If you want to pin the Python version, run the following command:
 ```sh
 uv pin python 3.12
 ```
+
+## Configuration for uv
+If you want to configure the uv, visit the [Configuration for uv](../configurations/uv.md) page.

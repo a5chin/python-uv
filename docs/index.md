@@ -29,6 +29,10 @@ This repository contains configurations to set up a Python development environme
     │   └── tools/
     │        └── test__logger.py
     ├── tools/
+    │   ├── config/
+    │   │    ├── __init__.py
+    │   │    ├── fastapi.py
+    │   │    └── settings.py
     │   ├── logger/
     │   │    ├── __init__.py
     │   │    ├── color.py
@@ -39,6 +43,7 @@ This repository contains configurations to set up a Python development environme
     │   │    └── type.py
     │   └── __init__.py
     ├── .dockerignore
+    ├── .env.local
     ├── .gitignore
     ├── .pre-commit-config.yaml
     ├── .python-version

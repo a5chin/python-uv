@@ -13,3 +13,6 @@ uv run ruff format
 ```sh
 uv run ruff check
 ```
+
+## Configuration for Ruff
+If you want to configure the Ruff, visit the [Configuration for ruff](../configurations/ruff.md) page.

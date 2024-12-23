@@ -8,3 +8,6 @@
     ```sh
     uv run pre-commit uninstall
     ```
+
+## pre-commit Configurations
+If you want to configure the pre-commit, visit the [Configuration for pre-commit](../configurations/pre-commit.md) page.

@@ -52,3 +52,6 @@ Test with coverage on VS Code
 /// caption
 Code coverage on editor
 ///
+
+## Configuration for Test
+If you want to configure the Test hook, visit the [Configuration for Test](../configurations/test.md) page.
