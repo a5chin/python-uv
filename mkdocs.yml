@@ -59,6 +59,7 @@ nav:
       - Test: guides/test.md
       - Using tools:
           - guides/tools/index.md
+          - config: guides/tools/config.md
           - logger: guides/tools/logger.md
   - Configurations:
       - configurations/index.md

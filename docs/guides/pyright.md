@@ -10,4 +10,4 @@ uv run pyright
 ```
 
 ## Pyright Configurations
-Please refer [here](../configurations/pyright.md).
+If you want to configure the Pyright, visit the [Configuration for Pyright](../configurations/pyright.md) page.

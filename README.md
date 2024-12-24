@@ -127,6 +127,12 @@ uv run ruff check . --fix
 hodolint Dockerfile
 ```
 
+## pytest
+To run the test, use the following command:
+```sh
+uv run pytest
+```
+
 ## Appendix
 
 ### Install libraries
@@ -144,34 +150,51 @@ uv add {libraries}
 ### The structure of this repository
 ```
 .
-├── .devcontainer
+├── .devcontainer/
 │   ├── devcontainer.json
 │   └── Dockerfile
-├── Dockerfile
-├── .github
-│   ├── actions
+├── .github/
+│   ├── actions/
 │   │   ├── setup-git-config
 │   │   │   └── action.yml
 │   │   └── setup-python-with-uv
 │   │       └── action.yml
-│   ├── dependabot.yml
-│   └── workflows
-│       ├── docker.yml
-│       ├── pyright.yml
-│       ├── ruff.yml
-│       └── test.yml
-├── .dockergitignore
-├── docs/
+│   ├── workflows/
+│   │   ├── docker.yml
+│   │   ├── pyright.yml
+│   │   ├── ruff.yml
+│   │   └── test.yml
+│   └── dependabot.yml
+├── .vscode
+│   ├── extensions.json
+│   └── settings.json
+├── tests/
+│   └── tools/
+│        └── test__logger.py
+├── tools/
+│   ├── config/
+│   │    ├── __init__.py
+│   │    ├── fastapi.py
+│   │    └── settings.py
+│   ├── logger/
+│   │    ├── __init__.py
+│   │    ├── color.py
+│   │    ├── googlecloud.py
+│   │    ├── local.py
+│   │    ├── logger.py
+│   │    ├── style.py
+│   │    └── type.py
+│   └── __init__.py
+├── .dockerignore
+├── .env.local
 ├── .gitignore
-├── LICENSE
 ├── .pre-commit-config.yaml
+├── .python-version
+├── Dockerfile
 ├── pyproject.toml
 ├── pyrightconfig.json
-├── .python-version
+├── pytest.ini
 ├── README.md
 ├── ruff.toml
-├── uv.lock
-└── .vscode
-    ├── extensions.json
-    └── settings.json
+└── uv.lock
 ```
