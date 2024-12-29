@@ -3,7 +3,7 @@ from contextlib import ContextDecorator
 
 
 class Timer(ContextDecorator):
-    """Timer ContextManager and decorator.
+    """Timer ContextManager and Decorator.
 
     Examples:
     >>> import time
