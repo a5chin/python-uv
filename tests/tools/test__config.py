@@ -1,7 +1,6 @@
 import pytest
 
-from tools import Settings
-from tools.config import FastAPIKwArgs
+from tools.config import FastAPIKwArgs, Settings
 
 
 class TestSettings:
