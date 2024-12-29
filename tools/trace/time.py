@@ -48,9 +48,9 @@ class Timer(ContextDecorator):
         from tools.logger import Logger
 
         logger = Logger(self.name)
-        logger.debug("executed in %f ms", self.elapsed_time * 1_000)
+        logger.debug("executed in %f ms", self._duration * 1_000)
 
     @property
-    def elapsed_time(self) -> float:
-        """Return elapsed time in seconds."""
+    def _duration(self) -> float:
+        """Return duration in seconds."""
         return self.end - self.start
