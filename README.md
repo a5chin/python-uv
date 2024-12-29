@@ -37,6 +37,7 @@ Specifically, you can solve this problem by following the steps below.
   - [GitHub Actions](#github-actions)
   - [Ruff](#ruff)
   - [pre-commit](#pre-commit)
+  - [pytest](#pytest)
   - [Appendix](#appendix)
     - [Install libraries](#install-libraries)
     - [The structure of this repository](#the-structure-of-this-repository)
@@ -170,7 +171,9 @@ uv add {libraries}
 │   └── settings.json
 ├── tests/
 │   └── tools/
-│        └── test__logger.py
+│        ├── test__config.py
+│        ├── test__logger.py
+│        └── test__trace.py
 ├── tools/
 │   ├── config/
 │   │    ├── __init__.py
@@ -184,6 +187,9 @@ uv add {libraries}
 │   │    ├── logger.py
 │   │    ├── style.py
 │   │    └── type.py
+│   ├── trace/
+│   │    ├── __init__.py
+│   │    └── time.py
 │   └── __init__.py
 ├── .dockerignore
 ├── .env.local
