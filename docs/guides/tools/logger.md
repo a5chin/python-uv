@@ -1,5 +1,5 @@
 ```python
-from tools import Logger
+from tools.logger import Logger
 
 
 def main() -> None:

@@ -22,7 +22,7 @@ class Settings(BaseSettings):
 ```python
 from fastapi import FastAPI
 
-from tools import Settings
+from tools.config import Settings
 
 
 settings = Settings()

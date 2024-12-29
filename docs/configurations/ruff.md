@@ -55,8 +55,8 @@ The Ruff formatter is an extremely fast Python code formatter designed as a drop
     line-length = 88
     indent-width = 4
 
-    # Assume Python 3.12
-    target-version = "py312"
+    # Assume Python 3.13
+    target-version = "py313"
 
     [lint]
     # Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.

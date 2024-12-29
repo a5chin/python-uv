@@ -10,3 +10,4 @@ How to use this repository.
 - [How to use Tools](tools/index.md)
     - [How to use config in this repository](tools/config.md)
     - [How to use logger in this repository](tools/logger.md)
+    - [How to use trace in this repository](tools/trace.md)
