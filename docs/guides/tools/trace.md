@@ -1,7 +1,7 @@
 ## Timer
 
 ### Decorator
-```python
+```{.py hl_lines="6"}
 import time
 
 from tools.trace import Timer
@@ -21,7 +21,7 @@ sleep(1)
     ```
 
 ### ContextManager
-```python
+```{.py hl_lines="5"}
 import time
 
 from tools.trace import Timer
