@@ -6,23 +6,24 @@ class Timer(ContextDecorator):
     """Timer ContextManager and Decorator.
 
     Examples:
-    >>> import time
-    >>>
-    >>> from tools import Timer
-    >>>
-    >>> with Timer("examples"):
-    >>>     time.sleep(1)
+        >>> import time
+        >>>
+        >>> from tools.trace import Timer
+        >>>
+        >>> with Timer("examples"):
+        >>>     time.sleep(1)
 
-    >>> import time
-    >>>
-    >>> from tools import Timer
-    >>>
-    >>> @Timer("sleep")
-    >>> def sleep(t: int = 1) -> None:
-    >>>     time.sleep(t)
-    >>>
-    >>>
-    >>> sleep(1)
+        >>> import time
+        >>>
+        >>> from tools.trace import Timer
+        >>>
+        >>>
+        >>> @Timer("sleep")
+        >>> def sleep(t: int = 1) -> None:
+        >>>     time.sleep(t)
+        >>>
+        >>>
+        >>> sleep(1)
 
     """
 

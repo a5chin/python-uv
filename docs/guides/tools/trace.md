@@ -26,7 +26,6 @@ import time
 
 from tools.trace import Timer
 
-
 with Timer("examples"):
     time.sleep(1)
 ```
