@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     Examples:
         >>> from tools.config import Settings
         >>> from tools.logger import Logger, LogType
-
+        >>>
         >>> settings = Settings()
         >>> logger = Logger(
         >>>     name=__name__,

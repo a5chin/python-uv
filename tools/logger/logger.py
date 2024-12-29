@@ -10,11 +10,11 @@ class Logger(logging.Logger):
     """Logger.
 
     Examples:
-    >>> from tools.logger import Logger
-    >>>
-    >>>
-    >>> logger = Logger(name=__name__)
-    >>> logger.info("Logger")
+        >>> from tools.logger import Logger
+        >>>
+        >>>
+        >>> logger = Logger(__name__)
+        >>> logger.info("Logger")
 
     """
 
