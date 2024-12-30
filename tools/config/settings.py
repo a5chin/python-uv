@@ -6,7 +6,19 @@ from tools.config.fastapi import FastAPIKwArgs
 
 
 class Settings(BaseSettings):
-    """Environment variables settings."""
+    """Environment variables settings.
+
+    Examples:
+        >>> from tools.config import Settings
+        >>> from tools.logger import Logger, LogType
+        >>>
+        >>> settings = Settings()
+        >>> logger = Logger(
+        >>>     name=__name__,
+        >>>     log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.GOOGLE_CLOUD
+        >>> )
+
+    """
 
     model_config = SettingsConfigDict(
         env_file=(".env", ".env.local"),

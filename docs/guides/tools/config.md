@@ -7,7 +7,19 @@
 Addendum environment variables to `tools/config/settings.py`:
 ```{.py title="tools/config/settings.py" hl_lines="9"}
 class Settings(BaseSettings):
-    """Environment variables settings."""
+    """Environment variables settings.
+
+    Examples:
+        >>> from tools.config import Settings
+        >>> from tools.logger import Logger, LogType
+        >>>
+        >>> settings = Settings()
+        >>> logger = Logger(
+        >>>     name=__name__,
+        >>>     log_type=LogType.LOCAL if settings.IS_LOCAL else LogType.GOOGLE_CLOUD
+        >>> )
+
+    """
 
     model_config = SettingsConfigDict(
         env_file=(".env", ".env.local"),
@@ -22,7 +34,7 @@ class Settings(BaseSettings):
 ```python
 from fastapi import FastAPI
 
-from tools import Settings
+from tools.config import Settings
 
 
 settings = Settings()

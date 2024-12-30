@@ -7,7 +7,16 @@ from tools.logger.type import LogType
 
 
 class Logger(logging.Logger):
-    """Logger."""
+    """Logger.
+
+    Examples:
+        >>> from tools.logger import Logger
+        >>>
+        >>>
+        >>> logger = Logger(__name__)
+        >>> logger.info("Logger")
+
+    """
 
     def __init__(
         self,
@@ -25,11 +34,6 @@ class Logger(logging.Logger):
                                                         Defaults to None.
             log_type (LogType, optional): Local or something.
                                           Defaults to LogType.LOCAL.
-
-        Examples:
-            >>> from tools import Logger, LogType
-            >>> local_logger = Logger(name=__name__, log_type=LogType.LOCAL)
-            >>> gc_logger = Logger(name=__name__, log_type=LogType.GOOGLE_CLOUD)
 
         """
         super().__init__(name=name)

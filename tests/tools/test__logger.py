@@ -1,4 +1,4 @@
-from tools import Logger, LogType
+from tools.logger import Logger, LogType
 
 
 class TestLocalLogger:

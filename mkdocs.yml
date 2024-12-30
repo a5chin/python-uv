@@ -1,4 +1,7 @@
+repo_name: a5chin/python-uv
+repo_url: https://github.com/a5chin/python-uv
 site_name: python-uv
+site_url: https://a5chin.github.io/a5chin
 
 theme:
   name: material
@@ -40,9 +43,6 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
 
-repo_url: https://github.com/a5chin/python-uv
-repo_name: a5chin/python-uv
-
 nav:
   - Home: index.md
   - Getting Started:
@@ -57,10 +57,11 @@ nav:
       - Pyright: guides/pyright.md
       - pre-commit: guides/pre-commit.md
       - Test: guides/test.md
-      - Using tools:
+      - tools:
           - guides/tools/index.md
           - config: guides/tools/config.md
           - logger: guides/tools/logger.md
+          - trace: guides/tools/trace.md
   - Configurations:
       - configurations/index.md
       - uv: configurations/uv.md

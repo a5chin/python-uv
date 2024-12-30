@@ -27,7 +27,9 @@ This repository contains configurations to set up a Python development environme
     │   └── settings.json
     ├── tests/
     │   └── tools/
-    │        └── test__logger.py
+    │        ├── test__config.py
+    │        ├── test__logger.py
+    │        └── test__trace.py
     ├── tools/
     │   ├── config/
     │   │    ├── __init__.py
@@ -41,6 +43,9 @@ This repository contains configurations to set up a Python development environme
     │   │    ├── logger.py
     │   │    ├── style.py
     │   │    └── type.py
+    │   ├── trace/
+    │   │    ├── __init__.py
+    │   │    └── time.py
     │   └── __init__.py
     ├── .dockerignore
     ├── .env.local
