@@ -10,14 +10,18 @@ jobs:
   coverage:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        python-version: ["latest"]
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python 3.13 with uv
+      - name: Setup Python ${{ matrix.python-version }} with uv
         uses: ./.github/actions/setup-python-with-uv
         with:
-          python-version: 3.13
+          python-version: ${{ matrix.python-version }}
 
       - name: Run pytest
         run: |

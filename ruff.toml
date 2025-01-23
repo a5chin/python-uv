@@ -77,6 +77,6 @@ skip-magic-trailing-comma = false
 # Like Black, automatically detect the appropriate line ending.
 line-ending = "auto"
 
-[per-file-ignores]
+[lint.per-file-ignores]
 # Ignore all directories named `tests`.
 "tests/**" = ["INP001", "S101"]
