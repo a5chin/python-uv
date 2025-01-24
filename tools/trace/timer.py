@@ -43,9 +43,9 @@ class Timer(ContextDecorator):
 
     def __exit__(self, *exc: object) -> None:
         """Run when exit ContextManager or Decoraotr."""
-        self.end = time.time()
+        from tools import Logger
 
-        from tools.logger import Logger
+        self.end = time.time()
 
         logger = Logger(self.name)
         logger.debug("executed in %f ms", self._duration * 1_000)

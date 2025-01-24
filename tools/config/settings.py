@@ -10,7 +10,7 @@ class Settings(BaseSettings):
 
     Examples:
         >>> from tools.config import Settings
-        >>> from tools.logger import Logger, LogType
+        >>> from tools import Logger, LogType
         >>>
         >>> settings = Settings()
         >>> logger = Logger(
