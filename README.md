@@ -189,7 +189,7 @@ uv add {libraries}
 │   │    └── type.py
 │   ├── trace/
 │   │    ├── __init__.py
-│   │    └── time.py
+│   │    └── timer.py
 │   └── __init__.py
 ├── .dockerignore
 ├── .env.local
