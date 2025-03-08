@@ -57,6 +57,7 @@ nav:
       - Pyright: guides/pyright.md
       - pre-commit: guides/pre-commit.md
       - Test: guides/test.md
+      - cookiecutter: guides/cookiecutter.md
       - tools:
           - guides/tools/index.md
           - config: guides/tools/config.md
