@@ -18,6 +18,7 @@ dependencies = [
 
 [tool.uv]
 dev-dependencies = [
+    "cookiecutter>=2.6.0",
     "mkdocs-material>=9.5.50",
     "pre-commit>=4.1.0",
     "pyright>=1.1.392.post0",
