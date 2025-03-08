@@ -7,7 +7,6 @@
     "lockFileMaintenance": {
         "enabled": true
     },
-    "onboarding": false,
     "rebaseWhen": "behind-base-branch",
     "schedule": [
         "* 0-23 * * *"
