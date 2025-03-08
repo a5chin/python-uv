@@ -38,6 +38,7 @@ Specifically, you can solve this problem by following the steps below.
   - [Ruff](#ruff)
   - [pre-commit](#pre-commit)
   - [pytest](#pytest)
+  - [cookiecutter](#cookiecutter)
   - [Appendix](#appendix)
     - [Install libraries](#install-libraries)
     - [The structure of this repository](#the-structure-of-this-repository)
@@ -133,6 +134,26 @@ To run the test, use the following command:
 ```sh
 uv run pytest
 ```
+
+## cookiecutter
+To use cookiecutter for template, use the following command:
+```sh
+uv run cookiecutter {url}
+```
+- Data Science
+  - https://github.com/drivendataorg/cookiecutter-data-science
+- Django
+  - https://github.com/cookiecutter/cookiecutter-django
+  - https://github.com/agconti/cookiecutter-django-rest
+  - https://github.com/vchaptsev/cookiecutter-django-vue
+  - https://github.com/chrisdev/wagtail-cookiecutter-foundation
+  - https://github.com/wemake-services/wemake-django-template
+- FastAPI
+  - https://github.com/fastapi/full-stack-fastapi-template
+- Flask
+  - https://github.com/cookiecutter-flask/cookiecutter-flask
+  - https://github.com/karec/cookiecutter-flask-restful
+  - https://github.com/italomaia/flask-empty
 
 ## Appendix
 
