@@ -62,7 +62,7 @@ nav:
           - guides/tools/index.md
           - config: guides/tools/config.md
           - logger: guides/tools/logger.md
-          - trace: guides/tools/trace.md
+          - trace: guides/tools/tracer.md
   - Configurations:
       - configurations/index.md
       - uv: configurations/uv.md
