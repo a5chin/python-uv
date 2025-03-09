@@ -194,7 +194,7 @@ uv add {libraries}
 │   └── tools/
 │        ├── test__config.py
 │        ├── test__logger.py
-│        └── test__trace.py
+│        └── test__tracer.py
 ├── tools/
 │   ├── config/
 │   │    ├── __init__.py
@@ -208,7 +208,7 @@ uv add {libraries}
 │   │    ├── logger.py
 │   │    ├── style.py
 │   │    └── type.py
-│   ├── trace/
+│   ├── tracer/
 │   │    ├── __init__.py
 │   │    └── timer.py
 │   └── __init__.py
