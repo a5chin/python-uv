@@ -1,20 +1,43 @@
 [project]
-name = "default"
+name = "Nexxus-Ninja"
 version = "0.1.0"
-description = "This repository contains configurations to set up a Python development environment using VSCode's Dev Container feature. The environment includes uv and Ruff."
+description = "Crossfire is an open source, cooperative multiplayer graphical RPG and adventure game."
 
-authors = [{ name = "a5chin", email = "a5chin.origin+contact@gmail.com" }]
-maintainers = [{ name = "a5chin", email = "a5chin.origin+contact@gmail.com" }]
+keywords = [
+    "crossfire",
+    "metaserver",
+    "linux game",
+    "X Windows",
+    "graphical arcade game",
+    "adventure game",
+    "gtk",
+    "java",
+]
 
-requires-python = ">=3.9"
+authors = [{ name = "Bob Tanner", email = "tanner@real-time.com" }]
+
+maintainers = [
+    { name = "Bob Tanner", email = "tanner@real-time.com" },
+    { name = "Rick Tanner", email = "leaf@real-time.com" },
+]
+
+requires-python = ">=3.12"
 readme = "README.md"
 license = { file = "LICENSE" }
 
-dependencies = [
-    "google-cloud-logging>=3.11.3",
-    "pydantic>=2.10.5",
-    "pydantic-settings>=2.7.1",
+# https://pypi.org/classifiers/
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Framework :: Django",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.12",
+    "Framework :: Django",
+    "Framework :: Django :: 5.1",
 ]
+dependencies = ["Django>=5.1,<6.0", "django-ninja", "django-extensions"]
 
 [tool.uv]
 dev-dependencies = [
@@ -32,3 +55,11 @@ packages = ["tools"]
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+# https://packaging.python.org/en/latest/specifications/well-known-project-urls/#well-known-labels
+[project.urls]
+Homepage = "https://example.com"
+Documentation = "https://readthedocs.org"
+Repository = "https://github.com/me/spam.git"
+Issues = "https://github.com/me/spam/issues"
+Changelog = "https://github.com/me/spam/blob/master/CHANGELOG.md"

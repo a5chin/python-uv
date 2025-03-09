@@ -1,13 +1,11 @@
 {
-    "name": "uv",
-    "build": {
-        "context": "..",
-        "dockerfile": "Dockerfile",
-        "args": {
-            "UV_VERSION": "latest",
-            "DEBIAN_VERSION": "bookworm"
-        }
-    },
+    "name": "nexxus-ninja",
+    "dockerComposeFile": [
+        "docker-compose.yml"
+    ],
+    "service": "vscode",
+    "workspaceFolder": "/workspace",
+    "shutdownAction": "stopCompose",
     "features": {
         "ghcr.io/dhoeric/features/hadolint:1": {}
     },
@@ -35,7 +33,7 @@
         "UV_LINK_MODE": "copy",
         "UV_PROJECT_ENVIRONMENT": "/home/vscode/.venv"
     },
-    "postCreateCommand": "uv sync --frozen",
+    "postCreateCommand": "./.devcontainer/postCreateCommand.sh",
     "postStartCommand": "uv run pre-commit install",
     "remoteUser": "vscode"
 }
