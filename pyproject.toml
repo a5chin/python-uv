@@ -37,6 +37,7 @@ classifiers = [
     "Framework :: Django",
     "Framework :: Django :: 5.1",
 ]
+
 dependencies = ["Django>=5.1,<6.0", "django-ninja", "django-extensions"]
 
 [tool.uv]
