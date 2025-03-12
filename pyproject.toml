@@ -21,7 +21,7 @@ maintainers = [
     { name = "Rick Tanner", email = "leaf@real-time.com" },
 ]
 
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 readme = "README.md"
 license = { file = "LICENSE" }
 
@@ -33,12 +33,20 @@ classifiers = [
     "Framework :: Django",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.11",
     "Framework :: Django",
     "Framework :: Django :: 5.1",
 ]
 
-dependencies = ["Django>=5.1,<6.0", "django-ninja", "django-extensions"]
+dependencies = [
+    "Django>=5.1,<6.0",
+    "django-ninja",
+    "django-ninja-extra",
+    "django-extensions",
+    "django-cors-headers",
+    "environs",
+    "mysqlclient",
+]
 
 [tool.uv]
 dev-dependencies = [
