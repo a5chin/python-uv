@@ -13,3 +13,49 @@ services:
     environment:
       TZ: ${TZ:-America/Chicago}
     command: sleep infinity
+    networks:
+      - nexxus
+
+  mysql:
+    container_name: nexxus-mysql
+    image: mysql:latest
+    labels:
+      - "traefik.enable=false"
+    cap_add:
+      - SYS_NICE
+    command:
+      [
+        "--general-log=0",
+        "--slow-query-log=1",
+        "--log-queries-not-using-indexes=1",
+        "--long-query-time=10",
+        "--max_allowed_packet=256M",
+        "--net_read_timeout=600",
+        "--net_write_timeout=600",
+        "--wait_timeout=28800",
+        "--interactive_timeout=28800",
+      ]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    volumes:
+      - "./mysql_data:/var/lib/mysql"
+      - "./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro"
+    # ports:
+    #   - ${MYSQL_HOST_PORT}:3306
+    environment:
+      # Did you need populate the environment? Symlink .env or
+      # export $(grep -v '^#' .env | xargs)
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - TZ=${TZ}
+    networks:
+      - nexxus
+
+networks:
+  nexxus:
+    name: nexxus
+    driver: bridge

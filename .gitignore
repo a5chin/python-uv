@@ -60,6 +60,7 @@
 .com.apple.timemachine.donotpresent
 .coverage
 .coverage.*
+.devcontainer/mysql_data/
 .dmypy.json
 .eggs/
 .elasticbeanstalk/*
