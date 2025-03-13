@@ -46,6 +46,7 @@ dependencies = [
     "django-cors-headers",
     "environs",
     "mysqlclient",
+    "whitenoise[brotli]",
 ]
 
 [tool.uv]
@@ -67,8 +68,8 @@ build-backend = "hatchling.build"
 
 # https://packaging.python.org/en/latest/specifications/well-known-project-urls/#well-known-labels
 [project.urls]
-Homepage = "https://example.com"
+Homepage = "https://github.com/basictheprogram/crossfire-nexxus"
 Documentation = "https://readthedocs.org"
-Repository = "https://github.com/me/spam.git"
-Issues = "https://github.com/me/spam/issues"
+Repository = "https://github.com/basictheprogram/crossfire-nexxus.git"
+Issues = "https://github.com/basictheprogram/crossfire-nexxus/issues"
 Changelog = "https://github.com/me/spam/blob/master/CHANGELOG.md"
