@@ -214,6 +214,19 @@ wheels = [
 ]
 
 [[package]]
+name = "cookiecutter-data-science"
+version = "2.1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "click" },
+    { name = "cookiecutter" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/a4/c1/e18d7f91f1db8f6c74c3cf84c7377a3174abfd7f55433ef01c5c5259a66d/cookiecutter_data_science-2.1.0.tar.gz", hash = "sha256:d32359d0494b67c847c79f63b8af87326f21f83b09882da6d3430b31970cf46e", size = 6712 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a5/70/b26b120050696748bf07d82bf6997306227b40efc504c69808ade2731bb2/cookiecutter_data_science-2.1.0-py3-none-any.whl", hash = "sha256:dbdc431961d6e8be94c234e2420932a4cd98ae879f3bf816b235a361e773bf99", size = 8493 },
+]
+
+[[package]]
 name = "coverage"
 version = "7.6.12"
 source = { registry = "https://pypi.org/simple" }
@@ -301,6 +314,7 @@ dependencies = [
 [package.dev-dependencies]
 dev = [
     { name = "cookiecutter" },
+    { name = "cookiecutter-data-science" },
     { name = "mkdocs-material" },
     { name = "pre-commit" },
     { name = "pyright" },
@@ -319,6 +333,7 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "cookiecutter", specifier = ">=2.6.0" },
+    { name = "cookiecutter-data-science", specifier = ">=2.1.0" },
     { name = "mkdocs-material", specifier = ">=9.5.50" },
     { name = "pre-commit", specifier = ">=4.1.0" },
     { name = "pyright", specifier = ">=1.1.392.post0" },
