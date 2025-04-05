@@ -1,0 +1,129 @@
+---
+services:
+  mysql:
+    container_name: nexxus-mysql
+    image: mysql:latest
+    labels:
+      - "traefik.enable=false"
+    cap_add:
+      - SYS_NICE
+    command:
+      [
+        "--general-log=0",
+        "--slow-query-log=1",
+        "--log-queries-not-using-indexes=1",
+        "--long-query-time=10",
+        "--max_allowed_packet=256M",
+        "--net_read_timeout=600",
+        "--net_write_timeout=600",
+        "--wait_timeout=28800",
+        "--interactive_timeout=28800",
+      ]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    volumes:
+      - nexxus-mysql-data:/var/lib/mysql
+    # ports:
+    #   - ${MYSQL_HOST_PORT}:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - TZ=${TZ}
+    restart: always
+    networks:
+      - nexxus
+
+  traefik:
+    container_name: nexxus-traefik
+    image: traefik:latest
+    environment:
+      - TZ=${TZ:-UTC}
+    command:
+      # Did to populate the environment? export $(grep -v '^#' .env | xargs)
+      - "--api=false"
+      - "--api.insecure=false"
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.email=${TRAEFIK_ACME_EMAIL}"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+      - "--entrypoints.websecure.address=:443"
+      # - "--certificatesresolvers.myresolver.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory"
+      - "--log.level=DEBUG"
+    labels:
+      - "traefik.enable=true"
+      # Redirects HTTP to HTTPS
+      # - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      # - "traefik.http.routers.http-catchall.rule=HostRegexp(`{host:.+}`)"
+      # - "traefik.http.routers.http-catchall.entrypoints=web"
+      # - "traefik.http.routers.http-catchall.middlewares=redirect-to-https"
+      #
+      # - "traefik.http.routers.nexxus-web.rule=Host(`${TRAEFIK_FQDN}`) && PathPrefix(`/`)"
+      # - "traefik.http.routers.nexxus-web.entrypoints=web"
+      # - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      # - "traefik.http.routers.nexxus-web.middlewares=redirect-to-https"
+      # HTTPS router
+      # - "traefik.http.routers.nexxus-websecure.rule=Host(`${TRAEFIK_FQDN}`)"
+      # - "traefik.http.routers.nexxus-websecure.entrypoints=websecure"
+      # - "traefik.http.routers.nexxus-websecure.service=nexxus-service"
+      # - "traefik.http.routers.nexxus-websecure.tls=true"
+      # - "traefik.http.services.nexxus-service.loadbalancer.server.port=80"
+      # ACME challenge router (no redirect to HTTPS)
+      # - "traefik.http.routers.nexxus-acme.rule=PathPrefix(`/.well-known/acme-challenge/`)"
+      # - "traefik.http.routers.nexxus-acme.entrypoints=web"
+      # - "traefik.http.routers.nexxus-acme.service=empty-service"
+      # - "traefik.http.services.empty-service.loadbalancer.server.port=80"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "nexxus-letsencrypt:/letsencrypt"
+    depends_on:
+      - nexxus
+    restart: always
+    networks:
+      - nexxus
+
+  nexxus:
+    container_name: nexxus-nexxus
+    build:
+      context: .
+      dockerfile: Dockerfile
+    labels:
+      - "traefik.http.routers.nexxus.rule=Host(`${TRAEFIK_FQDN}`)"
+      - "traefik.http.routers.nexxus.entrypoints=websecure"
+      - "traefik.http.routers.nexxus.tls.certresolver=myresolver"
+    # ports:
+    #   - ${nexxus_HOST_PORT_80}:80
+    #   - ${nexxus_HOST_PORT_443}:443
+    environment:
+      # Misc
+      - TZ=${TZ}
+    volumes:
+      - nexxus-nexxus-files:/bitnami/nexxus
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: always
+    networks:
+      - nexxus
+
+networks:
+  nexxus:
+    name: nexxus
+    driver: bridge
+
+volumes:
+  nexxus-mysql-data:
+    driver: local
+  nexxus-nexxus-files:
+    driver: local
+  nexxus-letsencrypt:
+    driver: local
