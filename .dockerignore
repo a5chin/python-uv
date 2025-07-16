@@ -177,6 +177,8 @@
 .devcontainer
 
 # Custom
+.coveragerc
+.env.local
 .pre-commit-config.yaml
 assets
 LICENSE
