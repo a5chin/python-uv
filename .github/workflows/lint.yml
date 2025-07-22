@@ -1,4 +1,4 @@
-name: Lint by Pyright and Ruff
+name: Lint
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  lint:
+  pyright-and-ruff:
     runs-on: ubuntu-latest
 
     strategy:
