@@ -4,8 +4,7 @@
         "context": "..",
         "dockerfile": "Dockerfile",
         "args": {
-            "UV_VERSION": "latest",
-            "DEBIAN_VERSION": "bookworm"
+            "UV_VERSION": "latest"
         }
     },
     "features": {
