@@ -1,0 +1,5 @@
+[run]
+omit =
+    **/__init__.py
+    noxfile.py
+    tests/*

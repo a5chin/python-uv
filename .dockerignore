@@ -177,9 +177,12 @@
 .devcontainer
 
 # Custom
+.coveragerc
+.env.local
 .pre-commit-config.yaml
 assets
 LICENSE
+noxfile.py
 pyrightconfig.json
 README.md
 ruff.toml

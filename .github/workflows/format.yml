@@ -1,4 +1,4 @@
-name: Pyright
+name: Format
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  type-check:
+  ruff:
     runs-on: ubuntu-latest
 
     strategy:
@@ -15,6 +15,13 @@ jobs:
         python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
 
     steps:
-      - uses: jakebailey/pyright-action@v2
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python ${{ matrix.python-version }} with uv
+        uses: ./.github/actions/setup-python-with-uv
         with:
           python-version: ${{ matrix.python-version }}
+
+      - name: Format by Ruff
+        run: uv run nox -s fmt
