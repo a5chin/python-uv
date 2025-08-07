@@ -3,10 +3,10 @@ name = "default"
 version = "0.1.0"
 description = "This repository contains configurations to set up a Python development environment using VSCode's Dev Container feature. The environment includes uv and Ruff."
 
-authors = [{ name = "a5chin", email = "a5chin.origin+contact@gmail.com" }]
-maintainers = [{ name = "a5chin", email = "a5chin.origin+contact@gmail.com" }]
+authors = [{ name = "Bob Tanner", email = "tanner@real-time.com" }]
+maintainers = [{ name = "Bob Tanner", email = "tanner@real-time.com" }]
 
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 readme = "README.md"
 license = { file = "LICENSE" }
 
@@ -14,6 +14,8 @@ dependencies = [
     "google-cloud-logging>=3.11.3",
     "pydantic>=2.10.5",
     "pydantic-settings>=2.7.1",
+    "ansible-core",
+    "ansible",
 ]
 
 [tool.uv]
@@ -24,6 +26,7 @@ dev-dependencies = [
     "pytest>=8.3.4",
     "pytest-cov>=6.0.0",
     "ruff>=0.9.2",
+    "ansible-dev-tools",
 ]
 
 [tool.hatch.build.targets.wheel]

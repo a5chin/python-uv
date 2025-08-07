@@ -1,0 +1,15 @@
+---
+services:
+  vscode:
+    container_name: vscode
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        UV_VERSION: latest
+        DEBIAN_VERSION: bookworm
+    volumes:
+      - ..:/workspace:cached
+    environment:
+        TZ: ${TZ:-America/Chicago}
+    command: sleep infinity
