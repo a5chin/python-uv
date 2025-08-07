@@ -30,7 +30,7 @@ The environment includes uv and Ruff.
     │   └── tools/
     │        ├── test__config.py
     │        ├── test__logger.py
-    │        └── test__trace.py
+    │        └── test__tracer.py
     ├── tools/
     │   ├── config/
     │   │    ├── __init__.py
@@ -44,7 +44,7 @@ The environment includes uv and Ruff.
     │   │    ├── logger.py
     │   │    ├── style.py
     │   │    └── type.py
-    │   ├── trace/
+    │   ├── tracer/
     │   │    ├── __init__.py
     │   │    └── timer.py
     │   └── __init__.py

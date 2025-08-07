@@ -17,3 +17,5 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY --from=uv --chown=vscode: /uv /uvx /bin/
+
+EXPOSE 8000

@@ -4,7 +4,7 @@
 ```{.py hl_lines="6"}
 import time
 
-from tools.trace import Timer
+from tools.tracer import Timer
 
 
 @Timer("sleep")
@@ -24,7 +24,7 @@ sleep(1)
 ```{.py hl_lines="5"}
 import time
 
-from tools.trace import Timer
+from tools.tracer import Timer
 
 with Timer("examples"):
     time.sleep(1)

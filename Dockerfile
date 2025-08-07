@@ -7,7 +7,7 @@ FROM ghcr.io/astral-sh/uv:$UV_VERSION AS uv
 
 
 FROM python:$VARIANT-slim-$DEBIAN_VERSION
-LABEL maintainer="a5chin <a5chin.origin+contact@gmain.com>"
+LABEL maintainer="Bob Tanner <tanner@real-time.com>"
 
 WORKDIR /app
 

@@ -1,4 +1,4 @@
-from tools.trace import Timer
+from tools.tracer import Timer
 
 
 class TestTimer:
