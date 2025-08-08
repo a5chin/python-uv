@@ -1,6 +1,37 @@
 default_stages: [pre-commit]
 
 repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: end-of-file-fixer
+        name: End of file fixer
+        description: "Ensure files end with a newline"
+
+      - id: check-json
+        name: Check JSON
+        description: "Check that JSON files are valid"
+
+      - id: check-toml
+        name: Check TOML
+        description: "Check that TOML files are valid"
+
+      - id: check-xml
+        name: Check XML
+        description: "Check that XML files are valid"
+
+      - id: check-yaml
+        name: Check YAML
+        description: "Check that YAML files are valid"
+
+      - id: detect-private-key
+        name: Detect private key
+        description: "Detect private keys in files"
+
+      - id: trailing-whitespace
+        name: Trailing whitespace
+        description: "Remove trailing whitespace from files"
+
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.9.2
     hooks:
