@@ -10,6 +10,8 @@ class CLIArgs(
 ):
     """CLIArgs is a class that extends BaseSettings to handle command line arguments."""
 
+    junitxml: str | None = None
+
     @classmethod
     def parse(cls, posargs: list[str]) -> "CLIArgs":
         """Parse command line arguments from the provided list.
@@ -78,6 +80,12 @@ def test(session: nox.Session) -> None:
         >>> uv run nox -s test
 
     """
-    session.run("uv", "run", "pytest")
+    args = CLIArgs.parse(session.posargs)
+
+    command = ["uv", "run", "pytest"]
+    if args.junitxml:
+        command.append(f"--junitxml={args.junitxml}")
+
+    session.run(*command)
 
     session.log("✅ Testing completed successfully.")

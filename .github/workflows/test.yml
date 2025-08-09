@@ -10,23 +10,17 @@ jobs:
   coverage:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        python-version: ["3.13"]
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python ${{ matrix.python-version }} with uv
+      - name: Setup Python with uv
         uses: ./.github/actions/setup-python-with-uv
-        with:
-          python-version: ${{ matrix.python-version }}
 
       - name: Run pytest
         run: |
           set -o pipefail
-          uv run pytest --junitxml=pytest.xml | tee pytest-coverage.txt
+          uv run nox -s test -- --junitxml pytest.xml | tee pytest-coverage.txt
 
       - name: Pytest coverage comment
         uses: MishaKav/pytest-coverage-comment@v1
