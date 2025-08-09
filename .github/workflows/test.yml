@@ -26,7 +26,7 @@ jobs:
       - name: Run pytest
         run: |
           set -o pipefail
-          uv run pytest --junitxml=pytest.xml | tee pytest-coverage.txt
+          uv run nox -s test -- --junitxml pytest.xml | tee pytest-coverage.txt
 
       - name: Pytest coverage comment
         uses: MishaKav/pytest-coverage-comment@v1
