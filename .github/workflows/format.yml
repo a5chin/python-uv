@@ -10,18 +10,12 @@ jobs:
   ruff:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python ${{ matrix.python-version }} with uv
+      - name: Setup Python with uv
         uses: ./.github/actions/setup-python-with-uv
-        with:
-          python-version: ${{ matrix.python-version }}
 
       - name: Format by Ruff
         run: uv run nox -s fmt
