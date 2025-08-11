@@ -6,7 +6,7 @@ description = "This repository contains configurations to set up a Python develo
 authors = [{ name = "a5chin", email = "a5chin.origin+contact@gmail.com" }]
 maintainers = [{ name = "a5chin", email = "a5chin.origin+contact@gmail.com" }]
 
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 readme = "README.md"
 license = { file = "LICENSE" }
 
