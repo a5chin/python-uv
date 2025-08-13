@@ -1,12 +1,11 @@
 {
     "name": "uv",
-    "build": {
-        "context": "..",
-        "dockerfile": "Dockerfile",
-        "args": {
-            "UV_VERSION": "latest"
-        }
-    },
+    "dockerComposeFile": "../.devcontainer/docker-compose.yml",
+    "service": "vscode",
+    "runServices": [
+        "vscode"
+    ],
+    "workspaceFolder": "/workspace",
     "features": {
         "ghcr.io/dhoeric/features/hadolint:1": {}
     },
