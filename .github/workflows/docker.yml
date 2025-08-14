@@ -76,3 +76,16 @@ jobs:
           tags: latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  compose-devcontainer:
+    runs-on: ubuntu-latest
+
+    needs: build-devcontainer
+    if: ${{ success() }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compose up vscode
+        run: docker compose -f '.devcontainer/docker-compose.yml' up -d --build 'vscode'
