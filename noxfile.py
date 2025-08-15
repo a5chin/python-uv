@@ -11,6 +11,8 @@ class CLIArgs(
     """CLIArgs is a class that extends BaseSettings to handle command line arguments."""
 
     junitxml: str | None = None
+    pyright: bool = True
+    ruff: bool = True
 
     @classmethod
     def parse(cls, posargs: list[str]) -> "CLIArgs":
@@ -63,8 +65,12 @@ def lint(session: nox.Session) -> None:
         >>> uv run nox -s lint
 
     """
-    session.run("uv", "run", "pyright")
-    session.run("uv", "run", "ruff", "check", ".", "--fix")
+    args = CLIArgs.parse(session.posargs)
+
+    if args.pyright:
+        session.run("uv", "run", "pyright")
+    if args.ruff:
+        session.run("uv", "run", "ruff", "check", ".", "--fix")
 
     session.log("✅ Linting completed successfully.")
 
