@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  pyright-and-ruff:
+  pyright:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,5 +17,18 @@ jobs:
       - name: Setup Python with uv
         uses: ./.github/actions/setup-python-with-uv
 
-      - name: Lint by Pyright and Ruff
-        run: uv run nox -s lint
+      - name: Lint by Pyright
+        run: uv run nox -s lint -- --pyright
+
+  ruff:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python with uv
+        uses: ./.github/actions/setup-python-with-uv
+
+      - name: Lint by Ruff
+        run: uv run nox -s lint -- --ruff
