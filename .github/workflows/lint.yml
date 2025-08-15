@@ -18,7 +18,7 @@ jobs:
         uses: ./.github/actions/setup-python-with-uv
 
       - name: Lint by Pyright
-        run: uv run nox -s lint -- --pyright True --ruff False
+        run: uv run nox -s lint -- --pyright
 
   ruff:
     runs-on: ubuntu-latest
@@ -31,4 +31,4 @@ jobs:
         uses: ./.github/actions/setup-python-with-uv
 
       - name: Lint by Ruff
-        run: uv run nox -s lint -- --pyright False --ruff True
+        run: uv run nox -s lint -- --ruff
