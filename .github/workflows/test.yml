@@ -1,14 +1,15 @@
 name: Test
 
 on:
+  push:
+    branches: [main]
   pull_request:
     branches: [main]
 
 jobs:
   coverage:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    permissions: write-all
 
     steps:
       - name: Checkout
