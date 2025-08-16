@@ -1,8 +1,6 @@
 name: Test
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
@@ -10,7 +8,7 @@ jobs:
   coverage:
     runs-on: ubuntu-latest
     permissions:
-      pull-requests: write
+      contents: write
 
     steps:
       - name: Checkout
