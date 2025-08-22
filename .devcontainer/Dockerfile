@@ -6,6 +6,11 @@ FROM ghcr.io/astral-sh/uv:$UV_VERSION AS uv
 
 FROM mcr.microsoft.com/vscode/devcontainers/base:debian
 LABEL maintainer="a5chin <a5chin.origin+contact@gmain.com>"
+LABEL org.opencontainers.image.description="Dev Container for Python development with uv-based dependency management and environment configuration."
+
+ENV PYTHONDONTWRITEBYTECODE=True \
+    PYTHONUNBUFFERED=True \
+    UV_LINK_MODE=copy
 
 # hadolint ignore=DL3008
 RUN apt-get update \

@@ -3,8 +3,29 @@ name: Test
 on:
   push:
     branches: [main]
+    paths:
+      - ".github/workflows/test.yml"
+      - "**.py"
+      - ".coveragerc"
+      - ".env**"
+      - ".python-version"
+      - "tests"
+      - "pyproject.toml"
+      - "pytest.ini"
+      - "uv.lock"
+
   pull_request:
     branches: [main]
+    paths:
+      - ".github/workflows/test.yml"
+      - "**.py"
+      - ".coveragerc"
+      - ".env**"
+      - ".python-version"
+      - "tests"
+      - "pyproject.toml"
+      - "pytest.ini"
+      - "uv.lock"
 
 jobs:
   coverage:

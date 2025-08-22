@@ -13,9 +13,9 @@ WORKDIR /app
 COPY --from=uv /uv /uvx /bin/
 COPY pyproject.toml uv.lock ./
 
-ENV PYTHONDONTWRITEBYTECODE=True
-ENV PYTHONUNBUFFERED=True
-ENV UV_LINK_MODE=copy
+ENV PYTHONDONTWRITEBYTECODE=True \
+    PYTHONUNBUFFERED=True \
+    UV_LINK_MODE=copy
 
 # hadolint ignore=DL3008
 RUN apt-get update \

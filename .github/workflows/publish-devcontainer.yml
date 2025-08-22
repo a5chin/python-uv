@@ -6,6 +6,8 @@ on:
     paths:
       - ".devcontainer/Dockerfile"
       - ".github/workflows/publish-devcontainer.yml"
+      - ".python-version"
+
   workflow_dispatch:
 
 env:
