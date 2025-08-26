@@ -11,7 +11,6 @@ on:
   workflow_dispatch:
 
 env:
-  CURRENT_DATETIME: ${{ date +'%Y-%m-%dT%H:%M:%S%z' }}
   IMAGE_NAME: ${{ github.repository }}/devcontainer
   REGISTRY: ghcr.io
 
@@ -36,6 +35,9 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set current datetime as env variable
+        run: CURRENT_DATETIME=$(date +'%Y-%m-%dT%H:%M:%S%z')
 
       - name: Extract metadata
         id: meta
