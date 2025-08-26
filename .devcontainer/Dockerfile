@@ -5,10 +5,6 @@ FROM ghcr.io/astral-sh/uv:$UV_VERSION AS uv
 
 
 FROM mcr.microsoft.com/vscode/devcontainers/base:debian
-LABEL maintainer="a5chin <a5chin.origin+contact@gmain.com>"
-LABEL org.opencontainers.image.description="Dev Container for Python development with uv-based dependency management and environment configuration."
-LABEL org.opencontainers.image.licenses=MIT
-LABEL org.opencontainers.image.source=https://github.com/a5chin/python-uv
 
 ENV PYTHONDONTWRITEBYTECODE=True \
     PYTHONUNBUFFERED=True \
