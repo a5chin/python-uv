@@ -11,8 +11,9 @@ on:
   workflow_dispatch:
 
 env:
-  REGISTRY: ghcr.io
+  CURRENT_DATETIME: ${{ date +'%Y-%m-%dT%H:%M:%S%z' }}
   IMAGE_NAME: ${{ github.repository }}/devcontainer
+  REGISTRY: ghcr.io
 
 jobs:
   publish-devcontainer:
@@ -47,7 +48,7 @@ jobs:
             type=raw,value=latest,enable={{is_default_branch}}
           labels: |
             maintainer=a5chin <a5chin.origin+contact@gmain.com>
-            org.opencontainers.image.created=${{ date +'%Y-%m-%dT%H:%M:%S%z' }}
+            org.opencontainers.image.created=${{ env.CURRENT_DATETIME }}
             org.opencontainers.image.url=https://github.com/a5chin/python-uv
             org.opencontainers.image.source=https://github.com/a5chin/python-uv
             org.opencontainers.image.vendor=a5chin <a5chin.origin+contact@gmain.com>
