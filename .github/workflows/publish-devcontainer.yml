@@ -45,6 +45,17 @@ jobs:
             type=ref,event=branch
             type=sha,prefix={{branch}}-
             type=raw,value=latest,enable={{is_default_branch}}
+          labels: |
+            maintainer=a5chin <a5chin.origin+contact@gmain.com>
+            org.opencontainers.image.created=${{ date +'%Y-%m-%dT%H:%M:%S%z' }}
+            org.opencontainers.image.url=https://github.com/a5chin/python-uv
+            org.opencontainers.image.source=https://github.com/a5chin/python-uv
+            org.opencontainers.image.vendor=a5chin <a5chin.origin+contact@gmain.com>
+            org.opencontainers.image.title=python-uv
+            org.opencontainers.image.description=Dev Container for Python development with uv-based dependency management and environment configuration.
+            org.opencontainers.image.documentation=https://a5chin.github.io/python-uv/
+            org.opencontainers.image.authors=a5chin <a5chin.origin+contact@gmain.com>
+            org.opencontainers.image.licenses=MIT
 
       - name: Build and push devcontainer image
         uses: docker/build-push-action@v6
