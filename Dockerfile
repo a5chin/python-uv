@@ -6,7 +6,6 @@ FROM ghcr.io/astral-sh/uv:$UV_VERSION AS uv
 
 
 FROM python:$VARIANT-slim
-LABEL maintainer="a5chin <a5chin.origin+contact@gmain.com>"
 
 WORKDIR /app
 
