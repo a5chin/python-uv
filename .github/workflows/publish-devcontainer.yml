@@ -36,9 +36,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set current datetime as env variable
-        run: CURRENT_DATETIME=$(date --iso-8601=seconds) >> $GITHUB_ENV
-
       - name: Extract metadata
         id: meta
         uses: docker/metadata-action@v5
@@ -50,7 +47,6 @@ jobs:
             type=raw,value=latest,enable={{is_default_branch}}
           labels: |
             maintainer=a5chin <a5chin.origin+contact@gmain.com>
-            org.opencontainers.image.created=${{ env.CURRENT_DATETIME }}
             org.opencontainers.image.url=https://github.com/a5chin/python-uv
             org.opencontainers.image.source=https://github.com/a5chin/python-uv
             org.opencontainers.image.vendor=a5chin <a5chin.origin+contact@gmain.com>
@@ -66,6 +62,7 @@ jobs:
           context: .
           file: .devcontainer/Dockerfile
           push: true
+          provenance: false
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
