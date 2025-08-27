@@ -7,6 +7,8 @@ on:
       - ".devcontainer/Dockerfile"
       - ".github/workflows/publish-devcontainer.yml"
       - ".python-version"
+  pull_request:
+    branches: [main]
 
   workflow_dispatch:
 
