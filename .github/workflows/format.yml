@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - ".github/actions/setup-python-with-uv/action.yml"
       - ".github/workflows/format.yml"
       - "**.py"
       - ".python-version"
@@ -14,6 +15,7 @@ on:
   pull_request:
     branches: [main]
     paths:
+      - ".github/actions/setup-python-with-uv/action.yml"
       - ".github/workflows/format.yml"
       - "**.py"
       - ".python-version"
