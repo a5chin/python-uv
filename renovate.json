@@ -4,9 +4,23 @@
     "extends": [
         "config:base"
     ],
+    "labels": [
+        "renovate"
+    ],
     "lockFileMaintenance": {
         "enabled": true
     },
+    "packageRules": [
+        {
+            "automerge": true,
+            "matchUpdateTypes": [
+                "minor",
+                "patch",
+                "pin",
+                "digest"
+            ]
+        }
+    ],
     "rebaseWhen": "behind-base-branch",
     "schedule": [
         "* 0-23 * * *"
