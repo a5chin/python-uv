@@ -1,9 +1,11 @@
 import logging
 import sys
-
-from google.auth.credentials import Credentials
+from typing import TYPE_CHECKING
 
 from tools.logger.type import LogType
+
+if TYPE_CHECKING:
+    from google.auth.credentials import Credentials
 
 
 class Logger(logging.Logger):
