@@ -10,7 +10,7 @@ class CLIArgs(
 ):
     """CLIArgs is a class that extends BaseSettings to handle command line arguments."""
 
-    junitxml: str | None = None
+    junitxml: str = ""
     pyright: bool = False
     ruff: bool = False
 
