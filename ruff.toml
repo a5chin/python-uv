@@ -32,8 +32,8 @@ exclude = [
 line-length = 88
 indent-width = 4
 
-# Assume Python 3.13
-target-version = "py313"
+# Assume Python 3.14
+target-version = "py314"
 
 [lint]
 # Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.

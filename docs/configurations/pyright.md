@@ -8,7 +8,7 @@
 
 ```{.json title="pyrightconfig.json"}
 {
-    "pythonVersion": "3.13",
+    "pythonVersion": "3.14",
     "pythonPlatform": "All",
     "venv": ".venv",
     "typeCheckingMode": "standard",
