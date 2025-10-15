@@ -29,7 +29,7 @@ uv remove ruff
 ## Pin Python Version
 If you want to pin the Python version, run the following command:
 ```sh
-uv pin python 3.13
+uv pin python 3.14
 ```
 
 ## Configuration for uv

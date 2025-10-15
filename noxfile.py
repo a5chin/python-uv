@@ -10,12 +10,12 @@ class CLIArgs(
 ):
     """CLIArgs is a class that extends BaseSettings to handle command line arguments."""
 
-    junitxml: str | None = None
+    junitxml: str = ""
     pyright: bool = False
     ruff: bool = False
 
     @classmethod
-    def parse(cls, posargs: list[str]) -> "CLIArgs":
+    def parse(cls, posargs: list[str]) -> CLIArgs:
         """Parse command line arguments from the provided list.
 
         Args:
