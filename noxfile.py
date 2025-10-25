@@ -4,10 +4,7 @@ import nox
 from pydantic_settings import BaseSettings
 
 
-class CLIArgs(
-    BaseSettings,
-    cli_ignore_unknown_args=True,
-):
+class CLIArgs(BaseSettings, cli_parse_args=True):
     """CLIArgs is a class that extends BaseSettings to handle command line arguments."""
 
     junitxml: str = ""
