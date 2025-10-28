@@ -1,0 +1,7 @@
+[github_app]
+handle_push_trigger = "true"
+pr_commands = ["/describe", "/review", "/improve", "/review"]
+push_commands = ["/describe"]
+
+[pr_code_suggestions]
+commitable_code_suggestions = "true"
