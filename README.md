@@ -19,7 +19,7 @@
 This repository contains configurations to set up a Python development environment using VSCode's Dev Container feature.
 The environment includes uv, and Ruff.
 
-![demo](docs/img/ruff.gif)
+<img src="docs/img/ruff.gif" width="49%"> <img src="docs/img/jupyter.gif" width="49%">
 
 If the Ruff format does not work, try reloading the VS Code window.
 Specifically, you can solve this problem by following the steps below.
