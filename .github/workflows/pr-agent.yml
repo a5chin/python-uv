@@ -2,7 +2,7 @@ name: PR Agent
 
 on:
   pull_request:
-    types: [opened, reopened, ready_for_review]
+    types: [opened, synchronize]
   issue_comment:
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: PR Agent Action Step
-        uses: qodo-ai/pr-agent@main
+        uses: qodo-ai/pr-agent@v0
         env:
           CONFIG.MODEL: "gemini/gemini-2.5-flash-preview-05-20"
           GOOGLE_AI_STUDIO.GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
