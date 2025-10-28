@@ -6,6 +6,7 @@ from pydantic_settings import BaseSettings
 
 class CLIArgs(
     BaseSettings,
+    cli_parse_args=True,
     cli_ignore_unknown_args=True,
 ):
     """CLIArgs is a class that extends BaseSettings to handle command line arguments."""
