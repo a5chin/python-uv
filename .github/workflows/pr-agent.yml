@@ -4,6 +4,7 @@ on:
   pull_request:
     types: [opened, synchronize]
   issue_comment:
+    types: [created, edited]
 
 jobs:
   pr_agent_job:
@@ -24,3 +25,6 @@ jobs:
           GOOGLE_AI_STUDIO.GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CONFIG.CUSTOM_MODEL_MAX_TOKENS: 64000
+          GITHUB_ACTION.AUTO_DESCRIBE: "true"
+          GITHUB_ACTION.AUTO_REVIEW: "false"
+          GITHUB_ACTION.AUTO_IMPROVE: "false"
