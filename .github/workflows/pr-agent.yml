@@ -4,8 +4,6 @@ on:
   pull_request:
     types: [opened, synchronize]
   issue_comment:
-    types: [created, edited]
-  pull_request_review_comment:
     types: [created]
 
 jobs:
@@ -27,7 +25,7 @@ jobs:
           GOOGLE_AI_STUDIO.GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CONFIG.CUSTOM_MODEL_MAX_TOKENS: 64000
-          GITHUB_ACTION.AUTO_DESCRIBE: "true"
-          GITHUB_ACTION.AUTO_REVIEW: "false"
-          GITHUB_ACTION.AUTO_IMPROVE: "false"
-          GITHUB_ACTION_CONFIG.PR_ACTIONS: '["opened", "reopened", "ready_for_review", "review_requested"]'
+          GITHUB_ACTION.AUTO_DESCRIBE: true
+          GITHUB_ACTION.AUTO_REVIEW: false
+          GITHUB_ACTION.AUTO_IMPROVE: false
+          PR_CODE_SUGGESTIONS.COMMITABLE_CODE_SUGGESTIONS: true
