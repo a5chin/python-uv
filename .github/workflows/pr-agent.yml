@@ -26,6 +26,7 @@ jobs:
           GITHUB_ACTION.AUTO_DESCRIBE: true
           GITHUB_ACTION.AUTO_IMPROVE: false
           GITHUB_ACTION.AUTO_REVIEW: false
+          GITHUB_ACTION_CONFIG.PR_ACTIONS: '["opened", "synchronize"]'
           GITHUB_ACTION.HANDLE_PUSH_TRIGGER: true
           GITHUB_ACTION.PUSH_COMMANDS: '["/describe"]'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
