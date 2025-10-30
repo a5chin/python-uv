@@ -4,8 +4,6 @@ on:
   pull_request:
     types: [opened, synchronize]
   issue_comment:
-    types: [created, edited]
-  pull_request_review_comment:
     types: [created]
 
 jobs:
@@ -23,11 +21,14 @@ jobs:
       - name: PR Agent Action Step
         uses: qodo-ai/pr-agent@v0.30
         env:
-          CONFIG.MODEL: "gemini/gemini-2.5-flash-preview-05-20"
-          GOOGLE_AI_STUDIO.GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CONFIG.CUSTOM_MODEL_MAX_TOKENS: 64000
-          GITHUB_ACTION.AUTO_DESCRIBE: "true"
-          GITHUB_ACTION.AUTO_REVIEW: "false"
-          GITHUB_ACTION.AUTO_IMPROVE: "false"
-          GITHUB_ACTION_CONFIG.PR_ACTIONS: '["opened", "reopened", "ready_for_review", "review_requested"]'
+          CONFIG.MODEL: "gemini/gemini-2.5-flash-preview-05-20"
+          GITHUB_ACTION.AUTO_DESCRIBE: true
+          GITHUB_ACTION.AUTO_IMPROVE: false
+          GITHUB_ACTION.AUTO_REVIEW: false
+          GITHUB_ACTION.HANDLE_PUSH_TRIGGER: true
+          GITHUB_ACTION.PUSH_COMMANDS: '["/describe"]'
+          GITHUB_ACTION_CONFIG.PR_ACTIONS: '["opened", "synchronize"]'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOOGLE_AI_STUDIO.GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PR_CODE_SUGGESTIONS.COMMITABLE_CODE_SUGGESTIONS: true
