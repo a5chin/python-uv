@@ -19,7 +19,7 @@
 This repository contains configurations to set up a Python development environment using VSCode's Dev Container feature.
 The environment includes uv, and Ruff.
 
-![demo](docs/img/ruff.gif)
+<img src="docs/img/ruff.gif" width="49%"> <img src="docs/img/jupyter.gif" width="49%">
 
 If the Ruff format does not work, try reloading the VS Code window.
 Specifically, you can solve this problem by following the steps below.
@@ -45,7 +45,7 @@ Specifically, you can solve this problem by following the steps below.
 
 ## Branches
 - [main](https://github.com/a5chin/python-uv/tree/main)
-- [jupyter](https://github.com/a5chin/python-uv/tree/jupyter)
+- [jupyter](https://github.com/a5chin/python-uv/tree/jupyter)（Archived）
 - [rye](https://github.com/a5chin/python-uv/tree/rye)（Archived）
 
 ## Settings
@@ -93,12 +93,12 @@ Specifically, you can solve this problem by following the steps below.
 ## GitHub Actions
 - `docker.yml`
   - Workflow to check if you can build with Docker
-- `pyright.yml`
-  - Workflow to check type
+- `format.yml`
+  - Workflow to check format
+- `lint.yml`
+  - Workflow to check lint
 - `test.yml`
   - Workflow to check if all the described tests can be passed with pytest
-- `ruff.yml`
-  - Workflow to check if you can go through Formatter and Linter with Ruff
 
 ## Ruff
 Ruff can be used to replace Flake8, Black, isort, pydocstyle, pyupgrade, autoflake, etc., and yet run tens to hundreds of times faster than the individual tools.
@@ -120,10 +120,10 @@ The `.pre-commit-config.yaml` file can contain scripts to be executed before com
 
 ```sh
 # Python Formatter
-uv run ruff format .
+uv run nox -s fmt
 
 # Python Linter
-uv run ruff check . --fix
+uv run nox -s lint -- --pyright --ruff
 
 # Docker Linter
 hodolint Dockerfile
@@ -212,16 +212,19 @@ uv add {libraries}
 │   │    ├── __init__.py
 │   │    └── timer.py
 │   └── __init__.py
+├── .coveragerc
 ├── .dockerignore
 ├── .env.local
 ├── .gitignore
 ├── .pre-commit-config.yaml
 ├── .python-version
 ├── Dockerfile
+├── noxfile.py
 ├── pyproject.toml
 ├── pyrightconfig.json
 ├── pytest.ini
 ├── README.md
+├── renovate.json
 ├── ruff.toml
 └── uv.lock
 ```
