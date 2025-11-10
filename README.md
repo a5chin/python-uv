@@ -21,6 +21,41 @@ A production-ready Python development environment template using modern tools: *
 <img src="docs/img/ruff.gif" width="49%"> <img src="docs/img/jupyter.gif" width="49%">
 </div>
 
+---
+
+## 📋 Table of Contents
+
+- [Python Development with uv and Ruff](#python-development-with-uv-and-ruff)
+  - [📋 Table of Contents](#-table-of-contents)
+  - [✨ Features](#-features)
+  - [🚀 Quick Start](#-quick-start)
+    - [Using Dev Container (Recommended)](#using-dev-container-recommended)
+    - [Using Docker Only](#using-docker-only)
+    - [Local Setup (Without Docker)](#local-setup-without-docker)
+  - [📚 Development Workflow](#-development-workflow)
+    - [Installing Dependencies](#installing-dependencies)
+    - [Running Tasks](#running-tasks)
+    - [Pre-commit Hooks](#pre-commit-hooks)
+    - [Documentation](#documentation)
+  - [🏗️ Project Structure](#️-project-structure)
+    - [Built-in Utility Modules](#built-in-utility-modules)
+      - [**Logger** - Dual-mode logging system](#logger---dual-mode-logging-system)
+      - [**Configuration** - Environment-based settings](#configuration---environment-based-settings)
+      - [**Timer** - Performance monitoring](#timer---performance-monitoring)
+  - [⚙️ Configuration](#️-configuration)
+    - [Ruff Configuration](#ruff-configuration)
+    - [Pyright Configuration](#pyright-configuration)
+    - [Pytest Configuration](#pytest-configuration)
+  - [🔄 CI/CD](#-cicd)
+  - [🎨 VSCode Configuration](#-vscode-configuration)
+  - [🍪 Cookiecutter Templates](#-cookiecutter-templates)
+  - [📖 Documentation](#-documentation)
+  - [🌿 Branches](#-branches)
+  - [📄 License](#-license)
+  - [🙏 Acknowledgments](#-acknowledgments)
+
+---
+
 ## ✨ Features
 
 - 🚀 **Ultra-fast package management** with [uv](https://github.com/astral-sh/uv) (10-100x faster than pip)
@@ -89,7 +124,7 @@ uv sync
 uv run pre-commit install
 ```
 
-## 📚 Getting Started
+## 📚 Development Workflow
 
 ### Installing Dependencies
 
@@ -107,7 +142,7 @@ uv add requests pandas
 uv add --dev pytest-mock
 ```
 
-### Development Workflow
+### Running Tasks
 
 This project uses **nox** for task automation. All common development tasks are available as nox sessions:
 
@@ -193,22 +228,30 @@ uv run mkdocs gh-deploy
 │   ├── config/              # Configuration management (Settings, FastAPI config)
 │   ├── logger/              # Logging utilities (Local & Google Cloud formatters)
 │   └── tracer/              # Performance tracing (Timer decorator/context manager)
-├── tests/                   # Test suite mirroring tools/ structure
+├── tests/                   # Test suite (mirrors tools/ structure)
+│   └── tools/              # Unit tests for utility modules
 ├── docs/                    # MkDocs documentation
+│   ├── getting-started/    # Setup guides
+│   ├── guides/             # Tool usage guides
+│   ├── configurations/     # Configuration references
+│   └── usecases/           # Real-world examples
 ├── .devcontainer/           # Dev Container configuration
 ├── .github/                 # GitHub Actions workflows and reusable actions
-├── noxfile.py              # Task automation configuration
-├── pyproject.toml          # Project metadata and dependencies
-├── ruff.toml               # Ruff configuration
+├── noxfile.py              # Task automation configuration (test, lint, fmt)
+├── pyproject.toml          # Project metadata and dependencies (uv)
+├── ruff.toml               # Ruff linter/formatter configuration
 ├── pyrightconfig.json      # Pyright type checking configuration
-└── pytest.ini              # Pytest configuration
+└── pytest.ini              # Pytest configuration (75% coverage requirement)
 ```
 
 ### Built-in Utility Modules
 
-The `tools/` package provides production-ready utilities:
+The `tools/` package provides production-ready utilities that can be used in your projects:
 
 #### **Logger** - Dual-mode logging system
+
+Environment-aware logging with support for local development and cloud environments:
+
 ```python
 from tools.logger import Logger, LogType
 
@@ -222,14 +265,21 @@ logger.info("Application started")
 ```
 
 #### **Configuration** - Environment-based settings
+
+Type-safe configuration management using Pydantic:
+
 ```python
 from tools.config import Settings
 
 settings = Settings()  # Loads from .env and .env.local
 api_url = settings.api_prefix_v1
+is_debug = settings.DEBUG
 ```
 
 #### **Timer** - Performance monitoring
+
+Automatic execution time logging for functions and code blocks:
+
 ```python
 from tools.tracer import Timer
 
@@ -240,8 +290,7 @@ with Timer("database_query"):
 # As decorator
 @Timer("process_data")
 def process_data(data):
-    # Logs execution time when function completes
-    return transform(data)
+    return transform(data)  # Logs execution time when function completes
 ```
 
 ## ⚙️ Configuration
@@ -250,96 +299,122 @@ def process_data(data):
 
 Ruff replaces multiple tools (Black, isort, Flake8, pydocstyle, pyupgrade, autoflake) with a single, fast tool.
 
-Key settings in `ruff.toml`:
+**Key settings in `ruff.toml`:**
 - **Line length**: 88 (Black-compatible)
 - **Target Python**: 3.14
 - **Rules**: ALL enabled by default with specific exclusions
 - **Test files**: Exempt from `INP001` (namespace packages) and `S101` (assert usage)
 
-See [Ruff documentation](https://docs.astral.sh/ruff/) for customization options.
+> See [Ruff documentation](https://docs.astral.sh/ruff/) for customization options.
 
 ### Pyright Configuration
 
-Type checking configured in `pyrightconfig.json`:
+Static type checking for Python code.
+
+**Key settings in `pyrightconfig.json`:**
 - **Python version**: 3.14
-- **Mode**: Standard type checking
-- **Include**: `tools/` package
+- **Type checking mode**: Standard
+- **Include**: `tools/` package only
 - **Virtual environment**: `.venv`
+
+> See [Pyright documentation](https://github.com/microsoft/pyright) for advanced configuration.
 
 ### Pytest Configuration
 
-Testing configured in `pytest.ini`:
+Testing framework with coverage enforcement.
+
+**Key settings in `pytest.ini`:**
 - **Coverage requirement**: 75% minimum (including branch coverage)
-- **Test file pattern**: `test__*.py`
+- **Test file pattern**: `test__*.py` (double underscore)
 - **Coverage reports**: HTML and terminal
 - **Import mode**: importlib
 
+> See [pytest documentation](https://docs.pytest.org/) for additional options.
+
 ## 🔄 CI/CD
 
-Automated workflows in `.github/workflows/`:
+Automated workflows ensure code quality and consistency. All workflows run on push and pull requests.
 
-| Workflow | Purpose |
-|----------|---------|
-| `docker.yml` | Validate Docker build |
-| `devcontainer.yml` | Validate Dev Container configuration |
-| `format.yml` | Check code formatting with Ruff |
-| `lint.yml` | Run Pyright and Ruff linting |
-| `test.yml` | Run test suite with coverage |
-| `gh-deploy.yml` | Deploy documentation to GitHub Pages |
-| `pr-agent.yml` | Automated PR reviews |
-| `publish-devcontainer.yml` | Publish Dev Container image |
+**Available workflows in `.github/workflows/`:**
+
+| Workflow | Purpose | Tools Used |
+|----------|---------|-----------|
+| `docker.yml` | Validate Docker build | Docker |
+| `devcontainer.yml` | Validate Dev Container configuration | devcontainer CLI |
+| `format.yml` | Check code formatting | Ruff |
+| `lint.yml` | Run static analysis | Pyright, Ruff |
+| `test.yml` | Run test suite with coverage | pytest, coverage |
+| `gh-deploy.yml` | Deploy documentation to GitHub Pages | MkDocs |
+| `pr-agent.yml` | Automated PR reviews | Qodo AI PR Agent |
+| `publish-devcontainer.yml` | Publish Dev Container image | Docker, GHCR |
 
 ## 🎨 VSCode Configuration
 
-The Dev Container includes these pre-configured extensions:
+The Dev Container includes pre-configured extensions and settings for optimal Python development.
 
-**Python Development**:
-- Ruff, Pyright, Python, autodocstring, python-indent
+**Python Development:**
+- **Ruff** - Fast linting and formatting
+- **Pyright** - Static type checking
+- **Python** - Core Python support
+- **autodocstring** - Automatic docstring generation
+- **python-indent** - Correct Python indentation
 
-**Code Quality**:
-- GitLens, Error Lens, indent-rainbow, trailing-spaces
+**Code Quality:**
+- **GitLens** - Enhanced Git integration
+- **Error Lens** - Inline error highlighting
+- **indent-rainbow** - Visual indentation guide
+- **trailing-spaces** - Highlight trailing whitespace
 
-**File Support**:
-- YAML, TOML, Markdown, Docker, Material Icon Theme
+**File Support:**
+- **YAML**, **TOML**, **Markdown** - Configuration file support
+- **Docker** - Dockerfile and docker-compose support
+- **Material Icon Theme** - File icons
 
-**Editor Settings**:
-- Format on save (Python, JSON, YAML, TOML, Dockerfile)
-- Auto-trim trailing whitespace
-- Auto-insert final newline
+**Editor Settings:**
+- ✅ Format on save (Python, JSON, YAML, TOML, Dockerfile)
+- ✅ Auto-trim trailing whitespace
+- ✅ Auto-insert final newline
+- ✅ Organize imports on save
 
-> **Note**: If Ruff formatting doesn't work, reload the window: `Cmd+Shift+P` → "Developer: Reload Window"
+> **Troubleshooting**: If Ruff formatting doesn't work, reload the window: `Cmd+Shift+P` → "Developer: Reload Window"
 
 ## 🍪 Cookiecutter Templates
 
-Use this repository as a base to generate project-specific templates:
+This repository can be used as a base template for various Python projects. Combine it with Cookiecutter to bootstrap project-specific setups:
 
 ```bash
+# Install cookiecutter
+uv add --dev cookiecutter
+
+# Use a template
 uv run cookiecutter <template-url>
 ```
 
-**Recommended templates**:
+**Recommended templates:**
 
-- **Data Science**: [cookiecutter-data-science](https://github.com/drivendataorg/cookiecutter-data-science)
-- **FastAPI**: [full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template)
-- **Django**: [cookiecutter-django](https://github.com/cookiecutter/cookiecutter-django)
-- **Flask**: [cookiecutter-flask](https://github.com/cookiecutter-flask/cookiecutter-flask)
+- **Data Science**: [cookiecutter-data-science](https://github.com/drivendataorg/cookiecutter-data-science) - Standardized data science project structure
+- **FastAPI**: [full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template) - Full-stack web applications
+- **Django**: [cookiecutter-django](https://github.com/cookiecutter/cookiecutter-django) - Production-ready Django projects
+- **Flask**: [cookiecutter-flask](https://github.com/cookiecutter-flask/cookiecutter-flask) - Flask web applications
 
 ## 📖 Documentation
 
-Comprehensive documentation is available at [https://a5chin.github.io/python-uv](https://a5chin.github.io/python-uv)
+Comprehensive documentation is available at **[https://a5chin.github.io/python-uv](https://a5chin.github.io/python-uv)**
 
-Topics covered:
-- Getting started guides (Docker, VSCode, Dev Containers)
-- Tool configurations (uv, Ruff, Pyright, pre-commit)
-- Testing strategies
-- Using the `tools/` utilities (config, logger, tracer)
-- Use cases (Jupyter, FastAPI, OpenCV)
+**Topics covered:**
+- 🚀 **Getting Started** - Docker, VSCode, Dev Containers setup
+- ⚙️ **Tool Configurations** - uv, Ruff, Pyright, pre-commit
+- 🧪 **Testing Strategies** - pytest, coverage, and best practices
+- 🛠️ **Utility Modules** - Config, logger, and tracer guides
+- 💡 **Use Cases** - Jupyter, FastAPI, OpenCV examples
 
 ## 🌿 Branches
 
-- **[main](https://github.com/a5chin/python-uv/tree/main)** - Current production-ready template
-- **[jupyter](https://github.com/a5chin/python-uv/tree/jupyter)** - Archived Jupyter-specific configuration
-- **[rye](https://github.com/a5chin/python-uv/tree/rye)** - Archived Rye package manager version
+This repository maintains multiple branches for different use cases:
+
+- **[main](https://github.com/a5chin/python-uv/tree/main)** - Current production-ready template (recommended)
+- **[jupyter](https://github.com/a5chin/python-uv/tree/jupyter)** - Archived: Jupyter-specific configuration
+- **[rye](https://github.com/a5chin/python-uv/tree/rye)** - Archived: Rye package manager version (replaced by uv)
 
 ## 📄 License
 
@@ -347,9 +422,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-This template leverages these excellent tools:
-- [uv](https://github.com/astral-sh/uv) by Astral
-- [Ruff](https://github.com/astral-sh/ruff) by Astral
-- [Pyright](https://github.com/microsoft/pyright) by Microsoft
-- [nox](https://nox.thea.codes/) for task automation
-- [pytest](https://pytest.org/) for testing
+This template is built on top of excellent open-source tools:
+
+- **[uv](https://github.com/astral-sh/uv)** by Astral - Ultra-fast Python package manager
+- **[Ruff](https://github.com/astral-sh/ruff)** by Astral - Lightning-fast linter and formatter
+- **[Pyright](https://github.com/microsoft/pyright)** by Microsoft - Static type checker for Python
+- **[nox](https://nox.thea.codes/)** - Flexible task automation for Python
+- **[pytest](https://pytest.org/)** - Testing framework for Python
+- **[MkDocs](https://www.mkdocs.org/)** - Documentation site generator
+
+Special thanks to the open-source community for making these tools available!
