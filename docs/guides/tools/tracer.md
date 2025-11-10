@@ -365,14 +365,14 @@ with maybe_timer("optional_timing"):
 
 Test code with timers by checking log output:
 
-```python
-import logging
-from tools.tracer import Timer
-
-def test_timer_logging():
-    with assertLogs(level=logging.DEBUG) as cm:
+def test_timer_logging(caplog):
+    with caplog.at_level(logging.DEBUG):
         with Timer("test_operation"):
             pass  # Instant operation
+
+    assert "test_operation" in caplog.text
+    assert "executed in" in caplog.text
+    assert "ms" in caplog.text
 
     assert "test_operation" in cm.output[0]
     assert "executed in" in cm.output[0]
