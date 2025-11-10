@@ -274,14 +274,14 @@ class CustomFormatter(LocalFormatter):
 
 Test your logging by checking log output:
 
-```python
-import logging
-from tools.logger import Logger
-
-def test_logger():
+def test_logger(caplog):
     logger = Logger("test")
 
     # Capture log output
+    with caplog.at_level(logging.INFO):
+        logger.info("Test message")
+
+    assert "Test message" in caplog.text
     with self.assertLogs(logger, level=logging.INFO) as cm:
         logger.info("Test message")
 
