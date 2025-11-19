@@ -342,6 +342,7 @@ Automated workflows ensure code quality and consistency. All workflows run on pu
 | `docker.yml` | Validate Docker build | Docker |
 | `devcontainer.yml` | Validate Dev Container configuration | devcontainer CLI |
 | `format.yml` | Check code formatting | Ruff |
+| `labeler.yml` | Add label in GitHub | GitHub |
 | `lint.yml` | Run static analysis | Pyright, Ruff |
 | `test.yml` | Run test suite with coverage | pytest, coverage |
 | `gh-deploy.yml` | Deploy documentation to GitHub Pages | MkDocs |

@@ -235,6 +235,7 @@ GitHub Actions workflows in `.github/workflows/`:
 - **docker.yml**: Validate Docker build
 - **devcontainer.yml**: Validate Dev Container configuration
 - **format.yml**: Check Ruff formatting
+- **labeler.yml**: Add label in GitHub
 - **lint.yml**: Run Pyright + Ruff linting
 - **test.yml**: Run pytest with coverage
 - **gh-deploy.yml**: Deploy documentation to GitHub Pages
