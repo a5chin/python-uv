@@ -90,10 +90,8 @@ git checkout -b feature/your-feature-name
 Branch naming conventions:
 - `feature/` - New features
 - `fix/` - Bug fixes
-- `docs/` - Documentation changes
-- `refactor/` - Code refactoring
-- `test/` - Test improvements
-- `chore/` - Maintenance tasks
+- `hotfix/` - Hotfix
+- `release/` - Release changes
 
 ### 2. Make Your Changes
 
@@ -110,12 +108,12 @@ Use descriptive commit messages:
 
 ```bash
 # Good commit messages
-git commit -m "Add: CloudWatch logging support"
-git commit -m "Fix: Handle None values in Logger.format()"
-git commit -m "Update: Improve type hints in Settings class"
-git commit -m "Refactor: Simplify Timer context manager logic"
-git commit -m "Test: Add edge cases for config loading"
-git commit -m "Docs: Update contributing guidelines"
+git commit -m "add: CloudWatch logging support"
+git commit -m "fix: Handle None values in Logger.format()"
+git commit -m "update: Improve type hints in Settings class"
+git commit -m "refactor: Simplify Timer context manager logic"
+git commit -m "test: Add edge cases for config loading"
+git commit -m "docs: Update contributing guidelines"
 
 # Avoid
 git commit -m "updates"
@@ -240,16 +238,6 @@ def calculate_total(items: list[float], tax_rate: float) -> float:
 - **Extract complex logic** into named functions
 
 ### Ruff Rules
-
-All Ruff rules are enabled by default. Common violations to avoid:
-
-- `E501` - Line too long (max 88 characters)
-- `F401` - Unused imports
-- `F841` - Unused variables
-- `N802` - Function name should be lowercase
-- `D100` - Missing docstring in public module
-- `S101` - Use of assert (allowed in tests only)
-
 Run `uv run ruff check .` to see all violations.
 
 ## Testing Requirements
