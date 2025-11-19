@@ -224,19 +224,22 @@ uv run mkdocs gh-deploy
 
 ```
 .
-├── tools/                    # Reusable utility modules
-│   ├── config/              # Configuration management (Settings, FastAPI config)
-│   ├── logger/              # Logging utilities (Local & Google Cloud formatters)
-│   └── tracer/              # Performance tracing (Timer decorator/context manager)
-├── tests/                   # Test suite (mirrors tools/ structure)
+├── tools/                  # Reusable utility modules
+│   ├── config/             # Configuration management (Settings, FastAPI config)
+│   ├── logger/             # Logging utilities (Local & Google Cloud formatters)
+│   └── tracer/             # Performance tracing (Timer decorator/context manager)
+├── tests/                  # Test suite (mirrors tools/ structure)
 │   └── tools/              # Unit tests for utility modules
-├── docs/                    # MkDocs documentation
+├── docs/                   # MkDocs documentation
 │   ├── getting-started/    # Setup guides
 │   ├── guides/             # Tool usage guides
 │   ├── configurations/     # Configuration references
 │   └── usecases/           # Real-world examples
-├── .devcontainer/           # Dev Container configuration
-├── .github/                 # GitHub Actions workflows and reusable actions
+├── .devcontainer/          # Dev Container configuration
+├── .github/                # GitHub Actions workflows, PR templates, and review checklists
+├── CODE_OF_CONDUCT.md      # Community Code of Conduct
+├── CONTRIBUTING.md         # Contribution guidelines
+├── CLAUDE.md               # Claude Code development guidance
 ├── noxfile.py              # Task automation configuration (test, lint, fmt)
 ├── pyproject.toml          # Project metadata and dependencies (uv)
 ├── ruff.toml               # Ruff linter/formatter configuration
