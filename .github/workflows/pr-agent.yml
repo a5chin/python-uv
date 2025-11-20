@@ -22,7 +22,7 @@ jobs:
         uses: qodo-ai/pr-agent@v0.31
         env:
           CONFIG.CUSTOM_MODEL_MAX_TOKENS: 64000
-          CONFIG.MODEL: "gemini/gemini-2.5-flash-preview-05-20"
+          CONFIG.MODEL: "gemini/gemini-2.5-flash"
           GITHUB_ACTION.AUTO_DESCRIBE: true
           GITHUB_ACTION.AUTO_IMPROVE: false
           GITHUB_ACTION.AUTO_REVIEW: false
