@@ -244,61 +244,9 @@ All workflows use the same nox commands as local development.
 
 ## Pull Request Process
 
-For comprehensive contribution guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md) in the repository root.
+For comprehensive contribution guidelines, including detailed steps for creating and reviewing Pull Requests, please refer to [CONTRIBUTING.md](CONTRIBUTING.md) in the repository root.
 
 **Code of Conduct**: All contributors must follow our [Code of Conduct](CODE_OF_CONDUCT.md). We maintain a welcoming, inclusive, and harassment-free environment for everyone.
-
-### Creating a Pull Request
-
-When creating a PR, use the template at `.github/pull_request_template.md` (auto-populated by GitHub):
-
-**Required before submission:**
-1. Run all quality checks:
-   ```bash
-   uv run nox -s fmt
-   uv run nox -s lint -- --pyright --ruff
-   uv run nox -s test
-   uv run pre-commit run --all-files
-   ```
-
-2. Fill out all sections of the PR template:
-   - **Summary**: Brief description and context
-   - **Type of Change**: Select applicable change types
-   - **Changes Made**: List main changes
-   - **Testing**: Confirm all test commands passed
-   - **Pre-Submission Checklist**: Verify all items
-
-3. Ensure documentation is updated if needed
-
-### Reviewing Pull Requests
-
-Reviewers should use `.github/pull_request_template.md` for comprehensive reviews:
-
-**Key review areas:**
-- Code Quality: Style, type safety, naming, complexity
-- Testing: Coverage ≥75%, edge cases, test quality
-- Functionality: Logic correctness, error handling
-- Documentation: Docstrings, README, inline comments
-- Dependencies: Justified additions, `uv.lock` updated
-- Security: Input validation, no secrets committed
-
-**Review workflow:**
-1. Check that author completed pre-submission checklist
-2. Review code changes using the checklist
-3. Run tests locally if needed
-4. Provide actionable feedback
-5. Approve or request changes
-
-### PR Template Sections
-
-The template includes:
-- **Summary & Context** - What and why
-- **Type of Change** - 8 predefined categories
-- **Testing** - Commands run and results
-- **Pre-Submission Checklist** - 12 essential items grouped by category
-- **Breaking Changes** - Flag and document if applicable
-- **Additional Notes** - Screenshots, performance notes, etc.
-
 ## Environment Variables
 
 Critical environment variables (set in `.env.local`):
