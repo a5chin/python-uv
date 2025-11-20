@@ -182,7 +182,7 @@ All checks must pass. PRs with failing checks will not be reviewed.
 ### General Guidelines
 
 - **Line length**: Maximum 88 characters (Black-compatible)
-- **Python version**: Target Python 3.14
+- **Python version**: Target Python 3.10+ (or a specific stable version)
 - **Import order**: Automatically handled by Ruff
 - **Naming conventions**:
   - Classes: `PascalCase`
