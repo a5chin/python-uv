@@ -242,6 +242,11 @@ GitHub Actions workflows in `.github/workflows/`:
 
 All workflows use the same nox commands as local development.
 
+## Pull Request Process
+
+For comprehensive contribution guidelines, including detailed steps for creating and reviewing Pull Requests, please refer to [CONTRIBUTING.md](CONTRIBUTING.md) in the repository root.
+
+**Code of Conduct**: All contributors must follow our [Code of Conduct](CODE_OF_CONDUCT.md). We maintain a welcoming, inclusive, and harassment-free environment for everyone.
 ## Environment Variables
 
 Critical environment variables (set in `.env.local`):
