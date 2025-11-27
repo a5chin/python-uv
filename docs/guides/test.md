@@ -9,35 +9,37 @@ uv run pytest
 ```
 
 ```sh
-============================================= test session starts =============================================
-platform linux -- Python 3.12.6, pytest-8.3.4, pluggy-1.5.0
-rootdir: /workspaces/python-uv
+================================================ test session starts ================================================
+platform linux -- Python 3.14.0, pytest-9.0.1, pluggy-1.6.0
+rootdir: /workspace
 configfile: pytest.ini
 testpaths: tests
-plugins: cov-6.0.0
-collected 4 items
+plugins: anyio-4.11.0, cov-7.0.0
+collected 8 items
 
-tests/tools/test__logger.py ....                                                                        [100%]
+tests/tools/test__config.py ..                                                                                             [ 25%]
+tests/tools/test__logger.py ....                                                                                           [ 75%]
+tests/tools/test__tracer.py ..                                                                                             [100%]
 
----------- coverage: platform linux, python 3.12.6-final-0 -----------
+================================================ tests coverage ================================================
+________________________________________ coverage: platform linux, python 3.14.0-final-0 _________________________________________
+
 Name                          Stmts   Miss Branch BrPart  Cover   Missing
 -------------------------------------------------------------------------
-tests/tools/test__logger.py      24      0      0      0   100%
-tools/__init__.py                 2      0      0      0   100%
-tools/logger/__init__.py          5      0      0      0   100%
+tools/config/fastapi.py           2      0      0      0   100%
+tools/config/settings.py         20      0      0      0   100%
 tools/logger/color.py            12      0      0      0   100%
-tools/logger/googlecloud.py      10      0      0      0   100%
+tools/logger/googlecloud.py       6      0      0      0   100%
 tools/logger/local.py            12      0      0      0   100%
 tools/logger/logger.py           23      0      2      0   100%
 tools/logger/style.py             7      0      0      0   100%
 tools/logger/type.py              5      0      0      0   100%
+tools/tracer/timer.py            16      0      0      0   100%
 -------------------------------------------------------------------------
-TOTAL                           100      0      2      0   100%
+TOTAL                           103      0      2      0   100%
 Coverage HTML written to dir htmlcov
-
 Required test coverage of 75% reached. Total coverage: 100.00%
-
-============================================== 4 passed in 2.00s ==============================================
+================================================ 8 passed in 1.23s ================================================
 ```
 
 ## Run pytest on VS Code

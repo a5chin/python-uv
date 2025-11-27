@@ -142,7 +142,7 @@ class Settings(BaseSettings):
 Then in your `.env` file:
 
 ```bash
-DATABASE_URL=postgresql://user:pass@localhost/dbname
+DATABASE_URL=postgresql://user:pass@localhost/db_name
 SECRET_KEY=your-secret-key-here
 REDIS_HOST=redis.example.com
 REDIS_PORT=6380
@@ -299,7 +299,7 @@ class Settings(BaseSettings):
 
 ### 4. Document Your Settings
 
-Add docstrings to custom settings:
+Add docstring to custom settings:
 
 ```python
 class Settings(BaseSettings):

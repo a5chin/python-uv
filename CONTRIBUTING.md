@@ -205,9 +205,9 @@ def process_data(items, max_count=10):
     ...
 ```
 
-### Docstrings
+### Docstring
 
-All public functions, classes, and modules must have docstrings:
+All public functions, classes, and modules must have docstring:
 
 ```python
 def calculate_total(items: list[float], tax_rate: float) -> float:
@@ -458,7 +458,7 @@ uv sync
 
 Before submitting your PR, verify:
 
-- [ ] Code follows project standards (Ruff, Pyright, type hints, docstrings)
+- [ ] Code follows project standards (Ruff, Pyright, type hints, docstring)
 - [ ] All tests pass: `uv run nox -s test` (coverage ≥ 75%)
 - [ ] Linting passes: `uv run nox -s lint -- --pyright --ruff`
 - [ ] Code is formatted: `uv run nox -s fmt`

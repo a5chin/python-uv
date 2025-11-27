@@ -160,7 +160,7 @@ If you modify configurations, document why:
 # ruff.toml
 [lint]
 ignore = [
-    "D100",  # Exclude module docstrings (team decision 2024-01-15)
+    "D100",  # Exclude module docstring (team decision 2024-01-15)
 ]
 ```
 

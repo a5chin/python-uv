@@ -49,7 +49,7 @@ Relates to #
 
 ### Code Quality & Tests
 - [ ] All functions/methods have type hints
-- [ ] Code has docstrings for public APIs
+- [ ] Code has docstring for public APIs
 - [ ] New test files follow `test__*.py` naming convention
 - [ ] Tests are meaningful and cover edge cases
 
