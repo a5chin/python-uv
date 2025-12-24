@@ -11,5 +11,8 @@ fix:
 hotfix:
   - head-branch: ["^hotfix/"]
 
+refactor:
+  - head-branch: ["^refactor/"]
+
 release:
   - head-branch: ["^release/"]
