@@ -9,6 +9,7 @@
         "anyio",
         "apdisk",
         "autoflake",
+        "autolabeler",
         "buildkit",
         "buildx",
         "caplog",
