@@ -50,8 +50,8 @@ jobs:
             type=raw,value=latest,enable={{is_default_branch}}
           labels: |
             maintainer=a5chin <a5chin.origin+contact@gmain.com>
-            org.opencontainers.image.url=https://github.com/a5chin/python-uv
-            org.opencontainers.image.source=https://github.com/a5chin/python-uv
+            org.opencontainers.image.url=https://github.com/${{ github.repository }}
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
             org.opencontainers.image.vendor=a5chin <a5chin.origin+contact@gmain.com>
             org.opencontainers.image.title=python-uv
             org.opencontainers.image.description=Dev Container for Python development with uv-based dependency management and environment configuration.
