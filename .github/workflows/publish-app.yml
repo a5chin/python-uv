@@ -1,4 +1,4 @@
-name: Publish Devcontainer to GHCR
+name: Publish App to GHCR
 
 on:
   push:
@@ -6,14 +6,14 @@ on:
     tags:
       - "v*"
     paths:
-      - ".devcontainer/Dockerfile"
-      - ".github/workflows/publish-devcontainer.yml"
+      - ".github/workflows/publish-app.yml"
       - ".python-version"
+      - "Dockerfile"
 
   workflow_dispatch:
 
 env:
-  IMAGE_NAME: ${{ github.repository }}/devcontainer
+  IMAGE_NAME: ${{ github.repository }}/app
   REGISTRY: ghcr.io
 
 jobs:
@@ -31,7 +31,7 @@ jobs:
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Login to Container Registry
+      - name: Log in to Container Registry
         uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
@@ -54,16 +54,16 @@ jobs:
             org.opencontainers.image.source=https://github.com/${{ github.repository }}
             org.opencontainers.image.vendor=a5chin <a5chin.origin+contact@gmain.com>
             org.opencontainers.image.title=python-uv
-            org.opencontainers.image.description=Dev Container for Python development with uv-based dependency management and environment configuration.
+            org.opencontainers.image.description=App for Python development with uv-based dependency management and environment configuration.
             org.opencontainers.image.documentation=https://a5chin.github.io/python-uv/
             org.opencontainers.image.authors=a5chin <a5chin.origin+contact@gmain.com>
             org.opencontainers.image.licenses=MIT
 
-      - name: Build and Push Devcontainer Image
+      - name: Build and Push App Image
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: .devcontainer/Dockerfile
+          file: Dockerfile
           push: true
           provenance: false
           tags: ${{ steps.meta.outputs.tags }}
