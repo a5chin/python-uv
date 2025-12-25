@@ -1,4 +1,4 @@
-name: Create Release 🚀
+name: Release
 
 on:
   pull_request:
@@ -7,8 +7,7 @@ on:
       - main
 
 jobs:
-  create-release:
-    name: Create Release
+  publish:
     if: github.event.pull_request.merged == true && contains(github.head_ref, 'release/')
 
     runs-on: ubuntu-latest
@@ -21,11 +20,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - uses: release-drafter/release-drafter@v6
+      - name: Publish Release
+        uses: release-drafter/release-drafter@v6
         with:
           config-name: release-drafter.yml
           disable-autolabeler: true
-          name: Release ${{ env.VERSION }}
+          name: ${{ env.VERSION }}
           publish: true
           tag: ${{ env.VERSION }}
           version: ${{ env.VERSION }}
