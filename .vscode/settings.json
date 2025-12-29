@@ -13,6 +13,10 @@
         "tests"
     ],
     "python.testing.unittestEnabled": false,
+    "sqlfluff.config": "${workspaceFolder}/.sqlfluff",
+    "sqlfluff.executablePath": "/home/vscode/.venv/bin/sqlfluff",
+    "sqlfluff.format.enabled": true,
+    "sqlfluff.linter.run": "onType",
     "terminal.integrated.defaultProfile.linux": "zsh",
     "terminal.integrated.profiles.linux": {
         "zsh": {
@@ -60,6 +64,11 @@
         "editor.defaultFormatter": "charliermarsh.ruff",
         "editor.formatOnSave": true,
         "editor.tabSize": 4
+    },
+    "[sql]": {
+        "editor.defaultFormatter": "dorzey.vscode-sqlfluff",
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2
     },
     "[toml]": {
         "editor.defaultFormatter": "tamasfe.even-better-toml",
