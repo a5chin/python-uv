@@ -49,7 +49,7 @@ def fmt(session: nox.Session) -> None:
         session (nox.Session): The Nox session object.
 
     Examples:
-        >>> uv run nox -s fmt --ruff --sqlfluff
+        >>> uv run nox -s fmt -- --ruff --sqlfluff
 
     """
     args = CLIArgs.parse(session.posargs)
