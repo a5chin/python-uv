@@ -7,6 +7,8 @@ exclude_rules =
 [sqlfluff:indentation]
 tab_space_size = 2
 
-# inner join も left outer join も明示する
 [sqlfluff:rules:ambiguous.join]
 fully_qualify_join_types = both
+
+[sqlfluff:rules:structure.unused_join]
+forbid_unused_join = True
