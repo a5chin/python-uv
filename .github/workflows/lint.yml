@@ -56,7 +56,7 @@ jobs:
       - name: Lint by Ruff
         run: uv run nox -s lint -- --ruff
 
-  sql:
+  sqlfluff:
     runs-on: ubuntu-latest
 
     steps:
