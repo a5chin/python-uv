@@ -51,5 +51,5 @@ jobs:
       - name: Setup Python with uv
         uses: ./.github/actions/setup-python-with-uv
 
-      - name: Format by Ruff
+      - name: Format by SQLFluff
         run: uv run nox -s fmt -- --sqlfluff
