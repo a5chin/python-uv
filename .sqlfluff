@@ -1,0 +1,14 @@
+[sqlfluff]
+dialect = bigquery
+max_line_length = 80
+
+exclude_rules =
+
+[sqlfluff:indentation]
+tab_space_size = 2
+
+[sqlfluff:rules:ambiguous.join]
+fully_qualify_join_types = both
+
+[sqlfluff:rules:structure.unused_join]
+forbid_unused_join = True

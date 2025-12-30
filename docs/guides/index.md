@@ -7,7 +7,8 @@ This section provides comprehensive guides for using the tools and utilities inc
 This template includes several modern Python development tools, each serving a specific purpose:
 
 - **uv** - Ultra-fast package management (10-100x faster than pip)
-- **Ruff** - Lightning-fast linting and formatting
+- **Ruff** - Lightning-fast linting and formatting for Python
+- **SQLFluff** - SQL linting and formatting
 - **Pyright** - Advanced type checking
 - **pytest** - Comprehensive testing framework
 - **nox** - Task automation and workflow management
@@ -21,13 +22,17 @@ This template includes several modern Python development tools, each serving a s
 ### Available Sessions
 
 ```bash
-# Format code with Ruff
-uv run nox -s fmt
+# Format code
+uv run nox -s fmt -- --ruff             # Format Python code
+uv run nox -s fmt -- --sqlfluff         # Format SQL code
+uv run nox -s fmt -- --ruff --sqlfluff  # Format both
 
 # Run linters (you can specify which ones)
-uv run nox -s lint -- --pyright --ruff  # Both
-uv run nox -s lint -- --pyright         # Pyright only
-uv run nox -s lint -- --ruff            # Ruff only
+uv run nox -s lint -- --pyright --ruff --sqlfluff  # All linters
+uv run nox -s lint -- --pyright --ruff             # Python only
+uv run nox -s lint -- --pyright                    # Pyright only
+uv run nox -s lint -- --ruff                       # Ruff only
+uv run nox -s lint -- --sqlfluff                   # SQL only
 
 # Run tests with coverage (75% minimum required)
 uv run nox -s test

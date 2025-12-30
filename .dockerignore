@@ -182,6 +182,7 @@ pytest-coverage.txt
 .coveragerc
 .env.local
 .pre-commit-config.yaml
+.sqlfluff
 assets
 LICENSE
 noxfile.py

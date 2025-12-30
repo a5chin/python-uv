@@ -10,16 +10,30 @@
 - [https://github.com/astral-sh/ruff-pre-commit](https://github.com/astral-sh/ruff-pre-commit)
     - Ruff Lint
     - Ruff Format
+- [https://github.com/sqlfluff/sqlfluff](https://github.com/sqlfluff/sqlfluff)
+    - SQLFluff Lint
+    - SQLFluff Fix
 - [https://github.com/hadolint/hadolint](https://github.com/hadolint/hadolint)
     - Hadolint
 
 ## Overview
-```{.yaml hl_lines=42-57 title=".pre-commit-config.yaml"}
+```{.yaml title=".pre-commit-config.yaml"}
 default_stages: [pre-commit]
 
 repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: check-json
+      - id: check-toml
+      - id: check-xml
+      - id: check-yaml
+      - id: detect-private-key
+      - id: trailing-whitespace
+
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.8.3
+    rev: v0.12.8
     hooks:
       - id: ruff
         name: Ruff check
@@ -39,6 +53,19 @@ repos:
         language: system
         types: ["dockerfile"]
         entry: hadolint
+
+  - repo: https://github.com/sqlfluff/sqlfluff
+    rev: 3.5.0
+    hooks:
+      - id: sqlfluff-lint
+        name: SQLFluff Lint
+        description: "Lints sql files with `SQLFluff`"
+        types: [sql]
+
+      - id: sqlfluff-fix
+        name: SQLFluff Fix
+        description: "Fixes sql lint errors with `SQLFluff`"
+        types: [sql]
 
 ci:
   autoupdate_schedule: weekly
