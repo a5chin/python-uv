@@ -185,7 +185,7 @@ pytest-coverage.txt
 assets
 LICENSE
 noxfile.py
-pyrightconfig.json
 README.md
 ruff.toml
 tests
+ty.toml
