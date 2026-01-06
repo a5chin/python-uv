@@ -1,6 +1,6 @@
 documentation:
   - changed-files:
-      - any-glob-to-any-file: "docs/**"
+      - any-glob-to-any-file: "**/*.md"
 
 feature:
   - head-branch: ["^feature/"]
