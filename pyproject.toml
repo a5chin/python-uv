@@ -6,7 +6,7 @@ description = "This repository contains configurations to set up a Python develo
 authors = [{ name = "a5chin", email = "a5chin.origin+contact@gmail.com" }]
 maintainers = [{ name = "a5chin", email = "a5chin.origin+contact@gmail.com" }]
 
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 readme = "README.md"
 license = { file = "LICENSE" }
 
@@ -27,10 +27,10 @@ dev = [
     "mkdocs-material>=9.6.21",
     "nox>=2025.5.1",
     "pre-commit>=4.3.0",
-    "pyright>=1.1.406",
     "pytest>=8.4.2",
     "pytest-cov>=7.0.0",
     "ruff>=0.14.0",
+    "ty>=0.0.9",
 ]
 
 [tool.hatch.build.targets.wheel]

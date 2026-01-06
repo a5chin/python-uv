@@ -1,0 +1,3 @@
+[src]
+include = ["tools", "tests"]
+exclude = ["**/__pycache__", ".pytest_cache", ".ruff_cache", ".venv"]
