@@ -12,6 +12,7 @@
     "customizations": {
         "vscode": {
             "extensions": [
+                "astral-sh.ty",
                 "charliermarsh.ruff",
                 "exiasr.hadolint",
                 "kevinrose.vsc-python-indent",
