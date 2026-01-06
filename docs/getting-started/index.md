@@ -75,7 +75,7 @@ For advanced users who prefer to work directly on their host machine.
 
 **Requirements:**
 
-- Python 3.10 or higher
+- Python 3.11 or higher
 - [uv](https://docs.astral.sh/uv/) package manager
 
 **Setup steps:**
@@ -113,7 +113,7 @@ uv run nox -s test
 uv run nox -s fmt
 
 # Run linters
-uv run nox -s lint -- --pyright --ruff
+uv run nox -s lint -- --ruff --ty
 ```
 
 If all commands complete successfully, you're ready to start developing! 🎉

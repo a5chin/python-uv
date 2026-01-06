@@ -8,7 +8,7 @@ The development environment includes configuration files for:
 
 - **uv** - Package management and Python version
 - **Ruff** - Linting and formatting rules
-- **Pyright** - Type checking strictness
+- **ty** - Type checking strictness
 - **pytest** - Testing and coverage
 - **pre-commit** - Automated quality checks
 
@@ -20,7 +20,7 @@ Each tool is configured through dedicated configuration files in the repository 
 |------|------|---------|
 | `pyproject.toml` | uv, Project | Dependencies and project metadata |
 | `ruff.toml` | Ruff | Linting and formatting rules |
-| `pyrightconfig.json` | Pyright | Type checking configuration |
+| `ty.toml` | ty | Type checking configuration |
 | `pytest.ini` | pytest | Testing and coverage settings |
 | `.pre-commit-config.yaml` | pre-commit | Hook definitions |
 | `noxfile.py` | nox | Task automation |
@@ -51,16 +51,15 @@ Understand Ruff's linting and formatting rules:
 
 [→ Read full Ruff configuration guide](ruff.md)
 
-### [Pyright Configuration](pyright.md)
+### [ty Configuration](ty.md)
 Configure type checking behavior:
-- Type checking mode (standard)
-- Python version target (3.14)
 - Include/exclude patterns
-- Virtual environment detection
+- Source directories
+- Cache exclusions
 
-**Key file**: `pyrightconfig.json`
+**Key file**: `ty.toml`
 
-[→ Read full Pyright configuration guide](pyright.md)
+[→ Read full ty configuration guide](ty.md)
 
 ### [pytest Configuration](test.md)
 Set up testing and coverage:
@@ -103,12 +102,12 @@ ignore = []  # Remove exclusions to enable all rules
 addopts = --cov-fail-under=90  # Increase from 75% to 90%
 ```
 
-**Enable stricter type checking:**
-```json
-// pyrightconfig.json
-{
-  "typeCheckingMode": "strict"  // Change from "standard"
-}
+**Configure type checking:**
+```toml
+# ty.toml
+[src]
+include = ["tools", "tests", "your_package"]
+exclude = ["**/__pycache__", ".pytest_cache", ".ruff_cache", ".venv"]
 ```
 
 ### Adding New Dependencies
@@ -134,7 +133,7 @@ Both commands automatically update `pyproject.toml` and `uv.lock`.
 name = "your-project-name"
 version = "1.0.0"
 description = "Your project description"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 ```
 
 **Configure FastAPI settings:**
@@ -168,14 +167,14 @@ ignore = [
 
 Ensure configurations work together:
 - Ruff's line length should match your formatting preferences
-- Python version in `pyrightconfig.json` should match `pyproject.toml`
+- Type checking directories in `ty.toml` should match your project structure
 - Test patterns should align with your file structure
 
 ### 4. Version Control
 
 Commit configuration files to git:
 ```bash
-git add pyproject.toml ruff.toml pyrightconfig.json pytest.ini .pre-commit-config.yaml
+git add pyproject.toml ruff.toml ty.toml pytest.ini .pre-commit-config.yaml
 git commit -m "Update project configurations"
 ```
 
@@ -287,6 +286,6 @@ rm .black.toml setup.cfg .isort.cfg
 
 - **uv**: [Official Documentation](https://docs.astral.sh/uv)
 - **Ruff**: [Official Documentation](https://docs.astral.sh/ruff)
-- **Pyright**: [Official Documentation](https://github.com/microsoft/pyright)
+- **ty**: [Official Documentation](https://github.com/astral-sh/ty)
 - **pytest**: [Official Documentation](https://docs.pytest.org)
 - **pre-commit**: [Official Documentation](https://pre-commit.com)

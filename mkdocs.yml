@@ -54,7 +54,7 @@ nav:
       - guides/index.md
       - uv: guides/uv.md
       - Ruff: guides/ruff.md
-      - Pyright: guides/pyright.md
+      - ty: guides/ty.md
       - pre-commit: guides/pre-commit.md
       - Test: guides/test.md
       - cookiecutter: guides/cookiecutter.md
@@ -67,7 +67,7 @@ nav:
       - configurations/index.md
       - uv: configurations/uv.md
       - Ruff: configurations/ruff.md
-      - Pyright: configurations/pyright.md
+      - ty: configurations/ty.md
       - pre-commit: configurations/pre-commit.md
       - Test: configurations/test.md
   - Usecases:

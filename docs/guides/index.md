@@ -8,7 +8,7 @@ This template includes several modern Python development tools, each serving a s
 
 - **uv** - Ultra-fast package management (10-100x faster than pip)
 - **Ruff** - Lightning-fast linting and formatting
-- **Pyright** - Advanced type checking
+- **ty** - Advanced type checking
 - **pytest** - Comprehensive testing framework
 - **nox** - Task automation and workflow management
 - **pre-commit** - Automated code quality checks
@@ -25,9 +25,9 @@ This template includes several modern Python development tools, each serving a s
 uv run nox -s fmt
 
 # Run linters (you can specify which ones)
-uv run nox -s lint -- --pyright --ruff  # Both
-uv run nox -s lint -- --pyright         # Pyright only
-uv run nox -s lint -- --ruff            # Ruff only
+uv run nox -s lint -- --ruff --ty  # Both
+uv run nox -s lint -- --ruff       # Ruff only
+uv run nox -s lint -- --ty         # ty only
 
 # Run tests with coverage (75% minimum required)
 uv run nox -s test
@@ -98,26 +98,26 @@ uv run ruff check . --fix
 
 [→ Read the full Ruff guide](ruff.md)
 
-### [Pyright Guide](pyright.md)
+### [ty Guide](ty.md)
 
-Use Pyright for comprehensive type checking:
+Use ty for comprehensive type checking:
 
 - Running type checks
 - Understanding type errors
-- Configuring type checking strictness
+- Configuring type checking
 - Integrating with your editor
 
 **Quick reference:**
 
 ```bash
 # Run type checker
-uv run pyright
+uv run ty check
 
-# Check specific files
-uv run pyright tools/logger/
+# Check via nox
+uv run nox -s lint -- --ty
 ```
 
-[→ Read the full Pyright guide](pyright.md)
+[→ Read the full ty guide](ty.md)
 
 ## Testing
 
