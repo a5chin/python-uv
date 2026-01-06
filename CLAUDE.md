@@ -45,11 +45,11 @@ uv run pytest
 # Format code
 uv run nox -s fmt
 
-# Lint with both Pyright and Ruff
-uv run nox -s lint -- --pyright --ruff
+# Lint with both ty and Ruff
+uv run nox -s lint -- --ruff --ty
 
-# Lint with Pyright only
-uv run nox -s lint -- --pyright
+# Lint with ty only
+uv run nox -s lint -- --ty
 
 # Lint with Ruff only
 uv run nox -s lint -- --ruff
@@ -58,8 +58,8 @@ uv run nox -s lint -- --ruff
 uv run ruff check . --fix
 uv run ruff format .
 
-# Run Pyright directly
-uv run pyright
+# Run ty directly
+uv run ty check
 ```
 
 ### Pre-commit Hooks
@@ -154,10 +154,9 @@ Tests in `tests/tools/` mirror the package structure:
 - Target Python: 3.14
 - Per-file ignores for test files
 
-**Pyright (pyrightconfig.json)**:
-- Type checking mode: standard
-- Only includes `tools/` package (not tests)
-- venv: `.venv`
+**ty (ty.toml)**:
+- Includes `tools/`, `tests/` packages, and `noxfile.py`
+- Excludes cache directories (`__pycache__`, `.pytest_cache`, `.ruff_cache`, `.venv`)
 
 **pytest (pytest.ini)**:
 - Coverage: 75% minimum with branch coverage
@@ -177,8 +176,8 @@ Example of the argument parsing pattern:
 @nox.session(python=False)
 def lint(session: nox.Session) -> None:
     args = CLIArgs.parse(session.posargs)
-    if args.pyright:
-        session.run("uv", "run", "pyright")
+    if args.ty:
+        session.run("uv", "run", "ty", "check")
     if args.ruff:
         session.run("uv", "run", "ruff", "check", ".", "--fix")
 ```
@@ -223,7 +222,7 @@ When testing the utilities themselves:
 The `docs/` directory is organized for MkDocs:
 - **docs/index.md**: Main landing page
 - **docs/getting-started/**: Setup guides (Docker, VSCode, Dev Container)
-- **docs/guides/**: Tool usage guides (uv, Ruff, Pyright, pre-commit, tools package)
+- **docs/guides/**: Tool usage guides (uv, Ruff, ty, pre-commit, tools package)
 - **docs/configurations/**: Detailed configuration references
 - **docs/usecases/**: Real-world examples (Jupyter, FastAPI, OpenCV)
 
@@ -236,7 +235,7 @@ GitHub Actions workflows in `.github/workflows/`:
 - **devcontainer.yml**: Validate Dev Container configuration
 - **format.yml**: Check Ruff formatting
 - **labeler.yml**: Add label in GitHub
-- **lint.yml**: Run Pyright + Ruff linting
+- **lint.yml**: Run Ruff + ty linting
 - **test.yml**: Run pytest with coverage
 - **gh-deploy.yml**: Deploy documentation to GitHub Pages
 
@@ -261,7 +260,7 @@ Critical environment variables (set in `.env.local`):
 - **Ruff replaces multiple tools**: No need for Black, isort, Flake8, etc.
 - **nox is the task runner**: Prefer `uv run nox -s <session>` over direct tool calls
 - **Test naming**: Use `test__*.py` pattern (double underscore)
-- **Type checking targets tools/ only**: Pyright only checks the `tools/` package, not tests
+- **Type checking**: ty checks both the `tools/` and `tests/` packages
 
 ## Template Usage Pattern
 
