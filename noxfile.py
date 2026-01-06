@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import Any
 
 import nox
@@ -12,8 +14,8 @@ class CLIArgs(
     """CLIArgs is a class that extends BaseSettings to handle command line arguments."""
 
     junitxml: str = ""
-    pyright: bool = False
     ruff: bool = False
+    ty: bool = False
 
     @classmethod
     def parse(cls, posargs: list[str]) -> CLIArgs:
@@ -58,23 +60,23 @@ def fmt(session: nox.Session) -> None:
 
 @nox.session(python=False)
 def lint(session: nox.Session) -> None:
-    """Lint the code using Pyright and Ruff.
+    """Lint the code using Ruff and ty.
 
     Args:
         session (nox.Session): The Nox session object.
 
     Examples:
-        >>> uv run nox -s lint -- --pyright --ruff
+        >>> uv run nox -s lint -- --ruff --ty
 
     """
     args = CLIArgs.parse(session.posargs)
 
-    if args.pyright:
-        session.run("uv", "run", "pyright")
-        session.log("✅ Pyright linting completed successfully.")
     if args.ruff:
         session.run("uv", "run", "ruff", "check", ".", "--fix")
         session.log("✅ Ruff linting completed successfully.")
+    if args.ty:
+        session.run("uv", "run", "ty", "check")
+        session.log("✅ ty linting completed successfully.")
 
 
 @nox.session(python=False)
