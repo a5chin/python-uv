@@ -14,7 +14,6 @@ on:
       - "uv.lock"
 
   pull_request:
-    branches: [main]
     paths:
       - ".github/actions/setup-git-config/action.yml"
       - ".github/actions/setup-python-with-uv/action.yml"
