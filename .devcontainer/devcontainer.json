@@ -13,6 +13,7 @@
         "vscode": {
             "extensions": [
                 "charliermarsh.ruff",
+                "dorzey.vscode-sqlfluff",
                 "exiasr.hadolint",
                 "kevinrose.vsc-python-indent",
                 "mosapride.zenkaku",

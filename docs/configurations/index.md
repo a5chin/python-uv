@@ -7,7 +7,8 @@ This section provides detailed information about how each tool in this template 
 The development environment includes configuration files for:
 
 - **uv** - Package management and Python version
-- **Ruff** - Linting and formatting rules
+- **Ruff** - Linting and formatting rules for Python
+- **SQLFluff** - Linting and formatting rules for SQL
 - **Pyright** - Type checking strictness
 - **pytest** - Testing and coverage
 - **pre-commit** - Automated quality checks
@@ -19,7 +20,8 @@ Each tool is configured through dedicated configuration files in the repository 
 | File | Tool | Purpose |
 |------|------|---------|
 | `pyproject.toml` | uv, Project | Dependencies and project metadata |
-| `ruff.toml` | Ruff | Linting and formatting rules |
+| `ruff.toml` | Ruff | Python linting and formatting rules |
+| `.sqlfluff` | SQLFluff | SQL linting and formatting rules |
 | `pyrightconfig.json` | Pyright | Type checking configuration |
 | `pytest.ini` | pytest | Testing and coverage settings |
 | `.pre-commit-config.yaml` | pre-commit | Hook definitions |
@@ -50,6 +52,27 @@ Understand Ruff's linting and formatting rules:
 **Key file**: `ruff.toml`
 
 [→ Read full Ruff configuration guide](ruff.md)
+
+### SQLFluff Configuration
+Configure SQL linting and formatting:
+- SQL dialect (BigQuery)
+- Line length (80 characters)
+- Indentation (2 spaces)
+- Custom rules for SQL best practices
+
+**Key file**: `.sqlfluff`
+
+**Quick reference:**
+```bash
+# Lint SQL files
+uv run sqlfluff lint .
+
+# Fix SQL files
+uv run sqlfluff fix .
+
+# Use via nox
+uv run nox -s lint -- --sqlfluff
+```
 
 ### [Pyright Configuration](pyright.md)
 Configure type checking behavior:

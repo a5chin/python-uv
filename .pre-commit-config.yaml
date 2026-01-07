@@ -54,5 +54,18 @@ repos:
         types: ["dockerfile"]
         entry: hadolint
 
+  - repo: https://github.com/sqlfluff/sqlfluff
+    rev: 3.5.0
+    hooks:
+      - id: sqlfluff-lint
+        name: SQLFluff Lint
+        description: "Lints sql files with `SQLFluff`"
+        types: [sql]
+
+      - id: sqlfluff-fix
+        name: SQLFluff Fix
+        description: "Fixes sql lint errors with `SQLFluff`"
+        types: [sql]
+
 ci:
   autoupdate_schedule: weekly
