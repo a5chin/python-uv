@@ -16,7 +16,7 @@
 
 </div>
 
-A production-ready Python development environment template using modern tools: **uv** for blazing-fast package management, **Ruff** for lightning-fast linting and formatting, and **VSCode Dev Containers** for reproducible development environments.
+A production-ready Python development environment template using modern tools: **uv** for blazing-fast package management, **Ruff** for lightning-fast linting and formatting, **ty** for fast and reliable type checking, and **VSCode Dev Containers** for reproducible development environments.
 
 <div align="center">
 <img src="docs/img/ruff.gif" width="49%"> <img src="docs/img/jupyter.gif" width="49%">
