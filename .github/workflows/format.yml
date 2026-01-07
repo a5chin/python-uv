@@ -6,7 +6,9 @@ on:
       - ".github/actions/setup-python-with-uv/action.yml"
       - ".github/workflows/format.yml"
       - "**.py"
+      - "**.sql"
       - ".python-version"
+      - ".sqlfluff"
       - "pyproject.toml"
       - "ruff.toml"
       - "uv.lock"
@@ -23,4 +25,17 @@ jobs:
         uses: ./.github/actions/setup-python-with-uv
 
       - name: Format by Ruff
-        run: uv run nox -s fmt
+        run: uv run nox -s fmt -- --ruff
+
+  sqlfluff:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Python with uv
+        uses: ./.github/actions/setup-python-with-uv
+
+      - name: Format by SQLFluff
+        run: uv run nox -s fmt -- --sqlfluff

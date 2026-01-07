@@ -15,6 +15,7 @@ class CLIArgs(
 
     junitxml: str = ""
     ruff: bool = False
+    sqlfluff: bool = False
     ty: bool = False
 
     @classmethod
@@ -50,12 +51,17 @@ def fmt(session: nox.Session) -> None:
         session (nox.Session): The Nox session object.
 
     Examples:
-        >>> uv run nox -s fmt
+        >>> uv run nox -s fmt -- --ruff --sqlfluff
 
     """
-    session.run("uv", "run", "ruff", "format", ".")
+    args = CLIArgs.parse(session.posargs)
 
-    session.log("✅ Formatting completed successfully.")
+    if args.ruff:
+        session.run("uv", "run", "ruff", "format", ".")
+        session.log("✅ Ruff formatting completed successfully.")
+    if args.sqlfluff:
+        session.run("uv", "run", "sqlfluff", "fix", ".")
+        session.log("✅ SQLFluff formatting completed successfully.")
 
 
 @nox.session(python=False)
@@ -66,7 +72,7 @@ def lint(session: nox.Session) -> None:
         session (nox.Session): The Nox session object.
 
     Examples:
-        >>> uv run nox -s lint -- --ruff --ty
+        >>> uv run nox -s lint -- --ruff --sqlfluff --ty
 
     """
     args = CLIArgs.parse(session.posargs)
@@ -74,6 +80,9 @@ def lint(session: nox.Session) -> None:
     if args.ruff:
         session.run("uv", "run", "ruff", "check", ".", "--fix")
         session.log("✅ Ruff linting completed successfully.")
+    if args.sqlfluff:
+        session.run("uv", "run", "sqlfluff", "lint", ".")
+        session.log("✅ SQLFluff linting completed successfully.")
     if args.ty:
         session.run("uv", "run", "ty", "check")
         session.log("✅ ty linting completed successfully.")

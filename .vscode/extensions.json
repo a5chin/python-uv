@@ -3,6 +3,7 @@
         "astral-sh.ty",
         "charliermarsh.ruff",
         "codezombiech.gitignore",
+        "dorzey.vscode-sqlfluff",
         "eamodio.gitlens",
         "exiasr.hadolint",
         "kevinrose.vsc-python-indent",

@@ -42,21 +42,34 @@ uv run pytest
 
 ### Linting & Formatting
 ```bash
-# Format code
-uv run nox -s fmt
+# Format code with Ruff
+uv run nox -s fmt -- --ruff
 
-# Lint with both ty and Ruff
-uv run nox -s lint -- --ruff --ty
+# Format SQL files with SQLFluff
+uv run nox -s fmt -- --sqlfluff
 
-# Lint with ty only
-uv run nox -s lint -- --ty
+# Format both Python and SQL
+uv run nox -s fmt -- --ruff --sqlfluff
+
+# Lint with all tools (Ruff, SQLFluff, ty)
+uv run nox -s lint -- --pyright --ruff --sqlfluff
 
 # Lint with Ruff only
 uv run nox -s lint -- --ruff
 
+# Lint SQL files only
+uv run nox -s lint -- --sqlfluff
+
+# Lint with ty only
+uv run nox -s lint -- --ty
+
 # Run Ruff directly
 uv run ruff check . --fix
 uv run ruff format .
+
+# Run SQLFluff directly
+uv run sqlfluff lint .
+uv run sqlfluff fix .
 
 # Run ty directly
 uv run ty check
@@ -163,6 +176,12 @@ Tests in `tests/tools/` mirror the package structure:
 - Reports: HTML + terminal
 - Import mode: importlib
 
+**SQLFluff (.sqlfluff)**:
+- Dialect: BigQuery
+- Max line length: 80
+- Tab space size: 2
+- Custom rules for join qualification and unused joins
+
 ### Nox Task Automation
 
 The `noxfile.py` uses a custom `CLIArgs` parser (Pydantic-based):
@@ -180,6 +199,8 @@ def lint(session: nox.Session) -> None:
         session.run("uv", "run", "ty", "check")
     if args.ruff:
         session.run("uv", "run", "ruff", "check", ".", "--fix")
+    if args.sqlfluff:
+        session.run("uv", "run", "sqlfluff", "lint", ".")
 ```
 
 ## Key Patterns for Development
