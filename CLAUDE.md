@@ -52,7 +52,7 @@ uv run nox -s fmt -- --sqlfluff
 uv run nox -s fmt -- --ruff --sqlfluff
 
 # Lint with all tools (Ruff, SQLFluff, ty)
-uv run nox -s lint -- --pyright --ruff --sqlfluff
+uv run nox -s lint -- --ruff --sqlfluff --ty
 
 # Lint with Ruff only
 uv run nox -s lint -- --ruff
