@@ -4,8 +4,9 @@
 
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![ty](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ty/main/assets/badge/v0.json)](https://github.com/astral-sh/ty)
 
-[![Versions](https://img.shields.io/badge/python-3.10%20|%203.11%20|%203.12%20|%203.13%20|%203.14%20-green.svg)](https://github.com/a5chin/python-uv)
+[![Versions](https://img.shields.io/badge/python-3.11%20|%203.11%20|%203.12%20|%203.13%20|%203.14%20-green.svg)](https://github.com/a5chin/python-uv)
 ![code coverage](https://raw.githubusercontent.com/a5chin/python-uv/coverage-badge/coverage.svg?raw=true)
 
 [![Docker](https://github.com/a5chin/python-uv/actions/workflows/docker.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/docker.yml)
@@ -15,7 +16,7 @@
 
 </div>
 
-A production-ready Python development environment template using modern tools: **uv** for blazing-fast package management, **Ruff** for lightning-fast linting and formatting, and **VSCode Dev Containers** for reproducible development environments.
+A production-ready Python development environment template using modern tools: **uv** for blazing-fast package management, **Ruff** for lightning-fast linting and formatting, **ty** for fast and reliable type checking, and **VSCode Dev Containers** for reproducible development environments.
 
 <div align="center">
 <img src="docs/img/ruff.gif" width="49%"> <img src="docs/img/jupyter.gif" width="49%">
@@ -44,7 +45,7 @@ A production-ready Python development environment template using modern tools: *
       - [**Timer** - Performance monitoring](#timer---performance-monitoring)
   - [⚙️ Configuration](#️-configuration)
     - [Ruff Configuration](#ruff-configuration)
-    - [Pyright Configuration](#pyright-configuration)
+    - [ty Configuration](#ty-configuration)
     - [Pytest Configuration](#pytest-configuration)
   - [🔄 CI/CD](#-cicd)
   - [🎨 VSCode Configuration](#-vscode-configuration)
@@ -61,7 +62,7 @@ A production-ready Python development environment template using modern tools: *
 - 🚀 **Ultra-fast package management** with [uv](https://github.com/astral-sh/uv) (10-100x faster than pip)
 - ⚡ **Lightning-fast linting & formatting** with [Ruff](https://github.com/astral-sh/ruff) (replacing Black, isort, Flake8, and more)
 - 🐳 **Dev Container ready** - Consistent development environment across all machines
-- 🔍 **Type checking** with Pyright
+- 🔍 **Type checking** with ty
 - ✅ **Pre-configured testing** with pytest (75% coverage requirement)
 - 🔄 **Automated CI/CD** with GitHub Actions
 - 📦 **Reusable utilities** - Logger, configuration management, and performance tracing tools
@@ -92,7 +93,7 @@ A production-ready Python development environment template using modern tools: *
 
    # Format and lint
    uv run nox -s fmt
-   uv run nox -s lint -- --pyright --ruff
+   uv run nox -s lint -- --ruff --ty
    ```
 
 ### Using Docker Only
@@ -107,7 +108,7 @@ docker run -it --rm -v $(pwd):/workspace python-uv
 
 ### Local Setup (Without Docker)
 
-**Prerequisites**: Python 3.10+ and [uv](https://github.com/astral-sh/uv)
+**Prerequisites**: Python 3.11+ and [uv](https://github.com/astral-sh/uv)
 
 ```bash
 # Install uv (if not already installed)
@@ -150,11 +151,11 @@ This project uses **nox** for task automation. All common development tasks are 
 # Format code with Ruff
 uv run nox -s fmt
 
-# Run linters (Pyright + Ruff)
-uv run nox -s lint -- --pyright --ruff
+# Run linters (Ruff + ty)
+uv run nox -s lint -- --ruff --ty
 
-# Run only Pyright
-uv run nox -s lint -- --pyright
+# Run only ty
+uv run nox -s lint -- --ty
 
 # Run only Ruff linter
 uv run nox -s lint -- --ruff
@@ -181,8 +182,8 @@ uv run ruff format .
 # Lint with Ruff
 uv run ruff check . --fix
 
-# Type check with Pyright
-uv run pyright
+# Type check with ty
+uv run ty check
 ```
 
 ### Pre-commit Hooks
@@ -243,7 +244,6 @@ uv run mkdocs gh-deploy
 ├── noxfile.py              # Task automation configuration (test, lint, fmt)
 ├── pyproject.toml          # Project metadata and dependencies (uv)
 ├── ruff.toml               # Ruff linter/formatter configuration
-├── pyrightconfig.json      # Pyright type checking configuration
 └── pytest.ini              # Pytest configuration (75% coverage requirement)
 ```
 
@@ -310,17 +310,15 @@ Ruff replaces multiple tools (Black, isort, Flake8, pydocstyle, pyupgrade, autof
 
 > See [Ruff documentation](https://docs.astral.sh/ruff/) for customization options.
 
-### Pyright Configuration
+### ty Configuration
 
 Static type checking for Python code.
 
-**Key settings in `pyrightconfig.json`:**
-- **Python version**: 3.14
-- **Type checking mode**: Standard
-- **Include**: `tools/` package only
-- **Virtual environment**: `.venv`
+**Key settings in `ty.toml`:**
+- **Include**: `tools/` and `tests/` packages
+- **Exclude**: Cache directories (`__pycache__`, `.pytest_cache`, `.ruff_cache`, `.venv`)
 
-> See [Pyright documentation](https://github.com/microsoft/pyright) for advanced configuration.
+> See [ty documentation](https://github.com/astral-sh/ty) for advanced configuration.
 
 ### Pytest Configuration
 
@@ -346,7 +344,7 @@ Automated workflows ensure code quality and consistency. All workflows run on pu
 | `devcontainer.yml` | Validate Dev Container configuration | devcontainer CLI |
 | `format.yml` | Check code formatting | Ruff |
 | `labeler.yml` | Add label in GitHub | GitHub |
-| `lint.yml` | Run static analysis | Pyright, Ruff |
+| `lint.yml` | Run static analysis | Ruff, ty |
 | `test.yml` | Run test suite with coverage | pytest, coverage |
 | `gh-deploy.yml` | Deploy documentation to GitHub Pages | MkDocs |
 | `pr-agent.yml` | Automated PR reviews | Qodo AI PR Agent |
@@ -358,7 +356,7 @@ The Dev Container includes pre-configured extensions and settings for optimal Py
 
 **Python Development:**
 - **Ruff** - Fast linting and formatting
-- **Pyright** - Static type checking
+- **ty** - Static type checking
 - **Python** - Core Python support
 - **autodocstring** - Automatic docstring generation
 - **python-indent** - Correct Python indentation
@@ -407,7 +405,7 @@ Comprehensive documentation is available at **[https://a5chin.github.io/python-u
 
 **Topics covered:**
 - 🚀 **Getting Started** - Docker, VSCode, Dev Containers setup
-- ⚙️ **Tool Configurations** - uv, Ruff, Pyright, pre-commit
+- ⚙️ **Tool Configurations** - uv, Ruff, ty, pre-commit
 - 🧪 **Testing Strategies** - pytest, coverage, and best practices
 - 🛠️ **Utility Modules** - Config, logger, and tracer guides
 - 💡 **Use Cases** - Jupyter, FastAPI, OpenCV examples
@@ -430,7 +428,7 @@ This template is built on top of excellent open-source tools:
 
 - **[uv](https://github.com/astral-sh/uv)** by Astral - Ultra-fast Python package manager
 - **[Ruff](https://github.com/astral-sh/ruff)** by Astral - Lightning-fast linter and formatter
-- **[Pyright](https://github.com/microsoft/pyright)** by Microsoft - Static type checker for Python
+- **[ty](https://github.com/astral-sh/ty)** by Astral - Static type checker for Python
 - **[nox](https://nox.thea.codes/)** - Flexible task automation for Python
 - **[pytest](https://pytest.org/)** - Testing framework for Python
 - **[MkDocs](https://www.mkdocs.org/)** - Documentation site generator

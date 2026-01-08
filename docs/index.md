@@ -15,7 +15,7 @@ This repository provides a complete, batteries-included development environment 
 - **Ultra-fast package management** - [uv](https://github.com/astral-sh/uv) is 10-100x faster than pip
 - **Lightning-fast code quality** - [Ruff](https://github.com/astral-sh/ruff) replaces Black, isort, Flake8, and more
 - **SQL linting** - [SQLFluff](https://github.com/sqlfluff/sqlfluff) for SQL code quality
-- **Type safety** - Pyright for comprehensive type checking
+- **Type safety** - ty for comprehensive type checking
 - **Automated testing** - pytest with 75% coverage requirement
 - **Task automation** - nox for streamlined development workflows
 - **Pre-commit hooks** - Automatic code quality checks before every commit
@@ -48,7 +48,7 @@ This repository provides a complete, batteries-included development environment 
 
 - Automated testing with pytest
 - Code coverage tracking (75% minimum)
-- Type checking with Pyright
+- Type checking with ty
 - Continuous integration workflows
 
 ## Quick Navigation
@@ -68,7 +68,7 @@ Learn how to use the tools and utilities:
 
 - [uv Guide](guides/uv.md) - Package management commands
 - [Ruff Guide](guides/ruff.md) - Linting and formatting
-- [Pyright Guide](guides/pyright.md) - Type checking
+- [ty Guide](guides/ty.md) - Type checking
 - [Testing Guide](guides/test.md) - Running tests with pytest
 - [Pre-commit Guide](guides/pre-commit.md) - Automated quality checks
 - [Built-in Utilities](guides/tools/index.md) - Logger, Config, Timer
@@ -79,7 +79,7 @@ Deep dive into tool configurations:
 
 - [uv Configuration](configurations/uv.md) - Package manager settings
 - [Ruff Configuration](configurations/ruff.md) - Linter and formatter rules
-- [Pyright Configuration](configurations/pyright.md) - Type checker settings
+- [ty Configuration](configurations/ty.md) - Type checker settings
 - [pytest Configuration](configurations/test.md) - Testing framework setup
 - [Pre-commit Configuration](configurations/pre-commit.md) - Hook definitions
 
@@ -106,7 +106,7 @@ See practical examples:
 ├── noxfile.py              # Task automation
 ├── pyproject.toml          # Project metadata
 ├── ruff.toml               # Ruff configuration
-├── pyrightconfig.json      # Type checking config
+├── ty.toml                 # Type checking config
 └── pytest.ini              # Testing configuration
 ```
 
@@ -123,7 +123,7 @@ uv run nox -s fmt -- --ruff
 uv run nox -s fmt -- --sqlfluff
 
 # Run linters
-uv run nox -s lint -- --pyright --ruff --sqlfluff
+uv run nox -s lint -- --ruff --sqlfluff --ty
 
 # Run tests
 uv run nox -s test
@@ -147,4 +147,4 @@ uv add requests pandas
 - [GitHub Repository](https://github.com/a5chin/python-uv)
 - [uv Documentation](https://docs.astral.sh/uv)
 - [Ruff Documentation](https://docs.astral.sh/ruff)
-- [Pyright Documentation](https://github.com/microsoft/pyright)
+- [ty Documentation](https://github.com/astral-sh/ty)

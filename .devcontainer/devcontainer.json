@@ -12,6 +12,7 @@
     "customizations": {
         "vscode": {
             "extensions": [
+                "astral-sh.ty",
                 "charliermarsh.ruff",
                 "dorzey.vscode-sqlfluff",
                 "exiasr.hadolint",

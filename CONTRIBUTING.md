@@ -27,7 +27,7 @@ Thank you for your interest in contributing to python-uv! This document provides
 
 ### Prerequisites
 
-- Python 3.10 or higher
+- Python 3.11 or higher
 - [uv](https://github.com/astral-sh/uv) package manager
 - Git
 - (Optional) Docker and VSCode with Dev Containers extension
@@ -71,7 +71,7 @@ uv run pre-commit install
 uv run nox -s test
 
 # Run linters
-uv run nox -s lint -- --pyright --ruff
+uv run nox -s lint -- --ruff --ty
 
 # Format code
 uv run nox -s fmt
@@ -132,7 +132,7 @@ git commit -m "changes"
 uv run nox -s fmt
 
 # 2. Run linters
-uv run nox -s lint -- --pyright --ruff
+uv run nox -s lint -- --ruff --ty
 
 # 3. Run tests with coverage
 uv run nox -s test
@@ -182,7 +182,7 @@ All checks must pass. PRs with failing checks will not be reviewed.
 ### General Guidelines
 
 - **Line length**: Maximum 88 characters (Black-compatible)
-- **Python version**: Target Python 3.10+ (or a specific stable version)
+- **Python version**: Target Python 3.11+ (or a specific stable version)
 - **Import order**: Automatically handled by Ruff
 - **Naming conventions**:
   - Classes: `PascalCase`
@@ -360,7 +360,7 @@ uv run ruff check . --fix
 uv run ruff format .
 
 # Check type errors
-uv run pyright
+uv run ty check
 
 # If type errors persist, add type hints or use type: ignore with justification
 ```
@@ -458,9 +458,9 @@ uv sync
 
 Before submitting your PR, verify:
 
-- [ ] Code follows project standards (Ruff, Pyright, type hints, docstring)
+- [ ] Code follows project standards (Ruff, ty, type hints, docstring)
 - [ ] All tests pass: `uv run nox -s test` (coverage ≥ 75%)
-- [ ] Linting passes: `uv run nox -s lint -- --pyright --ruff`
+- [ ] Linting passes: `uv run nox -s lint -- --ruff --ty`
 - [ ] Code is formatted: `uv run nox -s fmt`
 - [ ] Pre-commit hooks pass: `uv run pre-commit run --all-files`
 - [ ] Documentation updated (README, CLAUDE.md, or docs/)

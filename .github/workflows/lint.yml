@@ -1,22 +1,7 @@
 name: Lint
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/actions/setup-python-with-uv/action.yml"
-      - ".github/workflows/lint.yml"
-      - "**.py"
-      - "**.sql"
-      - ".python-version"
-      - ".sqlfluff"
-      - "pyproject.toml"
-      - "pyrightconfig.json"
-      - "ruff.toml"
-      - "uv.lock"
-
   pull_request:
-    branches: [main]
     paths:
       - ".github/actions/setup-python-with-uv/action.yml"
       - ".github/workflows/lint.yml"
@@ -25,24 +10,11 @@ on:
       - ".python-version"
       - ".sqlfluff"
       - "pyproject.toml"
-      - "pyrightconfig.json"
       - "ruff.toml"
+      - "ty.toml"
       - "uv.lock"
 
 jobs:
-  pyright:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Setup Python with uv
-        uses: ./.github/actions/setup-python-with-uv
-
-      - name: Lint by Pyright
-        run: uv run nox -s lint -- --pyright
-
   ruff:
     runs-on: ubuntu-latest
 
@@ -68,3 +40,16 @@ jobs:
 
       - name: Lint by SQLFluff
         run: uv run nox -s lint -- --sqlfluff
+
+  ty:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Python with uv
+        uses: ./.github/actions/setup-python-with-uv
+
+      - name: Lint by ty
+        run: uv run nox -s lint -- --ty

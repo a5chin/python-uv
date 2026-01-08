@@ -1,5 +1,6 @@
 {
     "recommendations": [
+        "astral-sh.ty",
         "charliermarsh.ruff",
         "codezombiech.gitignore",
         "dorzey.vscode-sqlfluff",
@@ -9,7 +10,6 @@
         "mosapride.zenkaku",
         "ms-azuretools.vscode-docker",
         "ms-python.python",
-        "ms-python.vscode-pylance",
         "ms-toolsai.jupyter",
         "ms-vscode-remote.remote-containers",
         "njpwerner.autodocstring",
