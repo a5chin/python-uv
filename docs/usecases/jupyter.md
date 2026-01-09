@@ -56,7 +56,7 @@ git switch jupyter
         "notebook.source.organizeImports": "explicit"
     },
     "notebook.formatOnSave.enabled": true,
-    "python.defaultInterpreterPath": "/home/vscode/.venv/bin/python",
+    "python.defaultInterpreterPath": ".venv/bin/python",
     "[python]": {
         "editor.codeActionsOnSave": {
             "source.fixAll": "explicit",
