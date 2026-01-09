@@ -6,7 +6,7 @@
 ## Virtual Environment
 Set the `UV_PROJECT_ENVIRONMENT` not to create a virtual environment in the project directory.
 
-```json title=".devcontainer/devcontainer.json" hl_lines="10-19 53 55"
+```json title=".devcontainer/devcontainer.json" hl_lines="10-24 53 55"
 {
     "name": "uv",
     "dockerComposeFile": "../.devcontainer/docker-compose.yml",
