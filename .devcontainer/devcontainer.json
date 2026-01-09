@@ -6,6 +6,18 @@
         "vscode"
     ],
     "workspaceFolder": "/workspace",
+    "mounts": [
+        {
+            "source": "venv-${devcontainerId}",
+            "target": "${containerWorkspaceFolder}/.venv",
+            "type": "volume"
+        },
+        {
+            "source": "${localEnv:HOME}/.ssh",
+            "target": "/home/${remoteUser}/.ssh",
+            "type": "bind"
+        }
+    ],
     "features": {
         "ghcr.io/dhoeric/features/hadolint:1": {}
     },
@@ -33,8 +45,9 @@
     },
     "containerEnv": {
         "DISPLAY": "dummy",
-        "UV_PROJECT_ENVIRONMENT": "/home/vscode/.venv"
+        "UV_PROJECT_ENVIRONMENT": "${containerWorkspaceFolder}/.venv"
     },
+    "updateContentCommand": "sudo chown -R vscode ${containerWorkspaceFolder}/.venv /home/${remoteUser}/.ssh",
     "postCreateCommand": "uv sync --frozen",
     "postStartCommand": "uv run pre-commit install",
     "remoteUser": "vscode"
