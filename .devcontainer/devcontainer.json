@@ -8,6 +8,11 @@
     "workspaceFolder": "/workspace",
     "mounts": [
         {
+            "source": "cache-${devcontainerId}",
+            "target": "/home/${remoteUser}/.cache",
+            "type": "volume"
+        },
+        {
             "source": "venv-${devcontainerId}",
             "target": "${containerWorkspaceFolder}/.venv",
             "type": "volume"
@@ -47,7 +52,7 @@
         "DISPLAY": "dummy",
         "UV_PROJECT_ENVIRONMENT": "${containerWorkspaceFolder}/.venv"
     },
-    "updateContentCommand": "sudo chown -R vscode ${containerWorkspaceFolder}/.venv /home/${remoteUser}/.ssh",
+    "updateContentCommand": "sudo chown -R vscode /home/${remoteUser}/.cache ${containerWorkspaceFolder}/.venv /home/${remoteUser}/.ssh",
     "postCreateCommand": "uv sync --frozen",
     "postStartCommand": "uv run pre-commit install",
     "remoteUser": "vscode"
