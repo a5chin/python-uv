@@ -20,7 +20,7 @@ The Ruff formatter is an extremely fast Python code formatter designed as a drop
     They are set as default in this repository.
 
 === "ruff.toml"
-    ```{.toml hl_lines=42-57}
+    ```{.toml hl_lines=42-58 81-83}
     # Exclude a variety of commonly ignored directories.
     exclude = [
         ".bzr",
@@ -73,6 +73,7 @@ The Ruff formatter is an extremely fast Python code formatter designed as a drop
         "E117",
         "ISC001",
         "ISC002",
+        "PLC0415",
         "Q000",
         "Q001",
         "Q002",
@@ -99,11 +100,15 @@ The Ruff formatter is an extremely fast Python code formatter designed as a drop
 
     # Like Black, automatically detect the appropriate line ending.
     line-ending = "auto"
+
+    [lint.per-file-ignores]
+    # Ignore all directories named `tests`.
+    "tests/**" = ["INP001", "S101"]
     ```
 
 === "pyproject.toml"
 
-    ```{.toml hl_lines=43-58}
+    ```{.toml hl_lines=43-59 82-84}
     [tool.ruff]
     # Exclude a variety of commonly ignored directories.
     exclude = [
@@ -139,8 +144,8 @@ The Ruff formatter is an extremely fast Python code formatter designed as a drop
     line-length = 88
     indent-width = 4
 
-    # Assume Python 3.12
-    target-version = "py312"
+    # Assume Python 3.14
+    target-version = "py314"
 
     [tool.ruff.lint]
     # Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
@@ -157,6 +162,7 @@ The Ruff formatter is an extremely fast Python code formatter designed as a drop
         "E117",
         "ISC001",
         "ISC002",
+        "PLC0415",
         "Q000",
         "Q001",
         "Q002",
@@ -183,13 +189,17 @@ The Ruff formatter is an extremely fast Python code formatter designed as a drop
 
     # Like Black, automatically detect the appropriate line ending.
     line-ending = "auto"
+
+    [tool.ruff.lint.per-file-ignores]
+    # Ignore all directories named `tests`.
+    "tests/**" = ["INP001", "S101"]
     ```
 
 ## extensions.json
 The following settings are required for automatic formatting on VSCode.
 ```{.json title=".vscode/extensions.json" }
 {
-    "python.defaultInterpreterPath": "/home/vscode/.venv/bin/python",
+    "python.defaultInterpreterPath": ".venv/bin/python",
     "[python]": {
         "editor.codeActionsOnSave": {
             "source.fixAll": "explicit",
