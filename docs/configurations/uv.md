@@ -22,14 +22,14 @@ Set the `UV_PROJECT_ENVIRONMENT` not to create a virtual environment in the proj
             "type": "volume"
         },
         {
-            "source": "venv-${devcontainerId}",
-            "target": "${containerWorkspaceFolder}/.venv",
-            "type": "volume"
-        },
-        {
             "source": "${localEnv:HOME}/.ssh",
             "target": "/home/${remoteUser}/.ssh",
             "type": "bind"
+        },
+        {
+            "source": "venv-${devcontainerId}",
+            "target": "${containerWorkspaceFolder}/.venv",
+            "type": "volume"
         }
     ],
     "features": {
