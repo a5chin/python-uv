@@ -14,14 +14,14 @@
             "type": "volume"
         },
         {
-            "source": "venv-${devcontainerId}",
-            "target": "${containerWorkspaceFolder}/.venv",
-            "type": "volume"
-        },
-        {
             "source": "${localEnv:HOME}/.ssh",
             "target": "/home/${remoteUser}/.ssh",
             "type": "bind"
+        },
+        {
+            "source": "venv-${devcontainerId}",
+            "target": "${containerWorkspaceFolder}/.venv",
+            "type": "volume"
         }
     ],
     "features": {
