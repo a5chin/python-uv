@@ -5,6 +5,7 @@
     "runServices": [
         "vscode"
     ],
+    "remoteUser": "vscode",
     "workspaceFolder": "/workspace",
     "mounts": [
         {
@@ -53,6 +54,5 @@
     },
     "updateContentCommand": "sudo chown -R vscode /home/${remoteUser}/.cache /home/${remoteUser}/.ssh ${containerWorkspaceFolder}/.venv",
     "postCreateCommand": "uv sync --frozen",
-    "postStartCommand": "uv run pre-commit install",
-    "remoteUser": "vscode"
+    "postStartCommand": "uv run pre-commit install"
 }
