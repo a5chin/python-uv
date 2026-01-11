@@ -1,18 +1,6 @@
 name: Docs
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/actions/setup-git-config/action.yml"
-      - ".github/actions/setup-python-with-uv/action.yml"
-      - ".github/workflows/gh-deploy.yml"
-      - "docs/**.md"
-      - ".python-version"
-      - "mkdocs.yml"
-      - "pyproject.toml"
-      - "uv.lock"
-
   pull_request:
     paths:
       - ".github/actions/setup-git-config/action.yml"
