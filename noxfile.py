@@ -45,7 +45,7 @@ class CLIArgs(
 
 @nox.session(python=False)
 def fmt(session: nox.Session) -> None:
-    """Format the code using Ruff.
+    """Format the code using Ruff and SQLFluff.
 
     Args:
         session (nox.Session): The Nox session object.
