@@ -51,7 +51,7 @@
         "DISPLAY": "dummy",
         "UV_PROJECT_ENVIRONMENT": "${containerWorkspaceFolder}/.venv"
     },
-    "updateContentCommand": "sudo chown -R vscode /home/${remoteUser}/.cache ${containerWorkspaceFolder}/.venv /home/${remoteUser}/.ssh",
+    "updateContentCommand": "sudo chown -R vscode /home/${remoteUser}/.cache /home/${remoteUser}/.ssh ${containerWorkspaceFolder}/.venv",
     "postCreateCommand": "uv sync --frozen",
     "postStartCommand": "uv run pre-commit install",
     "remoteUser": "vscode"
