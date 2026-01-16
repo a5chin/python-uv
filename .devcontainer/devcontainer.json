@@ -32,7 +32,7 @@
             "extensions": [
                 "astral-sh.ty",
                 "charliermarsh.ruff",
-                "dorzey.vscode-sqlfluff",
+                "sqlfluff.vscode-sqlfluff",
                 "exiasr.hadolint",
                 "kevinrose.vsc-python-indent",
                 "mosapride.zenkaku",
@@ -52,7 +52,7 @@
         "DISPLAY": "dummy",
         "UV_PROJECT_ENVIRONMENT": "${containerWorkspaceFolder}/.venv"
     },
-    "updateContentCommand": "sudo chown -R vscode /home/${remoteUser}/.cache /home/${remoteUser}/.ssh ${containerWorkspaceFolder}/.venv",
+    "updateContentCommand": "sudo chown -R vscode /home/vscode/.cache /home/vscode/.ssh ${containerWorkspaceFolder}/.venv",
     "postCreateCommand": "uv sync --frozen",
     "postStartCommand": "uv run pre-commit install"
 }

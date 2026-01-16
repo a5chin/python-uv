@@ -67,7 +67,7 @@
         "editor.tabSize": 4
     },
     "[sql]": {
-        "editor.defaultFormatter": "dorzey.vscode-sqlfluff",
+        "editor.defaultFormatter": "sqlfluff.vscode-sqlfluff",
         "editor.formatOnSave": true,
         "editor.tabSize": 2
     },
