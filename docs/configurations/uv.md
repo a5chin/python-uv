@@ -40,7 +40,6 @@ Set the `UV_PROJECT_ENVIRONMENT` not to create a virtual environment in the proj
             "extensions": [
                 "astral-sh.ty",
                 "charliermarsh.ruff",
-                "dorzey.vscode-sqlfluff",
                 "exiasr.hadolint",
                 "kevinrose.vsc-python-indent",
                 "mosapride.zenkaku",
@@ -51,6 +50,7 @@ Set the `UV_PROJECT_ENVIRONMENT` not to create a virtual environment in the proj
                 "njpwerner.autodocstring",
                 "redhat.vscode-yaml",
                 "shardulm94.trailing-spaces",
+                "sqlfluff.vscode-sqlfluff",
                 "streetsidesoftware.code-spell-checker",
                 "tamasfe.even-better-toml",
                 "yzhang.markdown-all-in-one"
