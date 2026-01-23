@@ -4,8 +4,6 @@ on:
   pull_request:
     paths:
       - .github/workflows/*.yml
-      - .github/actionlint.yml
-      - .github/actionlint-matcher.json
 
 jobs:
   actionlint:
