@@ -15,6 +15,7 @@ This repository provides a complete, batteries-included development environment 
 - **Ultra-fast package management** - [uv](https://github.com/astral-sh/uv) is 10-100x faster than pip
 - **Lightning-fast code quality** - [Ruff](https://github.com/astral-sh/ruff) replaces Black, isort, Flake8, and more
 - **SQL linting** - [SQLFluff](https://github.com/sqlfluff/sqlfluff) for SQL code quality
+- **GitHub Actions linting** - [actionlint](https://github.com/rhysd/actionlint) for workflow file quality
 - **Type safety** - ty for comprehensive type checking
 - **Automated testing** - pytest with 75% coverage requirement
 - **Task automation** - nox for streamlined development workflows

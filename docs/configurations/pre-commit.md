@@ -13,6 +13,8 @@
 - [https://github.com/sqlfluff/sqlfluff](https://github.com/sqlfluff/sqlfluff)
     - SQLFluff Lint
     - SQLFluff Fix
+- [https://github.com/rhysd/actionlint](https://github.com/rhysd/actionlint)
+    - actionlint
 - [https://github.com/hadolint/hadolint](https://github.com/hadolint/hadolint)
     - Hadolint
 
@@ -43,6 +45,11 @@ repos:
       - id: ruff-format
         name: Ruff format
         description: "Run 'ruff format' for extremely fast Python formatting"
+
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.10
+    hooks:
+      - id: actionlint
 
   - repo: https://github.com/hadolint/hadolint
     rev: v2.12.0

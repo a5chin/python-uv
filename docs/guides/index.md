@@ -10,6 +10,7 @@ This template includes several modern Python development tools, each serving a s
 - **Ruff** - Lightning-fast linting and formatting
 - **ty** - Advanced type checking
 - **SQLFluff** - SQL linting and formatting
+- **actionlint** - GitHub Actions workflow linting
 - **pytest** - Comprehensive testing framework
 - **nox** - Task automation and workflow management
 - **pre-commit** - Automated code quality checks
