@@ -87,6 +87,7 @@
         "pyupgrade",
         "qodo",
         "redoc",
+        "reviewdog",
         "rootdir",
         "ropeproject",
         "scrapy",
