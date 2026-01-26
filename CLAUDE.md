@@ -252,6 +252,7 @@ When adding new utilities to `tools/`, add corresponding documentation to `docs/
 ## CI/CD Workflows
 
 GitHub Actions workflows in `.github/workflows/`:
+- **actionlint.yml**: Lint GitHub Actions workflows
 - **docker.yml**: Validate Docker build
 - **devcontainer.yml**: Validate Dev Container configuration
 - **format.yml**: Check Ruff formatting
