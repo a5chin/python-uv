@@ -17,15 +17,15 @@ Each tool is configured through dedicated configuration files in the repository 
 
 ## Configuration Files
 
-| File | Tool | Purpose |
-|------|------|---------|
-| `pyproject.toml` | uv, Project | Dependencies and project metadata |
-| `ruff.toml` | Ruff | Linting and formatting rules |
-| `ty.toml` | ty | Type checking configuration |
-| `.sqlfluff` | SQLFluff | SQL linting and formatting rules |
-| `pytest.ini` | pytest | Testing and coverage settings |
-| `.pre-commit-config.yaml` | pre-commit | Hook definitions |
-| `noxfile.py` | nox | Task automation |
+| File                      | Tool        | Purpose                           |
+| ------------------------- | ----------- | --------------------------------- |
+| `pyproject.toml`          | uv, Project | Dependencies and project metadata |
+| `ruff.toml`               | Ruff        | Linting and formatting rules      |
+| `ty.toml`                 | ty          | Type checking configuration       |
+| `.sqlfluff`               | SQLFluff    | SQL linting and formatting rules  |
+| `pytest.ini`              | pytest      | Testing and coverage settings     |
+| `.pre-commit-config.yaml` | pre-commit  | Hook definitions                  |
+| `noxfile.py`              | nox         | Task automation                   |
 
 ## Quick Links
 
