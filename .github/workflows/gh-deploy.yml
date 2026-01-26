@@ -34,7 +34,7 @@ jobs:
 
       - name: Generate cache id
         id: cache
-        run: echo "id=$(date --utc '+%V')" >> "$GITHUB_OUTPUT"
+        run: echo "id=$(find docs -type f -print0 | sort -z | xargs -0 sha256sum mkdocs.yml pyproject.toml uv.lock | sha256sum | awk '{print $1}')" >> "$GITHUB_OUTPUT"
 
       - name: Save cache
         uses: actions/cache@v5
