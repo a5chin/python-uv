@@ -164,7 +164,7 @@ uv run nox -s lint -- --ruff
 uv run nox -s test
 
 # Run tests with JUnit XML output (for CI)
-uv run nox -s test -- --junitxml=results.xml
+uv run nox -s test -- --cov_report=xml
 ```
 
 You can also run tools directly:
@@ -338,17 +338,17 @@ Automated workflows ensure code quality and consistency. All workflows run on pu
 
 **Available workflows in `.github/workflows/`:**
 
-| Workflow | Purpose | Tools Used |
-|----------|---------|-----------|
-| `docker.yml` | Validate Docker build | Docker |
-| `devcontainer.yml` | Validate Dev Container configuration | devcontainer CLI |
-| `format.yml` | Check code formatting | Ruff |
-| `labeler.yml` | Add label in GitHub | GitHub |
-| `lint.yml` | Run static analysis | Ruff, ty |
-| `test.yml` | Run test suite with coverage | pytest, coverage |
-| `gh-deploy.yml` | Deploy documentation to GitHub Pages | MkDocs |
-| `pr-agent.yml` | Automated PR reviews | Qodo AI PR Agent |
-| `publish-devcontainer.yml` | Publish Dev Container image | Docker, GHCR |
+| Workflow                   | Purpose                              | Tools Used       |
+| -------------------------- | ------------------------------------ | ---------------- |
+| `docker.yml`               | Validate Docker build                | Docker           |
+| `devcontainer.yml`         | Validate Dev Container configuration | devcontainer CLI |
+| `format.yml`               | Check code formatting                | Ruff             |
+| `labeler.yml`              | Add label in GitHub                  | GitHub           |
+| `lint.yml`                 | Run static analysis                  | Ruff, ty         |
+| `test.yml`                 | Run test suite with coverage         | pytest, coverage |
+| `gh-deploy.yml`            | Deploy documentation to GitHub Pages | MkDocs           |
+| `pr-agent.yml`             | Automated PR reviews                 | Qodo AI PR Agent |
+| `publish-devcontainer.yml` | Publish Dev Container image          | Docker, GHCR     |
 
 ## 🎨 VSCode Configuration
 
