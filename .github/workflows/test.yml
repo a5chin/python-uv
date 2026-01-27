@@ -44,7 +44,7 @@ jobs:
 
       - name: Run pytest
         run: |
-          uv run nox -s test -- --cov_report=xml
+          uv run nox -s test -- --cov_report xml
 
       - name: Upload results to Codecov
         uses: codecov/codecov-action@v5
