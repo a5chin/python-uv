@@ -6,21 +6,19 @@ component_management:
     statuses:
       - type: project
         target: auto
-        branches:
-          - "!main"
   individual_components:
     - component_id: config
       name: config
       paths:
-        - tools/config/**
+        - tools/config/**/*.py
     - component_id: logger
       name: logger
       paths:
-        - tools/logger/**
+        - tools/logger/**/*.py
     - component_id: tracer
       name: tracer
       paths:
-        - tools/tracer/**
+        - tools/tracer/**/*.py
 
 coverage:
   precision: 2
