@@ -13,7 +13,7 @@ class CLIArgs(
 ):
     """CLIArgs is a class that extends BaseSettings to handle command line arguments."""
 
-    junitxml: str = ""
+    cov_report: str = ""
     ruff: bool = False
     sqlfluff: bool = False
     ty: bool = False
@@ -101,9 +101,9 @@ def test(session: nox.Session) -> None:
     """
     args = CLIArgs.parse(session.posargs)
 
-    command = ["uv", "run", "pytest"]
-    if args.junitxml:
-        command.append(f"--junitxml={args.junitxml}")
+    command = ["uv", "run", "pytest", "--cov", "--cov-branch"]
+    if args.cov_report:
+        command.append(f"--cov-report={args.cov_report}")
 
     session.run(*command)
 
