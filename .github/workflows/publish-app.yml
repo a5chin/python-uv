@@ -2,13 +2,14 @@ name: Publish App to GHCR
 
 on:
   push:
-    branches: [main]
-    tags:
-      - "v*"
+    branches:
+      - main
     paths:
       - ".github/workflows/publish-app.yml"
       - ".python-version"
       - "Dockerfile"
+    tags:
+      - "v*"
 
   workflow_dispatch:
 
