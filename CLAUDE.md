@@ -34,7 +34,7 @@ uv run nox -s test
 uv run pytest tests/tools/test__logger.py
 
 # Run with JUnit XML output for CI
-uv run nox -s test -- uv run nox -s test -- --cov_report=xml
+uv run nox -s test -- --cov_report=xml
 
 # Run pytest directly (bypasses nox)
 uv run pytest
