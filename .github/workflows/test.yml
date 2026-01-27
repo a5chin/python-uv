@@ -33,8 +33,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write
-      pull-requests: write
+      contents: read
 
     steps:
       - name: Checkout
@@ -45,25 +44,13 @@ jobs:
 
       - name: Run pytest
         run: |
-          set -o pipefail
-          uv run nox -s test -- --junitxml pytest.xml | tee pytest-coverage.txt
+          uv run nox -s test -- --cov_report=xml
 
-      - name: Pytest coverage comment
-        uses: MishaKav/pytest-coverage-comment@v1
+      - name: Upload results to Codecov
+        uses: codecov/codecov-action@v5
         with:
-          pytest-coverage-path: ./pytest-coverage.txt
-          junitxml-path: ./pytest.xml
-
-      - name: Creating coverage folder
-        run: mkdir -p coverage
-
-      - name: Coverage Badge
-        uses: tj-actions/coverage-badge-py@v2
-        with:
-          output: coverage/coverage.svg
-
-      - name: Publish coverage report to coverage-badge branch
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: coverage-badge
-          folder: coverage
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage.xml
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true
