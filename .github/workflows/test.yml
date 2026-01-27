@@ -1,20 +1,6 @@
 name: Test
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/actions/setup-python-with-uv/action.yml"
-      - ".github/workflows/test.yml"
-      - "**.py"
-      - ".coveragerc"
-      - ".env**"
-      - ".python-version"
-      - "tests"
-      - "pyproject.toml"
-      - "pytest.ini"
-      - "uv.lock"
-
   pull_request:
     paths:
       - ".github/actions/setup-python-with-uv/action.yml"
@@ -27,13 +13,27 @@ on:
       - "pyproject.toml"
       - "pytest.ini"
       - "uv.lock"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/actions/setup-python-with-uv/action.yml"
+      - ".github/workflows/test.yml"
+      - "**.py"
+      - ".coveragerc"
+      - ".env**"
+      - ".python-version"
+      - "tests"
+      - "pyproject.toml"
+      - "pytest.ini"
+      - "uv.lock"
+
+permissions:
+  contents: read
 
 jobs:
   coverage:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
 
     steps:
       - name: Checkout
