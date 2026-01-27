@@ -7,12 +7,11 @@
 [![ty](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ty/main/assets/badge/v0.json)](https://github.com/astral-sh/ty)
 
 [![Versions](https://img.shields.io/badge/python-3.11%20|%203.12%20|%203.13%20|%203.14%20-green.svg)](https://github.com/a5chin/python-uv)
-![code coverage](https://raw.githubusercontent.com/a5chin/python-uv/coverage-badge/coverage.svg?raw=true)
+[![codecov](https://codecov.io/github/a5chin/python-uv/graph/badge.svg?token=M9JIB8T6R4)](https://codecov.io/github/a5chin/python-uv)
 
 [![Docker](https://github.com/a5chin/python-uv/actions/workflows/docker.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/docker.yml)
 [![Format](https://github.com/a5chin/python-uv/actions/workflows/format.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/format.yml)
 [![Lint](https://github.com/a5chin/python-uv/actions/workflows/lint.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/lint.yml)
-[![codecov](https://codecov.io/github/a5chin/python-uv/graph/badge.svg?token=M9JIB8T6R4)](https://codecov.io/github/a5chin/python-uv)
 
 </div>
 
