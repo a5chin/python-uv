@@ -163,7 +163,7 @@ uv run nox -s lint -- --ruff
 uv run nox -s test
 
 # Run tests with JUnit XML output (for CI)
-uv run nox -s test -- --cov_report=xml
+uv run nox -s test -- --cov_report xml --junitxml junit.xml
 ```
 
 You can also run tools directly:
