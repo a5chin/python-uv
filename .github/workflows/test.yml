@@ -44,13 +44,19 @@ jobs:
 
       - name: Run pytest
         run: |
-          uv run nox -s test -- --cov_report xml
+          uv run nox -s test -- --cov_report xml --junitxml junit.xml
 
-      - name: Upload results to Codecov
+      - name: Upload test results to Codecov
+        uses: codecov/test-results-action@v1
+        with:
+          fail_ci_if_error: true
+          files: ./junit.xml,!./cache
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage.xml
-          flags: unittests
-          name: codecov-umbrella
           fail_ci_if_error: true
+          flags: unittests
+          files: ./coverage.xml,!./cache
+          token: ${{ secrets.CODECOV_TOKEN }}
