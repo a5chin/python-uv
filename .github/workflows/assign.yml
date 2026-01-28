@@ -1,0 +1,23 @@
+name: Assign
+
+on:
+  pull_request:
+    types:
+      - opened
+
+permissions:
+  pull-requests: write
+  repository-projects: read
+
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+
+    if: endsWith(github.actor, '[bot]') == false && github.event.pull_request.assignee == null
+
+    steps:
+      - name: Add assignees
+        run: gh pr edit ${{ github.event.number }} --add-assignee ${{ github.actor }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
