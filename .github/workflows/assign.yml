@@ -1,4 +1,4 @@
-name: Auto Assign Author
+name: Manage PR Assignee
 
 on:
   pull_request:
