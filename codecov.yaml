@@ -1,6 +1,25 @@
 codecov:
   require_ci_to_pass: yes
 
+component_management:
+  default_rules:
+    statuses:
+      - type: project
+        target: auto
+  individual_components:
+    - component_id: config
+      name: config
+      paths:
+        - tools/config/**/*.py
+    - component_id: logger
+      name: logger
+      paths:
+        - tools/logger/**/*.py
+    - component_id: tracer
+      name: tracer
+      paths:
+        - tools/tracer/**/*.py
+
 coverage:
   precision: 2
   round: down

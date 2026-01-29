@@ -2,19 +2,20 @@ name: Release
 
 on:
   pull_request:
-    types: [closed]
     branches:
       - main
+    types:
+      - closed
+
+permissions:
+  contents: write
+  pull-requests: read
 
 jobs:
   publish:
     if: github.event.pull_request.merged == true && contains(github.head_ref, 'release/')
 
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-      pull-requests: read
 
     steps:
       - name: Checkout

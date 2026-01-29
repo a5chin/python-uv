@@ -1,20 +1,6 @@
 name: Test
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/actions/setup-python-with-uv/action.yml"
-      - ".github/workflows/test.yml"
-      - "**.py"
-      - ".coveragerc"
-      - ".env**"
-      - ".python-version"
-      - "tests"
-      - "pyproject.toml"
-      - "pytest.ini"
-      - "uv.lock"
-
   pull_request:
     paths:
       - ".github/actions/setup-python-with-uv/action.yml"
@@ -24,16 +10,32 @@ on:
       - ".env**"
       - ".python-version"
       - "tests"
+      - "codecov.yaml"
+      - "pyproject.toml"
+      - "pytest.ini"
+      - "uv.lock"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/actions/setup-python-with-uv/action.yml"
+      - ".github/workflows/test.yml"
+      - "**.py"
+      - ".coveragerc"
+      - ".env**"
+      - ".python-version"
+      - "tests"
+      - "codecov.yaml"
       - "pyproject.toml"
       - "pytest.ini"
       - "uv.lock"
 
+permissions:
+  contents: read
+
 jobs:
   coverage:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
 
     steps:
       - name: Checkout
@@ -44,13 +46,19 @@ jobs:
 
       - name: Run pytest
         run: |
-          uv run nox -s test -- --cov_report xml
+          uv run nox -s test -- --cov_report xml --junitxml junit.xml
 
-      - name: Upload results to Codecov
+      - name: Upload test results to Codecov
+        uses: codecov/test-results-action@v1
+        with:
+          fail_ci_if_error: true
+          files: ./junit.xml,!./cache
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage.xml
-          flags: unittests
-          name: codecov-umbrella
           fail_ci_if_error: true
+          flags: unittests
+          files: ./coverage.xml,!./cache
+          token: ${{ secrets.CODECOV_TOKEN }}
