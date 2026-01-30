@@ -1,0 +1,59 @@
+name: Configure Repo Settings
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  configure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Generate  token
+        id: generate_token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.repository }}
+
+      - name: Enable auto-delete head branches
+        run: |
+          gh repo edit ${{ github.repository }} --delete-branch-on-merge
+
+      - name: Apply Branch Protection Rules
+        run: |
+          cat <<EOF > config.json
+          {
+            "required_status_checks": null,
+            "enforce_admins": false,
+            "required_pull_request_reviews": {
+              "dismiss_stale_reviews": false,
+              "require_code_owner_reviews": true,
+              "required_approving_review_count": 1
+            },
+            "restrictions": null,
+            "allow_force_pushes": false,
+            "allow_deletions": false
+          }
+          EOF
+
+          gh api -X PUT "repos/${{ github.repository }}/branches/main/protection" \
+            --input config.json
+
+      - name: Set GitHub Pages Source
+        run: |
+          gh api -X PUT "repos/${{ github.repository }}/pages" \
+            -f "source[branch]=${{ env.BRANCH }}" \
+            -f "source[path]=${{ env.PATH }}" --silent \
+          || \
+          gh api -X POST "repos/${{ github.repository }}/pages" \
+            -f "source[branch]=${{ env.BRANCH }}" \
+            -f "source[path]=${{ env.PATH }}"
+        env:
+          BRANCH: gh-pages
+          PATH: /
