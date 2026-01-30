@@ -50,18 +50,14 @@ jobs:
 
       - name: Set GitHub Pages Source
         run: |
-          echo "Checking gh path..."
-          which gh
-
-          echo "Configuring GitHub Pages..."
-
-          if gh api -X POST "repos/${{ github.repository }}/pages" -f "source[branch]=${{ env.BRANCH }}" -f "source[path]=${{ env.PATH }}" --silent; then
-            true
-          else
-            echo "Update failed (likely not enabled). Creating new Pages settings..."
-            gh api -X PUT "repos/${{ github.repository }}/pages" -f "source[branch]=${{ env.BRANCH }}" -f "source[path]=${{ env.PATH }}"
-          fi
+          gh api -X POST "repos/${{ github.repository }}/pages" \
+            -f "source[branch]=${{ env.BRANCH }}" \
+            -f "source[path]=${{ env.TARGET_PATH }}" --silent \
+          || \
+          gh api -X PUT "repos/${{ github.repository }}/pages" \
+            -f "source[branch]=${{ env.BRANCH }}" \
+            -f "source[path]=${{ env.TARGET_PATH }}"
         env:
           BRANCH: gh-pages
-          PATH: /
+          TARGET_PATH: /
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
