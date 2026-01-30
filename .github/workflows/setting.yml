@@ -81,10 +81,7 @@ jobs:
               continue
             fi
 
-            jq -c ".\"$BRANCH\"" "$CONFIG_FILE" > "$BRANCH_protection.json"
-
-            gh api -X PUT "repos/${{ github.repository }}/branches/$BRANCH/protection" \
-              --input "$BRANCH_protection.json"
+            jq -c ".\"$BRANCH\"" "$CONFIG_FILE" | gh api -X PUT "repos/${{ github.repository }}/branches/$BRANCH/protection" --input -
           done
         env:
           CONFIG_FILE: .github/protection.json
