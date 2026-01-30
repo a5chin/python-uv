@@ -23,6 +23,8 @@ jobs:
       - name: Enable auto-delete head branches
         run: |
           gh repo edit ${{ github.repository }} --delete-branch-on-merge
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
 
       - name: Apply Branch Protection Rules
         run: |
@@ -56,3 +58,4 @@ jobs:
         env:
           BRANCH: gh-pages
           PATH: /
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
