@@ -7,12 +7,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  configure:
+  generate:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
 
+    outputs:
+      token: ${{ steps.generate-token.outputs.token }}
+    steps:
       - name: Generate a token
         id: generate-token
         uses: actions/create-github-app-token@v2
@@ -20,34 +20,24 @@ jobs:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_KEY }}
 
+  delete-branch:
+    runs-on: ubuntu-latest
+
+    needs: generate
+
+    steps:
       - name: Enable auto-delete head branches
         run: |
           gh repo edit ${{ github.repository }} --delete-branch-on-merge
         env:
-          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+          GH_TOKEN: ${{ needs.generate.outputs.token }}
 
-      - name: Apply Branch Protection Rules
-        run: |
-          cat <<EOF > config.json
-          {
-            "required_status_checks": null,
-            "enforce_admins": false,
-            "required_pull_request_reviews": {
-              "dismiss_stale_reviews": false,
-              "require_code_owner_reviews": true,
-              "required_approving_review_count": 1
-            },
-            "restrictions": null,
-            "allow_force_pushes": false,
-            "allow_deletions": false
-          }
-          EOF
+  pages:
+    runs-on: ubuntu-latest
 
-          gh api -X PUT "repos/${{ github.repository }}/branches/main/protection" \
-            --input config.json
-        env:
-          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+    needs: generate
 
+    steps:
       - name: Set GitHub Pages Source
         run: |
           gh api -X POST "repos/${{ github.repository }}/pages" \
@@ -60,4 +50,26 @@ jobs:
         env:
           BRANCH: gh-pages
           TARGET_PATH: /
-          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+          GH_TOKEN: ${{ needs.generate.outputs.token }}
+
+  protection:
+    runs-on: ubuntu-latest
+
+    needs: generate
+
+    steps:
+      - name: Apply Branch Protection Rules
+        run: |
+          for BRANCH in $BRANCHES; do
+            if ! gh api "repos/${{ github.repository }}/branches/$BRANCH" --silent >/dev/null 2>&1; then
+              echo "Warning: Branch '$BRANCH' does not exist in this repository. Skipping..."
+              continue
+            fi
+
+            jq -c ".\"$BRANCH\"" "$CONFIG_FILE" > "$BRANCH_protection.json"
+
+            gh api -X PUT "repos/${{ github.repository }}/branches/$BRANCH/protection" \
+              --input "$BRANCH_protection.json"
+          done
+        env:
+          GH_TOKEN: ${{ needs.generate.outputs.token }}
