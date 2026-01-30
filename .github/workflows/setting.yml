@@ -13,14 +13,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Generate  token
-        id: generate_token
+      - name: Generate a token
+        id: generate-token
         uses: actions/create-github-app-token@v2
         with:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_KEY }}
-          owner: ${{ github.repository_owner }}
-          repositories: ${{ github.repository }}
 
       - name: Enable auto-delete head branches
         run: |
