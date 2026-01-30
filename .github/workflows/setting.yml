@@ -26,6 +26,9 @@ jobs:
     needs: generate
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
       - name: Enable auto-delete head branches
         run: |
           gh repo edit ${{ github.repository }} --delete-branch-on-merge
@@ -38,6 +41,9 @@ jobs:
     needs: generate
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
       - name: Set GitHub Pages Source
         run: |
           gh api -X POST "repos/${{ github.repository }}/pages" \
@@ -58,8 +64,16 @@ jobs:
     needs: generate
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
       - name: Apply Branch Protection Rules
         run: |
+          if [ ! -f "$CONFIG_FILE" ]; then
+            echo "Error: $CONFIG_FILE not found!"
+            exit 1
+          fi
+
           for BRANCH in $BRANCHES; do
             if ! gh api "repos/${{ github.repository }}/branches/$BRANCH" --silent >/dev/null 2>&1; then
               echo "Warning: Branch '$BRANCH' does not exist in this repository. Skipping..."
@@ -72,4 +86,5 @@ jobs:
               --input "$BRANCH_protection.json"
           done
         env:
+          CONFIG_FILE: .github/protection.json
           GH_TOKEN: ${{ needs.generate.outputs.token }}
