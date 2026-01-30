@@ -45,6 +45,8 @@ jobs:
 
           gh api -X PUT "repos/${{ github.repository }}/branches/main/protection" \
             --input config.json
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
 
       - name: Set GitHub Pages Source
         run: |
