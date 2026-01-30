@@ -7,11 +7,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  generate:
+  delete-branch:
     runs-on: ubuntu-latest
 
-    outputs:
-      token: ${{ steps.generate-token.outputs.token }}
     steps:
       - name: Generate a token
         id: generate-token
@@ -20,29 +18,22 @@ jobs:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_KEY }}
 
-  delete-branch:
-    runs-on: ubuntu-latest
-
-    needs: generate
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
       - name: Enable auto-delete head branches
         run: |
           gh repo edit ${{ github.repository }} --delete-branch-on-merge
         env:
-          GH_TOKEN: ${{ needs.generate.outputs.token }}
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
 
   pages:
     runs-on: ubuntu-latest
 
-    needs: generate
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
+      - name: Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_KEY }}
 
       - name: Set GitHub Pages Source
         run: |
@@ -56,16 +47,21 @@ jobs:
         env:
           BRANCH: gh-pages
           TARGET_PATH: /
-          GH_TOKEN: ${{ needs.generate.outputs.token }}
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
 
   protection:
     runs-on: ubuntu-latest
 
-    needs: generate
-
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+
+      - name: Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_KEY }}
 
       - name: Apply Branch Protection Rules
         run: |
@@ -73,6 +69,8 @@ jobs:
             echo "Error: $CONFIG_FILE not found!"
             exit 1
           fi
+
+          BRANCHES=$(jq -r 'keys[]' "$CONFIG_FILE")
 
           for BRANCH in $BRANCHES; do
             if ! gh api "repos/${{ github.repository }}/branches/$BRANCH" --silent >/dev/null 2>&1; then
@@ -87,4 +85,4 @@ jobs:
           done
         env:
           CONFIG_FILE: .github/protection.json
-          GH_TOKEN: ${{ needs.generate.outputs.token }}
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
