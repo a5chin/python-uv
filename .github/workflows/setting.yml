@@ -1,4 +1,4 @@
-name: Configure Repo Settings
+name: Repository Settings
 
 on:
   pull_request:
