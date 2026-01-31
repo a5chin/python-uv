@@ -1,21 +1,24 @@
 name: PR Agent
 
 on:
-  pull_request:
-    types: [opened, synchronize]
   issue_comment:
-    types: [created]
+    types:
+      - created
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
 
 jobs:
   pr_agent_job:
     runs-on: ubuntu-latest
 
     if: ${{ github.event.sender.type != 'Bot' }}
-
-    permissions:
-      issues: write
-      pull-requests: write
-      contents: write
 
     steps:
       - name: PR Agent Action Step

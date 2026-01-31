@@ -39,7 +39,7 @@ uv run nox -s lint -- --ty                    # ty only
 uv run nox -s test
 
 # Run tests with JUnit XML output (for CI)
-uv run nox -s test -- --cov_report=xml
+uv run nox -s test -- --cov_report xml --junitxml junit.xml
 ```
 
 ### Why nox?

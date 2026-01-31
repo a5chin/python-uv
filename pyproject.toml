@@ -11,11 +11,11 @@ readme = "README.md"
 license = { file = "LICENSE" }
 
 dependencies = [
-    "beartype>=0.22.6",
-    "google-cloud-logging>=3.12.1",
-    "jaxtyping>=0.3.3",
-    "pydantic>=2.12.0",
-    "pydantic-settings>=2.11.0",
+    "beartype>=0.22.9",
+    "google-cloud-logging>=3.13.0",
+    "jaxtyping>=0.3.6",
+    "pydantic>=2.12.5",
+    "pydantic-settings>=2.12.0",
 ]
 
 [dependency-groups]
@@ -24,14 +24,14 @@ dev = [
     "cookiecutter-data-science>=2.3.0",
     "ipykernel>=7.1.0",
     "jupyter>=1.1.1",
-    "mkdocs-material>=9.6.21",
-    "nox>=2025.5.1",
-    "pre-commit>=4.3.0",
-    "pytest>=8.4.2",
+    "mkdocs-material>=9.7.1",
+    "nox>=2025.11.12",
+    "pre-commit>=4.5.1",
+    "pytest>=9.0.2",
     "pytest-cov>=7.0.0",
-    "ruff>=0.14.0",
-    "sqlfluff>=3.5.0",
-    "ty>=0.0.9",
+    "ruff>=0.14.14",
+    "sqlfluff>=4.0.0",
+    "ty>=0.0.14",
 ]
 
 [tool.hatch.build.targets.wheel]
