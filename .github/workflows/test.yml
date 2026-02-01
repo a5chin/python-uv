@@ -45,8 +45,7 @@ jobs:
         uses: ./.github/actions/setup-python-with-uv
 
       - name: Run pytest
-        run: |
-          uv run nox -s test -- --cov_report xml --junitxml junit.xml
+        run: uv run nox -s test -- --cov_report xml --junitxml junit.xml
 
       - name: Upload test results to Codecov
         uses: codecov/test-results-action@v1

@@ -10,15 +10,15 @@ component_management:
     - component_id: config
       name: config
       paths:
-        - tools/config/**/*.py
+        - tools/config/**
     - component_id: logger
       name: logger
       paths:
-        - tools/logger/**/*.py
+        - tools/logger/**
     - component_id: tracer
       name: tracer
       paths:
-        - tools/tracer/**/*.py
+        - tools/tracer/**
 
 coverage:
   precision: 2
