@@ -15,6 +15,11 @@
         "restrictions": null
     },
     "gh-pages": {
-        "allow_force_pushes": true
+        "allow_deletions": false,
+        "allow_force_pushes": true,
+        "enforce_admins": false,
+        "required_pull_request_reviews": null,
+        "required_status_checks": null,
+        "restrictions": null
     }
 }
