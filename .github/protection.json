@@ -9,7 +9,14 @@
             "required_approving_review_count": 1
         },
         "required_status_checks": {
-            "contexts": [],
+            "contexts": [
+                "coverage",
+                "deploy",
+                "lint",
+                "ruff",
+                "sqlfluff",
+                "ty"
+            ],
             "strict": true
         },
         "restrictions": null
