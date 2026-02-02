@@ -1,0 +1,88 @@
+name: Repository Settings
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/setting.yml
+      - .github/protection.json
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  delete-branch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_KEY }}
+
+      - name: Enable auto-delete head branches
+        run: |
+          gh repo edit ${{ github.repository }} --delete-branch-on-merge
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+
+  pages:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_KEY }}
+
+      - name: Set GitHub Pages Source
+        run: |
+          gh api -X POST "repos/${{ github.repository }}/pages" \
+            -f "source[branch]=${{ env.BRANCH }}" \
+            -f "source[path]=${{ env.TARGET_PATH }}" --silent \
+          || \
+          gh api -X PUT "repos/${{ github.repository }}/pages" \
+            -f "source[branch]=${{ env.BRANCH }}" \
+            -f "source[path]=${{ env.TARGET_PATH }}"
+        env:
+          BRANCH: gh-pages
+          TARGET_PATH: /
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+
+  protection:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_KEY }}
+
+      - name: Apply Branch Protection Rules
+        run: |
+          if [ ! -f "$CONFIG_FILE" ]; then
+            echo "Error: $CONFIG_FILE not found!"
+            exit 1
+          fi
+
+          BRANCHES=$(jq -r 'keys[]' "$CONFIG_FILE")
+
+          for BRANCH in $BRANCHES; do
+            if ! gh api "repos/${{ github.repository }}/branches/$BRANCH" --silent >/dev/null 2>&1; then
+              echo "Warning: Branch '$BRANCH' does not exist in this repository. Skipping..."
+              continue
+            fi
+
+            jq -c ".\"$BRANCH\"" "$CONFIG_FILE" | gh api -X PUT "repos/${{ github.repository }}/branches/$BRANCH/protection" --input -
+          done
+        env:
+          CONFIG_FILE: .github/protection.json
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
