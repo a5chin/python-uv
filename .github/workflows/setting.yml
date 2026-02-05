@@ -81,7 +81,7 @@ jobs:
 
           for BRANCH in $BRANCHES; do
             if ! gh api "${{ env.ENDPOINT }}/$BRANCH" --silent >/dev/null 2>&1; then
-              echo "Warning: Branch ${{ env.CONFIG_FILE }} does not exist in this repository. Skipping..."
+              echo "Warning: Branch $BRANCH does not exist in this repository. Skipping..."
               continue
             fi
 
