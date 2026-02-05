@@ -1,5 +1,5 @@
 {
-    "main": {
+    "develop": {
         "allow_deletions": false,
         "allow_force_pushes": false,
         "enforce_admins": false,
@@ -14,7 +14,7 @@
         },
         "restrictions": null
     },
-    "develop": {
+    "main": {
         "allow_deletions": false,
         "allow_force_pushes": false,
         "enforce_admins": false,

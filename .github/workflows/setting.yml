@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - .github/workflows/setting.yml
+      - .github/environments.json
       - .github/protection.json
   schedule:
     - cron: "0 0 * * *"
