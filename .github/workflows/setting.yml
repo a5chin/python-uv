@@ -121,7 +121,7 @@ jobs:
             exit 1
           fi
 
-          CUSTOM_BRANCH_POLICIES=$(jq -r ".${{ env.ENVIRONMENT_NAME }}.deployment_branch_policy.custom_branch_policies" ${{ env.CONFIG_FILE }})
+          CUSTOM_BRANCH_POLICIES=$(jq -r ".\"${{ env.ENVIRONMENT_NAME }}\".deployment_branch_policy.custom_branch_policies" ${{ env.CONFIG_FILE }})
 
           if [ "$CUSTOM_BRANCH_POLICIES" != true ]; then
             exit 0
