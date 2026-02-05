@@ -123,7 +123,7 @@ jobs:
           jq -c ".\"${{ env.ENVIRONMENT_NAME }}\"" "${{ env.CONFIG_FILE }}" | gh api -X PUT "repos/${{ github.repository }}/environments/${{ env.ENVIRONMENT_NAME }}" --input -
 
           gh api -X PUT "repos/${{ github.repository }}/environments/${{ env.ENVIRONMENT_NAME }}/deployment-branch-policies" \
-            -f "name=${{ env.ENVIRONMENT_NAME }}" \
+            -f "name=${{ env.BRANCH_NAME }}" \
             -f "type=branch"
         env:
           CONFIG_FILE: .github/environments.json
