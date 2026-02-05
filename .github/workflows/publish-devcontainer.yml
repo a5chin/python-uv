@@ -3,7 +3,7 @@ name: Publish Devcontainer to GHCR
 on:
   push:
     branches:
-      - main
+      - develop
     paths:
       - ".devcontainer/Dockerfile"
       - ".github/workflows/publish-devcontainer.yml"
