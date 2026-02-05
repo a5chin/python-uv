@@ -102,7 +102,7 @@ jobs:
             branch: develop
           - environment: Production
             branch: main
-          - environment: Pages
+          - environment: github-pages
             branch: gh-pages
 
     steps:
