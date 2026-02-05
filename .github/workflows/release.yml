@@ -5,6 +5,8 @@ on:
     branches:
       - develop
       - main
+    types:
+      - closed
 
 permissions:
   contents: write
