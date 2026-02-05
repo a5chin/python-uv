@@ -18,7 +18,7 @@
     "GitHub Pages": {
         "deployment_branch_policy": {
             "protected_branches": false,
-            "custom_branch_policies": true
+            "custom_branch_policies": false
         },
         "reviewers": [],
         "wait_timer": 0
