@@ -71,20 +71,20 @@ jobs:
 
       - name: Apply Branch Protection Rules
         run: |
-          if [ ! -f "${{ env.CONFIG_FILE }}" ]; then
+          if [ ! -f ${{ env.CONFIG_FILE }} ]; then
             echo "Error: ${{ env.CONFIG_FILE }} not found!"
             exit 1
           fi
 
-          BRANCHES=$(jq -r 'keys[]' "${{ env.CONFIG_FILE }}")
+          BRANCHES=$(jq -r 'keys[]' ${{ env.CONFIG_FILE }})
 
           for BRANCH in $BRANCHES; do
             if ! gh api "repos/${{ github.repository }}/branches/$BRANCH" --silent >/dev/null 2>&1; then
-              echo "Warning: Branch '$BRANCH' does not exist in this repository. Skipping..."
+              echo "Warning: Branch ${{ env.CONFIG_FILE }} does not exist in this repository. Skipping..."
               continue
             fi
 
-            jq -c ".\"$BRANCH\"" "$CONFIG_FILE" | gh api -X PUT "repos/${{ github.repository }}/branches/$BRANCH/protection" --input -
+            jq -c ."$BRANCH" ${{ env.CONFIG_FILE }} | gh api -X PUT "repos/${{ github.repository }}/branches/$BRANCH/protection" --input -
           done
         env:
           CONFIG_FILE: .github/protection.json
@@ -116,12 +116,16 @@ jobs:
 
       - name: Configure Environment
         run: |
-          if [ ! -f "${{ env.CONFIG_FILE }}" ]; then
+          if [ ! -f ${{ env.CONFIG_FILE }} ]; then
             echo "Error: ${{ env.CONFIG_FILE }} not found!"
             exit 1
           fi
 
-          jq -c ".\"${{ env.ENVIRONMENT_NAME }}\"" "${{ env.CONFIG_FILE }}" | gh api -X PUT "repos/${{ github.repository }}/environments/${{ env.ENVIRONMENT_NAME }}" --input -
+          CUSTOM_BRANCH_POLICIES=$(jq -r ".${{ env.ENVIRONMENT_NAME }}.deployment_branch_policy.custom_branch_policies" ${{ env.CONFIG_FILE }})
+
+          if [ "$CUSTOM_BRANCH_POLICIES" != true ]; then
+            exit 0
+          fi
 
           gh api -X POST "repos/${{ github.repository }}/environments/${{ env.ENVIRONMENT_NAME }}/deployment-branch-policies" \
             -f "name=${{ env.BRANCH_NAME }}" \
