@@ -24,8 +24,8 @@ jobs:
       - name: Enable auto-delete head branches
         run: |
           gh repo edit ${{ github.repository }} \
-            --delete-branch-on-merge \
-            --default-branch develop
+            --default-branch develop \
+            --delete-branch-on-merge
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
 
