@@ -43,14 +43,15 @@ jobs:
 
       - name: Set GitHub Pages Source
         run: |
-          gh api -X POST "repos/${{ github.repository }}/pages" \
+          gh api -X POST ${{ env.ENDPOINT }} \
             -f "source[branch]=${{ env.BRANCH }}" \
             -f "source[path]=${{ env.TARGET_PATH }}" --silent \
           || \
-          gh api -X PUT "repos/${{ github.repository }}/pages" \
+          gh api -X PUT ${{ env.ENDPOINT }} \
             -f "source[branch]=${{ env.BRANCH }}" \
             -f "source[path]=${{ env.TARGET_PATH }}"
         env:
+          ENDPOINT: repos/${{ github.repository }}/pages
           BRANCH: gh-pages
           TARGET_PATH: /
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
@@ -79,15 +80,16 @@ jobs:
           BRANCHES=$(jq -r 'keys[]' ${{ env.CONFIG_FILE }})
 
           for BRANCH in $BRANCHES; do
-            if ! gh api "repos/${{ github.repository }}/branches/$BRANCH" --silent >/dev/null 2>&1; then
+            if ! gh api "${{ env.ENDPOINT }}/$BRANCH" --silent >/dev/null 2>&1; then
               echo "Warning: Branch ${{ env.CONFIG_FILE }} does not exist in this repository. Skipping..."
               continue
             fi
 
-            jq -c ".\"$BRANCH\"" ${{ env.CONFIG_FILE }} | gh api -X PUT "repos/${{ github.repository }}/branches/$BRANCH/protection" --input -
+            jq -c ".\"$BRANCH\"" ${{ env.CONFIG_FILE }} | gh api -X PUT "${{ env.ENDPOINT }}/$BRANCH/protection" --input -
           done
         env:
           CONFIG_FILE: .github/protection.json
+          ENDPOINT: repos/${{ github.repository }}/branches
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
 
   environments:
@@ -100,7 +102,7 @@ jobs:
             branch: develop
           - environment: Production
             branch: main
-          - environment: GitHub Pages
+          - environment: Pages
             branch: gh-pages
 
     steps:
@@ -121,18 +123,21 @@ jobs:
             exit 1
           fi
 
+          jq -c ".\"${{ env.ENVIRONMENT_NAME }}\"" ${{ env.CONFIG_FILE }} | gh api -X PUT "${{ env.ENDPOINT }}/${{ env.ENVIRONMENT_NAME }}" --input -
+
           CUSTOM_BRANCH_POLICIES=$(jq -r ".\"${{ env.ENVIRONMENT_NAME }}\".deployment_branch_policy.custom_branch_policies" ${{ env.CONFIG_FILE }})
 
           if [ "$CUSTOM_BRANCH_POLICIES" != true ]; then
-            gh api -X DELETE "repos/${{ github.repository }}/environments/${{ env.ENVIRONMENT_NAME }}/deployment-branch-policies"
+            gh api -X DELETE "${{ env.ENDPOINT }}/${{ env.ENVIRONMENT_NAME }}/deployment-branch-policies"
             exit 0
           fi
 
-          gh api -X POST "repos/${{ github.repository }}/environments/${{ env.ENVIRONMENT_NAME }}/deployment-branch-policies" \
+          gh api -X POST "${{ env.ENDPOINT }}/${{ env.ENVIRONMENT_NAME }}/deployment-branch-policies" \
             -f "name=${{ env.BRANCH_NAME }}" \
             -f "type=branch"
         env:
           CONFIG_FILE: .github/environments.json
           BRANCH_NAME: ${{ matrix.branch }}
+          ENDPOINT: repos/${{ github.repository }}/environments
           ENVIRONMENT_NAME: ${{ matrix.environment }}
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
