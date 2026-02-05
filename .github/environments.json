@@ -14,5 +14,13 @@
         },
         "reviewers": [],
         "wait_timer": 0
+    },
+    "GitHub Pages": {
+        "deployment_branch_policy": {
+            "protected_branches": false,
+            "custom_branch_policies": true
+        },
+        "reviewers": [],
+        "wait_timer": 0
     }
 }

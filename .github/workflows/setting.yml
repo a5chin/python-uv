@@ -99,8 +99,8 @@ jobs:
             branch: develop
           - environment: Production
             branch: main
-
-    environment: ${{ matrix.environment }}
+          - environment: GitHub Pages
+            branch: gh-pages
 
     steps:
       - name: Checkout
@@ -122,7 +122,7 @@ jobs:
 
           jq -c ".\"${{ env.ENVIRONMENT_NAME }}\"" "${{ env.CONFIG_FILE }}" | gh api -X PUT "repos/${{ github.repository }}/environments/${{ env.ENVIRONMENT_NAME }}" --input -
 
-          gh api -X PUT "repos/${{ github.repository }}/environments/${{ env.ENVIRONMENT_NAME }}/deployment-branch-policies" \
+          gh api -X POST "repos/${{ github.repository }}/environments/${{ env.ENVIRONMENT_NAME }}/deployment-branch-policies" \
             -f "name=${{ env.BRANCH_NAME }}" \
             -f "type=branch"
         env:
