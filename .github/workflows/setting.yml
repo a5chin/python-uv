@@ -124,6 +124,7 @@ jobs:
           CUSTOM_BRANCH_POLICIES=$(jq -r ".\"${{ env.ENVIRONMENT_NAME }}\".deployment_branch_policy.custom_branch_policies" ${{ env.CONFIG_FILE }})
 
           if [ "$CUSTOM_BRANCH_POLICIES" != true ]; then
+            gh api -X DELETE "repos/${{ github.repository }}/environments/${{ env.ENVIRONMENT_NAME }}/deployment-branch-policies"
             exit 0
           fi
 
