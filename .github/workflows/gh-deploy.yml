@@ -20,7 +20,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    environment: Pages
+    environment: github-pages
 
     steps:
       - name: Checkout
