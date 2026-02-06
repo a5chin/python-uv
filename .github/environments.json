@@ -1,0 +1,23 @@
+{
+    "Develop": {
+        "deployment_branch_policy": {
+            "protected_branches": false,
+            "custom_branch_policies": true
+        },
+        "reviewers": [],
+        "wait_timer": 0
+    },
+    "Production": {
+        "deployment_branch_policy": {
+            "protected_branches": false,
+            "custom_branch_policies": true
+        },
+        "reviewers": [],
+        "wait_timer": 0
+    },
+    "github-pages": {
+        "deployment_branch_policy": null,
+        "reviewers": [],
+        "wait_timer": 0
+    }
+}

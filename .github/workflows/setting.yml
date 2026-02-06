@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - .github/workflows/setting.yml
+      - .github/environments.json
       - .github/protection.json
   schedule:
     - cron: "0 0 * * *"
@@ -23,7 +24,9 @@ jobs:
 
       - name: Enable auto-delete head branches
         run: |
-          gh repo edit ${{ github.repository }} --delete-branch-on-merge
+          gh repo edit ${{ github.repository }} \
+            --default-branch develop \
+            --delete-branch-on-merge
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
 
@@ -40,14 +43,15 @@ jobs:
 
       - name: Set GitHub Pages Source
         run: |
-          gh api -X POST "repos/${{ github.repository }}/pages" \
+          gh api -X POST ${{ env.ENDPOINT }} \
             -f "source[branch]=${{ env.BRANCH }}" \
             -f "source[path]=${{ env.TARGET_PATH }}" --silent \
           || \
-          gh api -X PUT "repos/${{ github.repository }}/pages" \
+          gh api -X PUT ${{ env.ENDPOINT }} \
             -f "source[branch]=${{ env.BRANCH }}" \
             -f "source[path]=${{ env.TARGET_PATH }}"
         env:
+          ENDPOINT: repos/${{ github.repository }}/pages
           BRANCH: gh-pages
           TARGET_PATH: /
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
@@ -68,21 +72,75 @@ jobs:
 
       - name: Apply Branch Protection Rules
         run: |
-          if [ ! -f "$CONFIG_FILE" ]; then
-            echo "Error: $CONFIG_FILE not found!"
+          if [ ! -f ${{ env.CONFIG_FILE }} ]; then
+            echo "Error: ${{ env.CONFIG_FILE }} not found!"
             exit 1
           fi
 
-          BRANCHES=$(jq -r 'keys[]' "$CONFIG_FILE")
+          BRANCHES=$(jq -r 'keys[]' ${{ env.CONFIG_FILE }})
 
           for BRANCH in $BRANCHES; do
-            if ! gh api "repos/${{ github.repository }}/branches/$BRANCH" --silent >/dev/null 2>&1; then
-              echo "Warning: Branch '$BRANCH' does not exist in this repository. Skipping..."
+            if ! gh api "${{ env.ENDPOINT }}/$BRANCH" --silent >/dev/null 2>&1; then
+              echo "Warning: Branch $BRANCH does not exist in this repository. Skipping..."
               continue
             fi
 
-            jq -c ".\"$BRANCH\"" "$CONFIG_FILE" | gh api -X PUT "repos/${{ github.repository }}/branches/$BRANCH/protection" --input -
+            jq -c ".\"$BRANCH\"" ${{ env.CONFIG_FILE }} | gh api -X PUT "${{ env.ENDPOINT }}/$BRANCH/protection" --input -
           done
         env:
           CONFIG_FILE: .github/protection.json
+          ENDPOINT: repos/${{ github.repository }}/branches
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+
+  environments:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        include:
+          - environment: Develop
+            branch: develop
+          - environment: Production
+            branch: main
+          - environment: github-pages
+            branch: gh-pages
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_KEY }}
+
+      - name: Configure Environment
+        run: |
+          if [ ! -f ${{ env.CONFIG_FILE }} ]; then
+            echo "Error: ${{ env.CONFIG_FILE }} not found!"
+            exit 1
+          fi
+
+          jq -c ".\"${{ env.ENVIRONMENT_NAME }}\"" ${{ env.CONFIG_FILE }} | gh api -X PUT "${{ env.ENDPOINT }}/${{ env.ENVIRONMENT_NAME }}" --input -
+
+          CUSTOM_BRANCH_POLICIES=$(jq -r ".\"${{ env.ENVIRONMENT_NAME }}\".deployment_branch_policy.custom_branch_policies" ${{ env.CONFIG_FILE }})
+
+          if [ "$CUSTOM_BRANCH_POLICIES" != true ]; then
+            IDS=$(gh api "${{ env.ENDPOINT }}/${{ env.ENVIRONMENT_NAME }}/deployment-branch-policies" --jq '.branch_policies[].id' || true)
+            for ID in $IDS; do
+              gh api -X DELETE "${{ env.ENDPOINT }}/${{ env.ENVIRONMENT_NAME }}/deployment-branch-policies/$ID" --silent || true
+            done
+            exit 0
+          fi
+
+          gh api -X POST "${{ env.ENDPOINT }}/${{ env.ENVIRONMENT_NAME }}/deployment-branch-policies" \
+            -f "name=${{ env.BRANCH_NAME }}" \
+            -f "type=branch"
+        env:
+          CONFIG_FILE: .github/environments.json
+          BRANCH_NAME: ${{ matrix.branch }}
+          ENDPOINT: repos/${{ github.repository }}/environments
+          ENVIRONMENT_NAME: ${{ matrix.environment }}
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
