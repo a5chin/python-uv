@@ -12,6 +12,9 @@ jobs:
     if: endsWith(github.actor, '[bot]')
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
       - name: Approve
         run: gh pr review ${{ github.event.number }} --approve
         env:
