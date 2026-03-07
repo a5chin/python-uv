@@ -61,7 +61,7 @@ jobs:
             org.opencontainers.image.vendor=a5chin <a5chin.origin+contact@gmail.com>
 
       - name: Build and Push Devcontainer Image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: .devcontainer/Dockerfile
