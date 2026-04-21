@@ -31,7 +31,7 @@ dev = [
     "pytest-cov>=7.1.0",
     "ruff>=0.15.11",
     "sqlfluff>=4.1.0",
-    "ty>=0.0.14",
+    "ty>=0.0.32",
 ]
 
 [tool.hatch.build.targets.wheel]
