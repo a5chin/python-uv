@@ -14,7 +14,7 @@ dependencies = [
     "beartype>=0.22.9",
     "google-cloud-logging>=3.15.0",
     "jaxtyping>=0.3.9",
-    "pydantic>=2.13.3",
+    "pydantic>=2.13.4",
     "pydantic-settings>=2.14.0",
 ]
 
