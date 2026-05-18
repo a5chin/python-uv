@@ -30,7 +30,7 @@ dev = [
     "pytest>=9.0.3",
     "pytest-cov>=7.1.0",
     "ruff>=0.15.13",
-    "sqlfluff>=4.2.0",
+    "sqlfluff>=4.2.1",
     "ty>=0.0.36",
 ]
 
