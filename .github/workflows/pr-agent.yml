@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: PR Agent Action Step
-        uses: qodo-ai/pr-agent@v0.40.0
+        uses: qodo-ai/pr-agent@v0.41.0
         env:
           CONFIG.CUSTOM_MODEL_MAX_TOKENS: 64000
           CONFIG.MODEL: "gemini/gemini-2.5-flash"
