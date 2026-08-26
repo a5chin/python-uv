@@ -8,7 +8,8 @@ on:
       - "**.py"
       - "**.sql"
       - ".python-version"
-      - ".sqlfluff"
+      - ".sqruff"
+      - ".sqruffignore"
       - "pyproject.toml"
       - "ruff.toml"
       - "ty.toml"
@@ -28,7 +29,7 @@ jobs:
       - name: Lint by Ruff
         run: uv run nox -s lint -- --ruff
 
-  sqlfluff:
+  sqruff:
     runs-on: ubuntu-latest
 
     steps:
@@ -38,8 +39,8 @@ jobs:
       - name: Setup Python with uv
         uses: ./.github/actions/setup-python-with-uv
 
-      - name: Lint by SQLFluff
-        run: uv run nox -s lint -- --sqlfluff
+      - name: Lint by sqruff
+        run: uv run nox -s lint -- --sqruff
 
   ty:
     runs-on: ubuntu-latest
