@@ -82,7 +82,7 @@ def lint(session: nox.Session) -> None:
         session.run("uv", "run", "ruff", "check", ".", "--fix")
         session.log("✅ Ruff linting completed successfully.")
     if args.sqruff:
-        session.run("uv", "run", "sqruff", "lint", ".")
+        session.run("uv", "run", "sqruff", "lint")
         session.log("✅ sqruff linting completed successfully.")
     if args.ty:
         session.run("uv", "run", "ty", "check")
