@@ -67,7 +67,7 @@ repos:
         name: Dockerfile Lint
         description: Runs hadolint to lint Dockerfiles
         language: system
-        types: ["dockerfile"]
+        types: [dockerfile]
         entry: hadolint
 
   - repo: local
