@@ -19,9 +19,11 @@
             "tab_size": 4
         },
         "SQL": {
+            "language_servers": ["sqruff"],
             "formatter": {
                 "language_server": { "name": "sqruff" }
             },
+            "format_on_save": "on",
             "tab_size": 2
         },
         "TOML": {
