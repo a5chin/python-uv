@@ -29,8 +29,9 @@ dev = [
     "pre-commit>=4.6.0",
     "pytest>=9.0.3",
     "pytest-cov>=7.1.0",
+    "regex>=2026.7.19",
     "ruff>=0.15.15",
-    "sqlfluff>=4.2.1",
+    "sqruff>=0.40.0",
     "ty>=0.0.40",
 ]
 

@@ -1,4 +1,5 @@
-words =  [
+words = [
+    "actionlint",
     "addopts",
     "anyio",
     "apdisk",
@@ -31,6 +32,7 @@ words =  [
     "fontawesome",
     "fseventsd",
     "googlecloud",
+    "hadolint",
     "htmlcov",
     "imread",
     "ipykernel",
@@ -94,7 +96,6 @@ words =  [
     "spyderproject",
     "spyproject",
     "sqlalchemy",
-    "sqlfluff",
     "sqruff",
     "stmts",
     "superfences",
@@ -113,5 +114,5 @@ words =  [
     "venv",
     "webassets",
     "yzhang",
-    "zenkaku"
+    "zenkaku",
 ]

@@ -14,6 +14,7 @@ Set the `UV_PROJECT_ENVIRONMENT` not to create a virtual environment in the proj
     "runServices": [
         "vscode"
     ],
+    "remoteUser": "vscode",
     "workspaceFolder": "/workspace",
     "mounts": [
         {
@@ -45,26 +46,28 @@ Set the `UV_PROJECT_ENVIRONMENT` not to create a virtual environment in the proj
                 "mosapride.zenkaku",
                 "ms-azuretools.vscode-docker",
                 "ms-python.python",
-                "ms-python.vscode-pylance",
                 "ms-toolsai.jupyter",
                 "njpwerner.autodocstring",
+                "quary.sqruff",
                 "redhat.vscode-yaml",
                 "shardulm94.trailing-spaces",
-                "sqlfluff.vscode-sqlfluff",
                 "streetsidesoftware.code-spell-checker",
                 "tamasfe.even-better-toml",
                 "yzhang.markdown-all-in-one"
-            ]
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "./.venv/bin/python",
+                "sqruff.executablePath": "${workspaceFolder}/.venv/bin/sqruff"
+            }
         }
     },
     "containerEnv": {
         "DISPLAY": "dummy",
         "UV_PROJECT_ENVIRONMENT": "${containerWorkspaceFolder}/.venv"
     },
-    "updateContentCommand": "sudo chown -R vscode ${containerWorkspaceFolder}/.venv /home/${remoteUser}/.ssh",
+    "updateContentCommand": "sudo chown -R vscode /home/vscode/.cache /home/vscode/.ssh ${containerWorkspaceFolder}/.venv",
     "postCreateCommand": "uv sync --frozen",
-    "postStartCommand": "uv run pre-commit install",
-    "remoteUser": "vscode"
+    "postStartCommand": "uv run pre-commit install"
 }
 ```
 
