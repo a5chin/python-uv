@@ -8,7 +8,7 @@ The development environment includes configuration files for:
 
 - **uv** - Package management and Python version
 - **Ruff** - Linting and formatting rules
-- **SQLFluff** - Linting and formatting rules for SQL
+- **sqruff** - Linting and formatting rules for SQL
 - **ty** - Type checking strictness
 - **pytest** - Testing and coverage
 - **pre-commit** - Automated quality checks
@@ -22,7 +22,7 @@ Each tool is configured through dedicated configuration files in the repository 
 | `pyproject.toml`          | uv, Project | Dependencies and project metadata |
 | `ruff.toml`               | Ruff        | Linting and formatting rules      |
 | `ty.toml`                 | ty          | Type checking configuration       |
-| `.sqlfluff`               | SQLFluff    | SQL linting and formatting rules  |
+| `.sqruff`                 | sqruff      | SQL linting and formatting rules  |
 | `pytest.ini`              | pytest      | Testing and coverage settings     |
 | `.pre-commit-config.yaml` | pre-commit  | Hook definitions                  |
 | `noxfile.py`              | nox         | Task automation                   |
@@ -53,25 +53,25 @@ Understand Ruff's linting and formatting rules:
 
 [→ Read full Ruff configuration guide](ruff.md)
 
-### SQLFluff Configuration
+### sqruff Configuration
 Configure SQL linting and formatting:
 - SQL dialect (BigQuery)
 - Line length (80 characters)
 - Indentation (2 spaces)
 - Custom rules for SQL best practices
 
-**Key file**: `.sqlfluff`
+**Key file**: `.sqruff`
 
 **Quick reference:**
 ```bash
 # Lint SQL files
-uv run sqlfluff lint .
+uv run sqruff lint
 
 # Fix SQL files
-uv run sqlfluff fix .
+uv run sqruff fix
 
 # Use via nox
-uv run nox -s lint -- --sqlfluff
+uv run nox -s lint -- --sqruff
 ```
 
 ### [ty Configuration](ty.md)

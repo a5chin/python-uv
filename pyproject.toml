@@ -12,26 +12,27 @@ license = { file = "LICENSE" }
 
 dependencies = [
     "beartype>=0.22.9",
-    "google-cloud-logging>=3.13.0",
-    "jaxtyping>=0.3.6",
-    "pydantic>=2.12.5",
-    "pydantic-settings>=2.12.0",
+    "google-cloud-logging>=3.15.0",
+    "jaxtyping>=0.3.10",
+    "pydantic>=2.13.4",
+    "pydantic-settings>=2.14.1",
 ]
 
 [dependency-groups]
 dev = [
-    "cookiecutter>=2.6.0",
+    "cookiecutter>=2.7.1",
     "cookiecutter-data-science>=2.3.0",
-    "ipykernel>=7.1.0",
+    "ipykernel>=7.2.0",
     "jupyter>=1.1.1",
-    "mkdocs-material>=9.7.1",
-    "nox>=2025.11.12",
-    "pre-commit>=4.5.1",
-    "pytest>=9.0.2",
-    "pytest-cov>=7.0.0",
-    "ruff>=0.14.14",
-    "sqlfluff>=4.0.0",
-    "ty>=0.0.14",
+    "mkdocs-material>=9.7.6",
+    "nox>=2026.4.10",
+    "pre-commit>=4.6.0",
+    "pytest>=9.0.3",
+    "pytest-cov>=7.1.0",
+    "regex>=2026.7.19",
+    "ruff>=0.15.15",
+    "sqruff>=0.40.0",
+    "ty>=0.0.40",
 ]
 
 [tool.hatch.build.targets.wheel]

@@ -20,9 +20,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    environment: github-pages
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Configure Git Credentials
         uses: ./.github/actions/setup-git-config
@@ -38,7 +40,7 @@ jobs:
         run: echo "id=$(find docs -type f -print0 | sort -z | xargs -0 sha256sum mkdocs.yml pyproject.toml uv.lock | sha256sum | awk '{print $1}')" >> "$GITHUB_OUTPUT"
 
       - name: Save cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           key: mkdocs-material-${{ steps.cache.outputs.id }}
           path: .cache
