@@ -43,7 +43,7 @@ jobs:
         id: generate-token
         uses: actions/create-github-app-token@v3
         with:
-          app-id: ${{ vars.APP_ID }}
+          client-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_KEY }}
 
       - name: Checkout
@@ -58,8 +58,9 @@ jobs:
         run: uv run nox -s test -- --cov_report xml --junitxml junit.xml
 
       - name: Upload test results to Codecov
-        uses: codecov/test-results-action@v1
+        uses: codecov/codecov-action@v7
         with:
+          report_type: test_results
           fail_ci_if_error: true
           files: ./junit.xml,!./cache
           token: ${{ secrets.CODECOV_TOKEN }}
