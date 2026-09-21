@@ -9,7 +9,7 @@
         "notebook.source.organizeImports": "explicit"
     },
     "notebook.formatOnSave.enabled": true,
-    "python.defaultInterpreterPath": ".venv/bin/python",
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
     "python.languageServer": "None",
     "python.testing.autoTestDiscoverOnSaveEnabled": false,
     "python.testing.pytestEnabled": true,
@@ -17,10 +17,6 @@
         "tests"
     ],
     "python.testing.unittestEnabled": false,
-    "sqlfluff.config": ".sqlfluff",
-    "sqlfluff.executablePath": ".venv/bin/sqlfluff",
-    "sqlfluff.format.enabled": true,
-    "sqlfluff.linter.run": "onType",
     "terminal.integrated.defaultProfile.linux": "zsh",
     "terminal.integrated.profiles.linux": {
         "zsh": {
@@ -52,7 +48,7 @@
         "editor.tabSize": 4
     },
     "[sql]": {
-        "editor.defaultFormatter": "sqlfluff.vscode-sqlfluff",
+        "editor.defaultFormatter": "Quary.sqruff",
         "editor.tabSize": 2
     },
     "[toml]": {
