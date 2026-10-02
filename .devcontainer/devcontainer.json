@@ -39,13 +39,17 @@
                 "ms-python.python",
                 "ms-toolsai.jupyter",
                 "njpwerner.autodocstring",
+                "quary.sqruff",
                 "redhat.vscode-yaml",
                 "shardulm94.trailing-spaces",
-                "sqlfluff.vscode-sqlfluff",
                 "streetsidesoftware.code-spell-checker",
                 "tamasfe.even-better-toml",
                 "yzhang.markdown-all-in-one"
-            ]
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "./.venv/bin/python",
+                "sqruff.executablePath": "${workspaceFolder}/.venv/bin/sqruff"
+            }
         }
     },
     "containerEnv": {
