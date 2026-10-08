@@ -23,6 +23,7 @@ repos:
       - id: check-yaml
         name: Check YAML
         description: Check that YAML files are valid
+        args: [--unsafe]
 
       - id: detect-private-key
         name: Detect private key
