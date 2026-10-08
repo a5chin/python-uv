@@ -1,35 +1,106 @@
 name: Release
 
 on:
-  pull_request:
+  push:
     branches:
       - main
+  release:
     types:
-      - closed
+      - released
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'push' }}
 
 permissions:
   contents: write
+  packages: write
   pull-requests: read
+
+env:
+  REGISTRY: ghcr.io
 
 jobs:
   publish:
-    if: github.event.pull_request.merged == true && contains(github.head_ref, 'release/')
+    runs-on: ubuntu-latest
+
+    environment: ${{ github.event_name == 'release' && 'Production' || 'Develop' }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - image: app
+            dockerfile: Dockerfile
+            description: App for Python development with uv-based dependency management and environment configuration.
+          - image: devcontainer
+            dockerfile: .devcontainer/Dockerfile
+            description: Dev Container for Python development with uv-based dependency management and environment configuration.
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v4.6.0
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Metadata
+        id: meta
+        uses: docker/metadata-action@v6
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/${{ matrix.image }}
+          tags: |
+            type=ref,event=branch
+            type=sha,format=long,enable=${{ github.event_name == 'push' }}
+            type=raw,value=${{ github.event.release.tag_name }},enable=${{ github.event_name == 'release' }}
+            type=raw,value=latest,enable=${{ github.event_name == 'release' }}
+          labels: |
+            maintainer=a5chin <a5chin.origin+contact@gmail.com>
+            org.opencontainers.image.authors=a5chin <a5chin.origin+contact@gmail.com>
+            org.opencontainers.image.description=${{ matrix.description }}
+            org.opencontainers.image.documentation=https://a5chin.github.io/python-uv/
+            org.opencontainers.image.licenses=MIT
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+            org.opencontainers.image.title=python-uv
+            org.opencontainers.image.url=https://github.com/${{ github.repository }}
+            org.opencontainers.image.vendor=a5chin <a5chin.origin+contact@gmail.com>
+            org.opencontainers.image.version=${{ github.event.release.tag_name || github.ref_name }}
+
+      - name: Build and Push Image
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: ${{ matrix.dockerfile }}
+          push: true
+          provenance: false
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha,scope=${{ matrix.image }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.image }}
+
+  draft:
+    needs: publish
+
+    if: github.event_name == 'push'
 
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
-      - name: Publish Release
-        uses: release-drafter/release-drafter@v6
+      - name: Update Draft Release
+        uses: release-drafter/release-drafter@v7.10.0
         with:
           config-name: release-drafter.yml
-          disable-autolabeler: true
-          name: ${{ env.VERSION }}
-          publish: true
-          tag: ${{ env.VERSION }}
-          version: ${{ env.VERSION }}
+          commitish: ${{ github.sha }}
+          publish: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VERSION: ${{ github.event.pull_request.title }}

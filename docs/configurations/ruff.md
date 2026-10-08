@@ -20,95 +20,13 @@ The Ruff formatter is an extremely fast Python code formatter designed as a drop
     They are set as default in this repository.
 
 === "ruff.toml"
-    ```{.toml hl_lines=42-58 81-83}
-    # Exclude a variety of commonly ignored directories.
-    exclude = [
-        ".bzr",
-        ".direnv",
-        ".eggs",
-        ".git",
-        ".git-rewrite",
-        ".hg",
-        ".ipynb_checkpoints",
-        ".mypy_cache",
-        ".nox",
-        ".pants.d",
-        ".pyenv",
-        ".pytest_cache",
-        ".pytype",
-        ".ruff_cache",
-        ".svn",
-        ".tox",
-        ".venv",
-        ".vscode",
-        "__pypackages__",
-        "_build",
-        "buck-out",
-        "build",
-        "dist",
-        "node_modules",
-        "site-packages",
-        "venv",
-    ]
-
-    # Same as Black.
-    line-length = 88
-    indent-width = 4
-
-    # Assume Python 3.14
-    target-version = "py314"
-
-    [lint]
-    # Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
-    select = ["ALL"]
-    ignore = [
-        "COM812",
-        "COM819",
-        "D100",
-        "D203",
-        "D213",
-        "D300",
-        "E111",
-        "E114",
-        "E117",
-        "ISC001",
-        "ISC002",
-        "PLC0415",
-        "Q000",
-        "Q001",
-        "Q002",
-        "Q003",
-        "W191",
-    ]
-
-    # Allow fix for all enabled rules (when `--fix`) is provided.
-    fixable = ["ALL"]
-    unfixable = []
-
-    # Allow unused variables when underscore-prefixed.
-    dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
-
-    [format]
-    # Like Black, use double quotes for strings.
-    quote-style = "double"
-
-    # Like Black, indent with spaces, rather than tabs.
-    indent-style = "space"
-
-    # Like Black, respect magic trailing commas.
-    skip-magic-trailing-comma = false
-
-    # Like Black, automatically detect the appropriate line ending.
-    line-ending = "auto"
-
-    [lint.per-file-ignores]
-    # Ignore all directories named `tests`.
-    "tests/**" = ["INP001", "S101"]
+    ```{.toml hl_lines="42-59 82-84"}
+    --8<-- "ruff.toml"
     ```
 
 === "pyproject.toml"
 
-    ```{.toml hl_lines=43-59 82-84}
+    ```{.toml hl_lines="43-60 83-85"}
     [tool.ruff]
     # Exclude a variety of commonly ignored directories.
     exclude = [
@@ -153,6 +71,7 @@ The Ruff formatter is an extremely fast Python code formatter designed as a drop
     ignore = [
         "COM812",
         "COM819",
+        "CPY001",
         "D100",
         "D203",
         "D213",
@@ -195,19 +114,9 @@ The Ruff formatter is an extremely fast Python code formatter designed as a drop
     "tests/**" = ["INP001", "S101"]
     ```
 
-## extensions.json
-The following settings are required for automatic formatting on VSCode.
-```{.json title=".vscode/extensions.json" }
-{
-    "python.defaultInterpreterPath": ".venv/bin/python",
-    "[python]": {
-        "editor.codeActionsOnSave": {
-            "source.fixAll": "explicit",
-            "source.organizeImports": "explicit"
-        },
-        "editor.defaultFormatter": "charliermarsh.ruff",
-        "editor.formatOnSave": true,
-        "editor.tabSize": 4
-    }
-}
+## VS Code Settings
+The `[python]` section of `.vscode/settings.json` formats Python with Ruff on save (`editor.formatOnSave`), and fixes lint errors and sorts imports (`source.fixAll`, `source.organizeImports`).
+
+```{.json title=".vscode/settings.json"}
+--8<-- ".vscode/settings.json"
 ```

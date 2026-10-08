@@ -7,9 +7,7 @@
     ty is a fast type checker for Python built by Astral (the creators of uv and Ruff).
 
 ```{.toml title="ty.toml"}
-[src]
-include = ["tools", "tests", "noxfile.py"]
-exclude = ["**/__pycache__", ".pytest_cache", ".ruff_cache", ".venv"]
+--8<-- "ty.toml"
 ```
 
 ## Configuration Options

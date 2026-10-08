@@ -30,22 +30,22 @@ is_local = settings.IS_LOCAL
 
 ### Environment Files
 
-The module loads configuration from two files in order:
+The module loads configuration from two files in order; values in a later file override earlier ones, and real environment variables override both:
 
-1. `.env` - Base configuration (committed to git)
-2. `.env.local` - Local overrides (not committed, in `.gitignore`)
+1. `.env` - Not committed (listed in `.gitignore`). Put secrets and personal settings here.
+2. `.env.local` - Committed to git. The template ships it with `IS_LOCAL=True`.
 
-**`.env`** (shared configuration):
+Variable names are case-insensitive (`DEBUG=true` sets the `debug` field).
+
+**`.env.local`** (committed):
 ```bash
-DEBUG=false
-TITLE=My Application
-API_PREFIX_V1=/api/v1
+IS_LOCAL=True
 ```
 
-**`.env.local`** (local overrides):
+**`.env`** (not committed):
 ```bash
-IS_LOCAL=true
 DEBUG=true
+TITLE=My Application
 ```
 
 ## Available Settings
@@ -269,12 +269,7 @@ async def health_check():
 
 ### 1. Never Commit Secrets
 
-Always keep sensitive data in `.env.local`:
-
-```bash
-# .gitignore (should already include this)
-.env.local
-```
+Always keep sensitive data in `.env`, which is listed in `.gitignore`. `.env.local` is committed, so never put secrets there.
 
 ### 2. Provide Defaults
 
@@ -312,7 +307,7 @@ class Settings(BaseSettings):
     """Database connection string."""
 
     SECRET_KEY: str
-    """Secret key for JWT tokens. Must be set in .env.local."""
+    """Secret key for JWT tokens. Must be set in .env."""
 ```
 
 ### 5. Validate Related Settings
@@ -345,13 +340,9 @@ import pytest
 from tools.config import Settings
 
 def test_with_custom_settings():
-    settings = Settings(
-        DEBUG=True,
-        IS_LOCAL=True,
-        DATABASE_URL="sqlite:///:memory:"
-    )
+    settings = Settings(debug=True, IS_LOCAL=True)
 
-    assert settings.DEBUG is True
+    assert settings.debug is True
     assert settings.IS_LOCAL is True
 ```
 

@@ -9,7 +9,7 @@
         "notebook.source.organizeImports": "explicit"
     },
     "notebook.formatOnSave.enabled": true,
-    "python.defaultInterpreterPath": ".venv/bin/python",
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
     "python.languageServer": "None",
     "python.testing.autoTestDiscoverOnSaveEnabled": false,
     "python.testing.pytestEnabled": true,
@@ -17,16 +17,15 @@
         "tests"
     ],
     "python.testing.unittestEnabled": false,
-    "sqlfluff.config": ".sqlfluff",
-    "sqlfluff.executablePath": ".venv/bin/sqlfluff",
-    "sqlfluff.format.enabled": true,
-    "sqlfluff.linter.run": "onType",
     "terminal.integrated.defaultProfile.linux": "zsh",
     "terminal.integrated.profiles.linux": {
         "zsh": {
             "path": "/bin/zsh"
         }
     },
+    "yaml.customTags": [
+        "tag:yaml.org,2002:python/name:pymdownx.superfences.fence_code_format"
+    ],
     "[dockercompose]": {
         "editor.defaultFormatter": "redhat.vscode-yaml",
         "editor.tabSize": 4
@@ -52,7 +51,7 @@
         "editor.tabSize": 4
     },
     "[sql]": {
-        "editor.defaultFormatter": "sqlfluff.vscode-sqlfluff",
+        "editor.defaultFormatter": "Quary.sqruff",
         "editor.tabSize": 2
     },
     "[toml]": {

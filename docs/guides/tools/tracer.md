@@ -363,20 +363,20 @@ with maybe_timer("optional_timing"):
 
 ## Testing
 
-Test code with timers by checking log output:
+`Timer` writes its DEBUG log to standard output through a new `Logger`, so check it with pytest's `capsys`:
 
-def test_timer_logging(caplog):
-    with caplog.at_level(logging.DEBUG):
-        with Timer("test_operation"):
-            pass  # Instant operation
+```python
+from tools.tracer import Timer
 
-    assert "test_operation" in caplog.text
-    assert "executed in" in caplog.text
-    assert "ms" in caplog.text
 
-    assert "test_operation" in cm.output[0]
-    assert "executed in" in cm.output[0]
-    assert "ms" in cm.output[0]
+def test_timer_logging(capsys):
+    with Timer("test_operation"):
+        pass  # Instant operation
+
+    out = capsys.readouterr().out
+    assert "test_operation" in out
+    assert "executed in" in out
+    assert "ms" in out
 ```
 
 ## Related Documentation

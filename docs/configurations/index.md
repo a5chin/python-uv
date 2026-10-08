@@ -2,152 +2,20 @@
 
 This section provides detailed information about how each tool in this template is configured. Understanding these configurations will help you customize the environment to match your project's specific needs.
 
-## Overview
-
-The development environment includes configuration files for:
-
-- **uv** - Package management and Python version
-- **Ruff** - Linting and formatting rules
-- **SQLFluff** - Linting and formatting rules for SQL
-- **ty** - Type checking strictness
-- **pytest** - Testing and coverage
-- **pre-commit** - Automated quality checks
-
-Each tool is configured through dedicated configuration files in the repository root.
-
 ## Configuration Files
 
-| File                      | Tool        | Purpose                           |
-| ------------------------- | ----------- | --------------------------------- |
-| `pyproject.toml`          | uv, Project | Dependencies and project metadata |
-| `ruff.toml`               | Ruff        | Linting and formatting rules      |
-| `ty.toml`                 | ty          | Type checking configuration       |
-| `.sqlfluff`               | SQLFluff    | SQL linting and formatting rules  |
-| `pytest.ini`              | pytest      | Testing and coverage settings     |
-| `.pre-commit-config.yaml` | pre-commit  | Hook definitions                  |
-| `noxfile.py`              | nox         | Task automation                   |
+| File | Tool | Purpose | Reference |
+| --- | --- | --- | --- |
+| `pyproject.toml`, `.devcontainer/devcontainer.json` | uv, Project | Dependencies, project metadata, Dev Container and VS Code settings | [uv](uv.md) |
+| `ruff.toml` | Ruff | Linting and formatting rules | [Ruff](ruff.md) |
+| `ty.toml` | ty | Type checking configuration | [ty](ty.md) |
+| `.sqruff` | sqruff | SQL linting and formatting rules | [sqruff](sqruff.md) |
+| `pytest.ini` | pytest | Testing and coverage settings | [Test](test.md) |
+| `.pre-commit-config.yaml` | pre-commit | Hook definitions | [pre-commit](pre-commit.md) |
+| `noxfile.py` | nox | Task automation | [Task Automation with nox](../guides/index.md#task-automation-with-nox) |
+| `.env`, `.env.local` | `Settings` | Environment variables | [Configuration Management](../guides/tools/config.md) |
 
-## Quick Links
-
-Jump to detailed configuration guides:
-
-### [uv Configuration](uv.md)
-Learn how uv manages dependencies and Python versions:
-- Dependency groups (production vs development)
-- Lock file management
-- Python version pinning
-- Virtual environment handling
-
-**Key file**: `pyproject.toml`
-
-[→ Read full uv configuration guide](uv.md)
-
-### [Ruff Configuration](ruff.md)
-Understand Ruff's linting and formatting rules:
-- Rule selection (ALL enabled by default)
-- Specific rule exclusions
-- Per-file rule overrides
-- Line length and formatting style
-
-**Key file**: `ruff.toml`
-
-[→ Read full Ruff configuration guide](ruff.md)
-
-### SQLFluff Configuration
-Configure SQL linting and formatting:
-- SQL dialect (BigQuery)
-- Line length (80 characters)
-- Indentation (2 spaces)
-- Custom rules for SQL best practices
-
-**Key file**: `.sqlfluff`
-
-**Quick reference:**
-```bash
-# Lint SQL files
-uv run sqlfluff lint .
-
-# Fix SQL files
-uv run sqlfluff fix .
-
-# Use via nox
-uv run nox -s lint -- --sqlfluff
-```
-
-### [ty Configuration](ty.md)
-Configure type checking behavior:
-- Include/exclude patterns
-- Source directories
-- Cache exclusions
-
-**Key file**: `ty.toml`
-
-[→ Read full ty configuration guide](ty.md)
-
-### [pytest Configuration](test.md)
-Set up testing and coverage:
-- Coverage requirements (75% minimum)
-- Test discovery patterns
-- Coverage reports (HTML + terminal)
-- pytest plugins and options
-
-**Key file**: `pytest.ini`
-
-[→ Read full pytest configuration guide](test.md)
-
-### [pre-commit Configuration](pre-commit.md)
-Configure automated hooks:
-- Ruff formatting and linting hooks
-- File validation hooks
-- Dockerfile linting
-- Hook execution order
-
-**Key file**: `.pre-commit-config.yaml`
-
-[→ Read full pre-commit configuration guide](pre-commit.md)
-
-## Common Configuration Tasks
-
-### Adjusting Code Quality Standards
-
-**Make linting more strict:**
-```toml
-# ruff.toml
-[lint]
-select = ["ALL"]
-ignore = []  # Remove exclusions to enable all rules
-```
-
-**Increase coverage requirements:**
-```ini
-# pytest.ini
-[pytest]
-addopts = --cov-fail-under=90  # Increase from 75% to 90%
-```
-
-**Configure type checking:**
-```toml
-# ty.toml
-[src]
-include = ["tools", "tests", "your_package"]
-exclude = ["**/__pycache__", ".pytest_cache", ".ruff_cache", ".venv"]
-```
-
-### Adding New Dependencies
-
-**Add production dependency:**
-```bash
-uv add requests
-```
-
-**Add development dependency:**
-```bash
-uv add --dev pytest-mock
-```
-
-Both commands automatically update `pyproject.toml` and `uv.lock`.
-
-### Customizing for Your Project
+## Customizing for Your Project
 
 **Update project metadata:**
 ```toml
@@ -159,14 +27,7 @@ description = "Your project description"
 requires-python = ">=3.11"
 ```
 
-**Configure FastAPI settings:**
-```bash
-# .env.local
-DEBUG=true
-TITLE=Your API Name
-VERSION=1.0.0
-API_PREFIX_V1=/api/v1
-```
+To change linting rules, coverage requirements, or type checking targets, edit the file listed above; each reference page explains its options.
 
 ## Configuration Best Practices
 
@@ -195,13 +56,7 @@ Ensure configurations work together:
 
 ### 4. Version Control
 
-Commit configuration files to git:
-```bash
-git add pyproject.toml ruff.toml ty.toml pytest.ini .pre-commit-config.yaml
-git commit -m "Update project configurations"
-```
-
-**Exception**: Never commit `.env.local` (contains local secrets)
+Commit configuration files to git. `.env` is ignored by git, so put secrets there; `.env.local` is committed (see [Configuration Management](../guides/tools/config.md)).
 
 ### 5. Team Alignment
 
@@ -238,38 +93,6 @@ uv run pre-commit autoupdate
 uv run pre-commit uninstall
 uv run pre-commit install
 ```
-
-## Advanced Configuration
-
-### Multi-Environment Setup
-
-Use different configurations for different environments:
-
-```python
-# Load config based on environment
-from tools.config import Settings
-
-settings = Settings()
-
-if settings.IS_LOCAL:
-    # Use local database
-    DATABASE_URL = "sqlite:///./dev.db"
-else:
-    # Use production database
-    DATABASE_URL = settings.PRODUCTION_DATABASE_URL
-```
-
-### CI/CD Configuration
-
-GitHub Actions workflows use the same configurations:
-
-```yaml
-# .github/workflows/test.yml
-- name: Run tests
-  run: uv run nox -s test
-```
-
-Ensure CI and local environments use identical configurations.
 
 ## Migration Guide
 

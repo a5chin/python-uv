@@ -5,13 +5,19 @@ on:
     types:
       - opened
 
+permissions:
+  pull-requests: write
+
 jobs:
   approve:
     runs-on: ubuntu-latest
 
-    if: endsWith(github.actor, '[bot]')
+    if: github.event.pull_request.user.type == 'Bot'
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
       - name: Approve
         run: gh pr review ${{ github.event.number }} --approve
         env:

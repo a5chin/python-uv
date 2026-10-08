@@ -14,7 +14,7 @@ This repository provides a complete, batteries-included development environment 
 
 - **Ultra-fast package management** - [uv](https://github.com/astral-sh/uv) is 10-100x faster than pip
 - **Lightning-fast code quality** - [Ruff](https://github.com/astral-sh/ruff) replaces Black, isort, Flake8, and more
-- **SQL linting** - [SQLFluff](https://github.com/sqlfluff/sqlfluff) for SQL code quality
+- **SQL linting** - [sqruff](https://github.com/quarylabs/sqruff) for SQL code quality
 - **GitHub Actions linting** - [actionlint](https://github.com/rhysd/actionlint) for workflow file quality
 - **Type safety** - ty for comprehensive type checking
 - **Automated testing** - pytest with 75% coverage requirement
@@ -74,6 +74,14 @@ Learn how to use the tools and utilities:
 - [Pre-commit Guide](guides/pre-commit.md) - Automated quality checks
 - [Built-in Utilities](guides/tools/index.md) - Logger, Config, Timer
 
+### Contributing
+
+How changes are written, checked, and released:
+
+- [Code Standards](guides/code-standards.md) - Coding rules, tests, and documentation rules
+- [Branch Strategy & Release Flow](guides/branch-strategy.md) - GitHub Flow, Draft Release, Develop / Production
+- [CI/CD Workflows](guides/ci-cd.md) - What each GitHub Actions workflow does
+
 ### Configuration Reference
 
 Deep dive into tool configurations:
@@ -81,6 +89,7 @@ Deep dive into tool configurations:
 - [uv Configuration](configurations/uv.md) - Package manager settings
 - [Ruff Configuration](configurations/ruff.md) - Linter and formatter rules
 - [ty Configuration](configurations/ty.md) - Type checker settings
+- [sqruff Configuration](configurations/sqruff.md) - SQL linter and formatter rules
 - [pytest Configuration](configurations/test.md) - Testing framework setup
 - [Pre-commit Configuration](configurations/pre-commit.md) - Hook definitions
 
@@ -96,45 +105,30 @@ See practical examples:
 
 ```
 .
-├── tools/                    # Reusable utility modules
-│   ├── config/              # Configuration management
-│   ├── logger/              # Logging utilities
-│   └── tracer/              # Performance monitoring
-├── tests/                   # Test suite
-├── docs/                    # This documentation
-├── .devcontainer/           # Dev Container configuration
-├── .github/                 # GitHub Actions workflows
-├── noxfile.py              # Task automation
-├── pyproject.toml          # Project metadata
+├── tools/                  # Reusable utility modules
+│   ├── config/             # Configuration management (Settings, FastAPI config)
+│   ├── logger/             # Logging utilities (Local & Google Cloud formatters)
+│   └── tracer/             # Performance tracing (Timer decorator/context manager)
+├── tests/                  # Test suite (mirrors tools/ structure)
+├── docs/                   # This documentation (MkDocs)
+├── .devcontainer/          # Dev Container configuration
+├── .github/                # GitHub Actions workflows, PR template, repository settings
+├── CLAUDE.md               # Guidance for Claude Code
+├── CODE_OF_CONDUCT.md      # Community Code of Conduct
+├── CONTRIBUTING.md         # Contribution guidelines
+├── Dockerfile              # App image
+├── mkdocs.yml              # Documentation site configuration
+├── noxfile.py              # Task automation (fmt, lint, test)
+├── pyproject.toml          # Project metadata and dependencies (uv)
+├── pytest.ini              # pytest configuration (75% coverage requirement)
 ├── ruff.toml               # Ruff configuration
-├── ty.toml                 # Type checking config
-└── pytest.ini              # Testing configuration
+├── ty.toml                 # ty configuration
+└── .sqruff                 # sqruff configuration
 ```
 
 ## Common Commands
 
-```bash
-# Install dependencies
-uv sync
-
-# Format Python code
-uv run nox -s fmt -- --ruff
-
-# Format SQL code
-uv run nox -s fmt -- --sqlfluff
-
-# Run linters
-uv run nox -s lint -- --ruff --sqlfluff --ty
-
-# Run tests
-uv run nox -s test
-
-# Serve documentation
-uv run mkdocs serve
-
-# Add dependencies
-uv add requests pandas
-```
+Install dependencies with `uv sync`, then use the nox sessions in [Task Automation with nox](guides/index.md#task-automation-with-nox) to format, lint, and test. Serve this documentation locally with `uv run mkdocs serve`.
 
 ## Next Steps
 

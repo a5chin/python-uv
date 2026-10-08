@@ -40,7 +40,7 @@ uv run pre-commit install
 ```
 
 ### CI/CD
-GitHub Actions runs ty on every push and pull request to the main branch. See the workflow configuration in `.github/workflows/lint.yml`.
+GitHub Actions runs ty on pull requests that change Python files or their configuration. See [CI/CD Workflows](ci-cd.md).
 
 ### VSCode Integration
 VSCode uses ty for type checking when `python.languageServer` is set to `"None"` in `.vscode/settings.json`.
