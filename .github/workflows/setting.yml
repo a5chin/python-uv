@@ -25,7 +25,7 @@ jobs:
       - name: Enable auto-delete head branches
         run: |
           gh repo edit ${{ github.repository }} \
-            --default-branch develop \
+            --default-branch main \
             --delete-branch-on-merge
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
@@ -37,11 +37,14 @@ jobs:
       matrix:
         include:
           - environment: Develop
-            branch: develop
+            pattern: main
+            type: branch
           - environment: Production
-            branch: main
+            pattern: v*
+            type: tag
           - environment: github-pages
-            branch: gh-pages
+            pattern: gh-pages
+            type: branch
 
     steps:
       - name: Checkout
@@ -74,11 +77,12 @@ jobs:
           fi
 
           gh api -X POST "${{ env.ENDPOINT }}/${{ env.ENVIRONMENT_NAME }}/deployment-branch-policies" \
-            -f "name=${{ env.BRANCH_NAME }}" \
-            -f "type=branch"
+            -f "name=${{ env.POLICY_PATTERN }}" \
+            -f "type=${{ env.POLICY_TYPE }}"
         env:
           CONFIG_FILE: .github/environments.json
-          BRANCH_NAME: ${{ matrix.branch }}
+          POLICY_PATTERN: ${{ matrix.pattern }}
+          POLICY_TYPE: ${{ matrix.type }}
           ENDPOINT: repos/${{ github.repository }}/environments
           ENVIRONMENT_NAME: ${{ matrix.environment }}
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}

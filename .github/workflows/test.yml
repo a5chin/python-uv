@@ -16,7 +16,6 @@ on:
       - "uv.lock"
   push:
     branches:
-      - develop
       - main
     paths:
       - ".github/actions/setup-python-with-uv/action.yml"
