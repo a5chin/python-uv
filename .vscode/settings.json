@@ -23,6 +23,9 @@
             "path": "/bin/zsh"
         }
     },
+    "yaml.customTags": [
+        "tag:yaml.org,2002:python/name:pymdownx.superfences.fence_code_format"
+    ],
     "[dockercompose]": {
         "editor.defaultFormatter": "redhat.vscode-yaml",
         "editor.tabSize": 4
