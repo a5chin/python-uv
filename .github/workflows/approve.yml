@@ -12,7 +12,7 @@ jobs:
   approve:
     runs-on: ubuntu-latest
 
-    if: github.event.pull_request.user.type != 'Bot'
+    if: github.event.pull_request.user.type == 'Bot'
 
     steps:
       - name: Checkout
