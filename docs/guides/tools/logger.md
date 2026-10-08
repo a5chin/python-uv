@@ -270,22 +270,30 @@ class CustomFormatter(LocalFormatter):
         return f"[CUSTOM] {formatted}"
 ```
 
+### Adding a New Log Type
+
+To add an output format selectable with `log_type`:
+
+1. Create a formatter in `tools/logger/` that extends `logging.Formatter` (see `local.py` and `googlecloud.py`).
+2. Export it from `tools/logger/__init__.py` and add it to `__all__`.
+3. Add a member to `LogType` in `tools/logger/type.py`.
+4. Handle the new member in `Logger.__init__()` in `tools/logger/logger.py`, and add tests in `tests/tools/`.
+
 ## Testing
 
-Test your logging by checking log output:
+`Logger` does not propagate to the root logger, so attach pytest's `caplog` handler to it:
+
+```python
+from tools.logger import Logger, LogType
+
 
 def test_logger(caplog):
-    logger = Logger("test")
+    logger = Logger("test", log_type=LogType.LOCAL)
+    logger.addHandler(caplog.handler)
 
-    # Capture log output
-    with caplog.at_level(logging.INFO):
-        logger.info("Test message")
+    logger.info("Test message")
 
     assert "Test message" in caplog.text
-    with self.assertLogs(logger, level=logging.INFO) as cm:
-        logger.info("Test message")
-
-    assert "Test message" in cm.output[0]
 ```
 
 ## Related Documentation

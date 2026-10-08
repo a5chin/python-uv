@@ -1,7 +1,7 @@
 repo_name: a5chin/python-uv
 repo_url: https://github.com/a5chin/python-uv
 site_name: python-uv
-site_url: https://a5chin.github.io/a5chin
+site_url: https://a5chin.github.io/python-uv
 
 theme:
   name: material
@@ -39,7 +39,14 @@ markdown_extensions:
   - pymdownx.highlight:
       linenums: true
   - pymdownx.keys
-  - pymdownx.superfences
+  - pymdownx.snippets:
+      base_path: [.]
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
 
@@ -58,6 +65,9 @@ nav:
       - pre-commit: guides/pre-commit.md
       - Test: guides/test.md
       - cookiecutter: guides/cookiecutter.md
+      - Code Standards: guides/code-standards.md
+      - Branch Strategy: guides/branch-strategy.md
+      - CI/CD: guides/ci-cd.md
       - tools:
           - guides/tools/index.md
           - config: guides/tools/config.md
@@ -68,6 +78,7 @@ nav:
       - uv: configurations/uv.md
       - Ruff: configurations/ruff.md
       - ty: configurations/ty.md
+      - sqruff: configurations/sqruff.md
       - pre-commit: configurations/pre-commit.md
       - Test: configurations/test.md
   - Usecases:

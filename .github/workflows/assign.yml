@@ -13,7 +13,7 @@ jobs:
   assign:
     runs-on: ubuntu-latest
 
-    if: endsWith(github.actor, '[bot]') == false && github.event.pull_request.assignee == null
+    if: github.event.pull_request.user.type != 'Bot' && github.event.pull_request.assignee == null
 
     steps:
       - name: Add assignees
