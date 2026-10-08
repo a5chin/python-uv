@@ -56,11 +56,12 @@ cd python-uv
 # Build the Docker image
 docker build -t python-uv .
 
-# Run the container
-docker run -it --rm -v $(pwd):/workspace python-uv
+# Run the container with the source mounted at /app (the image's WORKDIR).
+# The extra volume keeps the virtual environment that was installed in the image.
+docker run -it --rm -v "$(pwd)":/app -v /app/.venv python-uv bash
 
-# Inside the container, install dependencies
-uv sync
+# Inside the container, dependencies are already installed
+uv run nox -s test
 ```
 
 ### Option 3: Local Installation
@@ -110,13 +111,13 @@ uv sync
 uv run nox -s test
 
 # Format code
-uv run nox -s fmt
+uv run nox -s fmt -- --ruff
 
 # Run linters
 uv run nox -s lint -- --ruff --ty
 ```
 
-If all commands complete successfully, you're ready to start developing! 🎉
+If all commands complete successfully, you're ready to start developing! 🎉 See [Task Automation with nox](../guides/index.md#task-automation-with-nox) for all sessions and flags.
 
 ## Detailed Setup Guides
 
@@ -155,6 +156,16 @@ sudo usermod -aG docker $USER
 ```
 
 Log out and log back in for the changes to take effect.
+
+## Using as a Template
+
+When you start a new project from this template:
+
+1. Update the project name and description in `pyproject.toml` (see [Customizing for Your Project](../configurations/index.md#customizing-for-your-project)).
+2. Add project-specific configuration by extending `Settings` (see [Extending Settings](../guides/tools/config.md#extending-settings)).
+3. Use the utilities in `tools/`, or remove them if you do not need them. If you remove or add packages, update `include` in `ty.toml` (see [ty Configurations](../configurations/ty.md)).
+4. Put shared defaults in `.env.local` (committed) and secrets in `.env` (not committed) (see [Environment Files](../guides/tools/config.md#environment-files)).
+5. Customize Ruff rules in `ruff.toml` only when needed (see [Ruff Configurations](../configurations/ruff.md)).
 
 ## Next Steps
 

@@ -1,3 +1,6 @@
+!!! WARNING
+    The [jupyter](https://github.com/a5chin/python-uv/tree/jupyter) branch is **archived** and no longer maintained, so its configuration may be outdated. For new projects, start from `main`.
+
 This repository provides jupyter branch for Jupyter Notebook.
 What a surprise! You can use it with just the following commands!
 ```sh

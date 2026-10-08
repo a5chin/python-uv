@@ -2,23 +2,7 @@
 
 ## `pytest.ini`
 ```{.ini title="pytest.ini"}
-[pytest]
-addopts =
-    --cov=.
-    --cov-branch
-    --cov-fail-under=75
-    --cov-report=html
-    --cov-report=term-missing
-    --import-mode=importlib
-
-norecursedirs =
-    .*
-    __pycache__
-    htmlcov
-
-pythonpath = "."
-python_files = test__*.py
-testpaths = tests
+--8<-- "pytest.ini"
 ```
 
 ## Options Details
@@ -56,14 +40,4 @@ Only the `tests` directory will be considered for running the tests.
 It is recommended to reduce the number of directories that pytest has to scan.
 
 ## `settings.json`
-
-```{.json title=".vscode/settings.json"}
-{
-    "python.testing.autoTestDiscoverOnSaveEnabled": false,
-    "python.testing.pytestEnabled": true,
-    "python.testing.pytestArgs": [
-        "tests"
-    ],
-    "python.testing.unittestEnabled": false,
-}
-```
+VS Code discovers tests in `tests/` with pytest through the `python.testing.*` keys in `.vscode/settings.json` (see [VS Code Settings](ruff.md#vs-code-settings) for the full file).
