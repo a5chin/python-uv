@@ -58,10 +58,10 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ github.repository }}/${{ matrix.image }}
           tags: |
             type=ref,event=branch
-            type=sha,format=long,enable=${{ github.event_name == 'push' }}
+            type=raw,value=latest
+            type=sha,enable=${{ github.event_name == 'push' }}
             type=raw,value=${{ github.event.release.tag_name }},enable=${{ github.event_name == 'release' }}
-            type=raw,value=latest,enable=${{ github.event_name == 'release' }}
-          labels: |
+          labels: &details |
             maintainer=a5chin <a5chin.origin+contact@gmail.com>
             org.opencontainers.image.authors=a5chin <a5chin.origin+contact@gmail.com>
             org.opencontainers.image.description=${{ matrix.description }}
@@ -72,6 +72,10 @@ jobs:
             org.opencontainers.image.url=https://github.com/${{ github.repository }}
             org.opencontainers.image.vendor=a5chin <a5chin.origin+contact@gmail.com>
             org.opencontainers.image.version=${{ github.event.release.tag_name || github.ref_name }}
+          annotations: *details
+
+        env:
+          DOCKER_METADATA_ANNOTATIONS_LEVELS: manifest,index
 
       - name: Build and Push Image
         uses: docker/build-push-action@v7
