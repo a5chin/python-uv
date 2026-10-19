@@ -75,7 +75,7 @@ jobs:
           annotations: *details
 
         env:
-          DOCKER_METADATA_ANNOTATIONS_LEVELS: manifest,index
+          DOCKER_METADATA_ANNOTATIONS_LEVELS: manifest
 
       - name: Build and Push Image
         uses: docker/build-push-action@v7
